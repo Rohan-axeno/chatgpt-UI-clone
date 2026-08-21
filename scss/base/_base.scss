@@ -1,0 +1,38 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+body {
+  font-family: $font-family-base;
+  color: $color-text-primary;
+  background-color: $color-bg-main;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.utils_icon,
+.history_icon,
+.action_icon,
+.store_icon,
+.icon_btn img,
+.suggestion_content img,
+.menu_item img {
+  width: rem(16) !important;
+  height: rem(16) !important;
+  min-width: rem(16) !important;
+  max-width: rem(16) !important;
+  object-fit: contain !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+
+.utils_icon {
+  width: rem(18) !important;
+  height: rem(18) !important;
+  min-width: rem(18) !important;
+}

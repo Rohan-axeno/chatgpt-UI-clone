@@ -1,0 +1,273 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: $sidebar-width;
+  height: 100vh;
+  background-color: $color-bg-sidebar;
+  border-right: rem(1) solid $color-border;
+
+  &_nav {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(12) rem(16);
+    min-height: rem(60);
+
+    .logo {
+      display: flex;
+      gap: rem(4);
+      font-size: rem(15);
+      font-weight: 600;
+      
+      .brand_plan {
+        color: $color-text-muted;
+      }
+    }
+
+    .nav_icons {
+      display: flex;
+      gap: rem(4);
+    }
+  }
+
+  &_content {
+    flex: 1;
+    overflow-y: auto;
+    padding: rem(12);
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+    @include hide-scrollbar;
+  }
+
+  &_utils {
+    .utils_list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: rem(4);
+    }
+    
+    .utils_item {
+      display: flex;
+      align-items: center;
+      gap: rem(12);
+      padding: rem(10);
+      border-radius: rem(8);
+      cursor: pointer;
+      
+      &:hover, &.active {
+        background-color: $color-bg-hover;
+      }
+      
+      .utils_icon {
+        width: rem(18);
+        height: rem(18);
+        
+      }
+      
+      .utils_link {
+        font-size: rem(14);
+        font-weight: 500;
+        text-decoration: none;
+        color: $color-text-primary;
+      }
+    }
+  }
+
+  .recents {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
+
+    .history_group {
+      .group_title {
+        font-size: rem(12);
+        color: $color-text-muted;
+        padding: 0 rem(10);
+        margin-bottom: rem(8);
+      }
+
+      .group_header {
+        padding: 0 rem(10);
+        margin-bottom: rem(8);
+
+        .group_toggle_btn {
+          background: none;
+          border: none;
+          color: $color-text-muted;
+          font-size: rem(12);
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: rem(4);
+          cursor: pointer;
+          padding: 0;
+
+          &:hover {
+            color: $color-text-primary;
+          }
+
+          .chevron_icon {
+            width: rem(14) !important;
+            height: rem(14) !important;
+            transition: transform 0.2s ease; 
+          }
+        }
+      }
+
+      .history_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 rem(4) 0 rem(10);
+        margin-bottom: rem(8);
+
+        .dropdown_btn {
+          background: none;
+          border: none;
+          color: $color-text-secondary;
+          font-size: rem(12);
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: rem(4);
+          cursor: pointer;
+          &:hover { color: $color-text-primary; }
+        }
+
+        .header_actions {
+          display: flex;
+          align-items: center;
+          gap: rem(2);
+        }
+
+        .popover_wrapper {
+          position: relative;
+        }
+
+        .organize_popover {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          background: #ffffff;
+          border-radius: rem(12);
+          box-shadow: 0 rem(4) rem(20) rgba(0,0,0,0.15);
+          width: rem(200);
+          padding: rem(8);
+          z-index: 50;
+          display: none; // JS toggles to flex
+
+          .popover_title {
+            font-size: rem(12);
+            color: $color-text-muted;
+            padding: rem(8) rem(12);
+          }
+
+          .popover_item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            padding: rem(10) rem(12);
+            border-radius: rem(8);
+            cursor: pointer;
+            font-size: rem(14);
+            color: $color-text-primary;
+
+            &:hover { background-color: $color-bg-hover; }
+
+            .item_left {
+              display: flex;
+              align-items: center;
+              gap: rem(10);
+            }
+            .check_icon { display: none; }
+            &.active .check_icon { display: block; }
+          }
+        }
+      }
+
+      .group_list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: rem(2);
+      }
+
+      .group_item {
+        display: flex;
+        align-items: center;
+      }
+
+      .history_icon {
+        width: rem(16);
+        height: rem(16);
+        object-fit: contain;
+        margin-right: rem(10);
+      }
+
+      .group_link {
+        display: block;
+        color: $color-text-primary;
+        font-size: rem(14);
+        padding: rem(8) rem(10);
+        border-radius: rem(8);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: none;
+        flex: 1;
+        
+        &:hover { background-color: $color-bg-hover; }
+      }
+    }
+  }
+
+  &_footer {
+    flex-shrink: 0;
+    padding: rem(12);
+    
+    .profile_btn {
+      display: flex;
+      align-items: center;
+      gap: rem(12);
+      width: 100%;
+      background: none;
+      border: none;
+      padding: rem(8);
+      border-radius: rem(8);
+      cursor: pointer;
+      text-align: left;
+      
+      &:hover { background-color: $color-bg-hover; }
+
+      .avatar--pink {
+        width: rem(32);
+        height: rem(32);
+        border-radius: 50%;
+        background-color: $color-pink-avatar;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: rem(12);
+      }
+
+      .profile_info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        
+        .profile_name { font-size: rem(14); font-weight: 600; }
+        .plan_name { font-size: rem(12); color: $color-text-muted; }
+      }
+    }
+  }
+}

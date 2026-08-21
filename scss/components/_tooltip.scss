@@ -1,0 +1,42 @@
+@use '../abstracts/mixins' as *;
+
+.tooltip_trigger {
+  position: relative;
+
+  .tooltip_box {
+    position: absolute;
+    top: 130%; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #212121;
+    color: #ffffff;
+    padding: rem(8) rem(14);
+    border-radius: rem(12);
+    font-size: rem(13);
+    font-weight: 500;
+    white-space: nowrap;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 100;
+    box-shadow: 0 rem(4) rem(6) rgba(0,0,0,0.1);
+
+    .shortcut {
+      color: #999999;
+      margin-left: rem(6);
+      font-weight: 400;
+    }
+  }
+
+  &:hover .tooltip_box {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.tooltip_box--right {
+  left: auto !important;
+  right: 0;
+  transform: none !important;
+}

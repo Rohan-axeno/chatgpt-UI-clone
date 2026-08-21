@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Clone</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="app_layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <!-- Sidebar Header -->
+        <nav class="sidebar_nav">
+          <div class="logo">
+            <span class="brand_name">ChatGPT</span>
+            <span class="brand_plan">Go</span>
+          </div>
+          <div class="nav_icons">
+            <button class="icon_btn tooltip_trigger">
+              <img src="./assets/icons/magnifying-glass.svg" alt="Search" />
+              <span class="tooltip_box tooltip_box--right"
+                >Search chats <span class="shortcut">Ctrl + K</span></span
+              >
+            </button>
+            <button class="icon_btn tooltip_trigger">
+              <img src="./assets/icons/panel-left.svg" alt="Sidebar" />
+              <span class="tooltip_box tooltip_box--right">Close sidebar</span>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Sidebar Scrollable Content -->
+        <div class="sidebar_content">
+          <!-- Utilities List -->
+          <div class="sidebar_utils">
+            <ul class="utils_list">
+              <li class="utils_item active">
+                <img
+                  class="utils_icon"
+                  src="./assets/icons/square-pen.svg"
+                  alt="New chat"
+                />
+                <a href="#" class="utils_link">New chat</a>
+              </li>
+              <li class="utils_item">
+                <img
+                  class="utils_icon"
+                  src="./assets/icons/library-big.svg"
+                  alt="Library"
+                />
+                <a href="#" class="utils_link">Library</a>
+              </li>
+              <li class="utils_item">
+                <img
+                  class="utils_icon"
+                  src="./assets/icons/folder-closed.svg"
+                  alt="Projects"
+                />
+                <a href="#" class="utils_link">Projects</a>
+              </li>
+              <li class="utils_item">
+                <img
+                  class="utils_icon"
+                  src="./assets/icons/clock-7.svg"
+                  alt="Scheduled"
+                />
+                <a href="#" class="utils_link">Scheduled</a>
+              </li>
+              <li class="utils_item">
+                <img
+                  class="utils_icon"
+                  src="./assets/icons/house-plug.svg"
+                  alt="Plugins"
+                />
+                <a href="#" class="utils_link">Plugins</a>
+              </li>
+              <li class="utils_item">
+                <img
+                  class="utils_icon"
+                  src="./assets/icons/codex.svg"
+                  alt="Codex"
+                />
+                <a href="#" class="utils_link">Codex</a>
+              </li>
+              <li class="utils_item">
+                <img
+                  class="utils_icon"
+                  src="./assets/icons/dots-horizontal.svg"
+                  alt="More"
+                />
+                <a href="#" class="utils_link">More</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Chat History -->
+          <div class="recents">
+            <div class="history_group">
+              <div class="group_header">
+                <button class="group_toggle_btn">
+                  Pinned
+                <img class="chevron_icon" src="./assets/icons/chevron-down.svg" alt="chevron-down" />
+                </button>
+              </div>
+              <ul class="group_list">
+                <li class="group_item">
+                  <a href="#" class="group_link">Off-campus job applications</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Recents Group -->
+            <div class="history_group">
+              <div class="history_header">
+                <button class="dropdown_btn">
+                  Recents
+                  <img src="./assets/icons/chevron-down.svg" alt="arrow" />
+                </button>
+                <div class="header_actions">
+                  <button class="icon_btn">
+                    <img src="./assets/icons/square-pen.svg" alt="New chat" />
+                  </button>
+                  <div class="popover_wrapper">
+                    <button class="icon_btn">
+                      <img
+                        src="./assets/icons/dots-horizontal.svg"
+                        alt="More"
+                      />
+                    </button>
+                    <div class="organize_popover">
+                      <div class="popover_title">Organize chats</div>
+                      <button class="popover_item active">
+                        <div class="item_left">
+                          <img src="./assets/icons/list" alt="list" /> In one
+                          list
+                        </div>
+                        <img
+                          class="check_icon"
+                          src="./assets/icons/check"
+                          alt="check"
+                        />
+                      </button>
+                      <button class="popover_item">
+                        <div class="item_left">
+                          <img src="./assets/icons/folder.svg" alt="folder" />
+                          By project
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ul class="group_list">
+                <li class="group_item">
+                  <a href="#" class="group_link">Best Companies And Perks</a>
+                </li>
+                <li class="group_item">
+                  <a href="#" class="group_link"
+                    >Explain Composer Prompt Suggesti...</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar_footer">
+          <button class="profile_btn">
+            <div class="avatar avatar--pink">U1</div>
+            <div class="profile_info">
+              <span class="profile_name">Rohan Kumar</span>
+              <span class="plan_name">Go</span>
+            </div>
+            <img
+              class="store_icon"
+              src="./assets/icons/store.svg"
+              alt="Store"
+            />
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN SECTION -->
+      <main class="main_view">
+        <header class="main_header">
+          <button class="icon_btn refresh_btn">
+            <img
+              src="./assets/icons/message-circle-dashed.svg"
+              alt="Temporary chat"
+            />
+          </button>
+        </header>
+
+        <div class="chat_container">
+          <h1 class="chat_heading">What’s on the agenda today?</h1>
+
+          <!-- Complex Composer -->
+          <div class="composer_wrapper">
+            <button class="btn_add tooltip_trigger">
+              <img src="./assets/icons/plus.svg" alt="plus" />
+              <span class="tooltip_box">Attach files</span>
+            </button>
+
+            <!-- Attachment Dropdown Menu -->
+            <div class="attachment_menu">
+              <button class="menu_item">
+                <img src="./assets/icons/paperclip.svg" alt="" />
+                <span class="item_text">
+                  <span class="title">Add photos & files</span>
+                  <span class="desc">Upload from computer</span>
+                </span>
+              </button>
+              <button class="menu_item">
+                <img src="./assets/icons/drive.svg" alt="" />
+                <span class="item_text">
+                  <span class="title">Add from library</span>
+                  <span class="desc">Browse and search your files</span>
+                </span>
+              </button>
+              <button class="menu_item">
+                <img src="./assets/icons/image-colorful.svg" alt="" />
+                <span class="item_text">
+                  <span class="title">Create image</span>
+                  <span class="desc">Visualize anything</span>
+                </span>
+              </button>
+            </div>
+
+            <input
+              class="composer_input"
+              type="text"
+              placeholder="Ask anything"
+            />
+
+            <div class="composer_actions">
+              <button class="action_btn tooltip_trigger">
+                <img
+                  class="action_icon"
+                  src="./assets/icons/brain.svg"
+                  alt="Think"
+                />
+                Think
+                <span class="tooltip_box">Get a smarter answer</span>
+              </button>
+              <button class="action_btn tooltip_trigger">
+                <img
+                  class="action_icon"
+                  src="./assets/icons/mic.svg"
+                  alt="Mic"
+                />
+                <span class="tooltip_box"
+                  >Dictate <span class="shortcut">Ctrl + Shift + D</span></span
+                >
+              </button>
+              <button class="action_btn btn_voice tooltip_trigger">
+                <img
+                  class="action_icon"
+                  src="./assets/icons/audio-lines.svg"
+                  alt="Voice"
+                />
+                <span class="tooltip_box">Start Voice</span>
+              </button>
+            </div>
+          </div>
+
+        
+          <div class="suggestions">
+            <button class="suggestion_btn">
+              <div class="suggestion_content">
+                <img src="./assets/icons/image.svg" alt="image" /> Create an
+                image
+              </div>
+              <img
+                class="close_icon"
+                src="./assets/icons/cross-2.svg"
+                alt="Close"
+              />
+            </button>
+            <button class="suggestion_btn">
+              <div class="suggestion_content">
+                <img src="./assets/icons/pencil.svg" alt="write" /> Write or
+                edit
+              </div>
+              <img
+                class="close_icon"
+                src="./assets/icons/cross-2.svg"
+                alt="Close"
+              />
+            </button>
+            <button class="suggestion_btn">
+              <div class="suggestion_content">
+                <img src="./assets/icons/globe.svg" alt="globe" /> Search the
+                web
+              </div>
+              <img
+                class="close_icon"
+                src="./assets/icons/cross-2.svg"
+                alt="Close"
+              />
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Search Modal Overlay -->
+    <div class="modal_overlay">
+      <div class="search_modal">
+        <div class="search_header">
+          <input
+            type="text"
+            placeholder="Search chats..."
+            class="search_modal_input"
+          />
+          <button class="icon_btn close_modal_btn">
+            <img src="./assets/icons/close.svg" alt="Close" />
+          </button>
+        </div>
+        <div class="search_body">
+          <button class="new_chat_row">
+            <img src="./assets/icons/edit.svg" alt="" /> New chat
+          </button>
+          <div class="search_group">
+            <h3 class="group_title">Today</h3>
+            <button class="chat_row">
+              <img src="./assets/icons/chat-bubble.svg" alt="" /> QuizRush App
+              Creation
+            </button>
+            <button class="chat_row">
+              <img src="./assets/icons/chat-bubble.svg" alt="" /> Gemini Access
+              Sharing
+            </button>
+          </div>
+          <div class="search_group">
+            <h3 class="group_title">Yesterday</h3>
+            <button class="chat_row">
+              <img src="./assets/icons/chat-bubble.svg" alt="" /> Healthy
+              Protein Bowls
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
