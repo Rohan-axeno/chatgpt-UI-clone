@@ -1,22 +1,53 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
+.main_header {
+  position: absolute; top: rem(16); left: rem(16); right: rem(16);
+  display: flex; justify-content: space-between; z-index: 50;
+
+  .model_selector_btn {
+    background: none; border: none; font-size: rem(18); font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: rem(8);
+    padding: rem(8); border-radius: rem(8);
+    &:hover { background-color: #f4f4f4; }
+  }
+  #modelDropdown { top: 100%; left: 0; }
+}
+
 .chat_container {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; // Centers H1, Composer, and Suggestions initially
   padding: 0 rem(24);
   max-width: rem(750);
   margin: 0 auto;
   width: 100%;
+  
+  // Locks the layout to the viewport height
+  height: 100vh;
+  padding-top: rem(60); 
+  padding-bottom: rem(24); 
+  overflow: hidden;
+}
 
-  .chat_heading {
-    font-size: rem(32);
-    font-weight: 500;
-    margin-bottom: rem(32);
-  }
+.chat_greeting {
+  font-size: rem(32);
+  font-weight: 600;
+  color: $color-text-primary;
+  margin-bottom: rem(32);
+}
+
+.chat_feed {
+  flex: 1; // Acts as a spring pushing the composer to the bottom when visible
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: rem(24);
+  padding: rem(24) 0;
+  @include hide-scrollbar; // Assuming you have this mixin, otherwise remove this line
 }
 
 .suggestions {

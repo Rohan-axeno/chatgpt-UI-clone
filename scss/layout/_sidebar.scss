@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .sidebar {
   display: flex;
@@ -22,7 +22,7 @@
       gap: rem(4);
       font-size: rem(15);
       font-weight: 600;
-      
+
       .brand_plan {
         color: $color-text-muted;
       }
@@ -51,7 +51,7 @@
       flex-direction: column;
       gap: rem(4);
     }
-    
+
     .utils_item {
       display: flex;
       align-items: center;
@@ -59,17 +59,17 @@
       padding: rem(10);
       border-radius: rem(8);
       cursor: pointer;
-      
-      &:hover, &.active {
+
+      &:hover,
+      &.active {
         background-color: $color-bg-hover;
       }
-      
+
       .utils_icon {
         width: rem(18);
         height: rem(18);
-        
       }
-      
+
       .utils_link {
         font-size: rem(14);
         font-weight: 500;
@@ -115,7 +115,7 @@
           .chevron_icon {
             width: rem(14) !important;
             height: rem(14) !important;
-            transition: transform 0.2s ease; 
+            transition: transform 0.2s ease;
           }
         }
       }
@@ -137,7 +137,9 @@
           align-items: center;
           gap: rem(4);
           cursor: pointer;
-          &:hover { color: $color-text-primary; }
+          &:hover {
+            color: $color-text-primary;
+          }
         }
 
         .header_actions {
@@ -156,7 +158,7 @@
           right: 0;
           background: #ffffff;
           border-radius: rem(12);
-          box-shadow: 0 rem(4) rem(20) rgba(0,0,0,0.15);
+          box-shadow: 0 rem(4) rem(20) rgba(0, 0, 0, 0.15);
           width: rem(200);
           padding: rem(8);
           z-index: 50;
@@ -181,15 +183,21 @@
             font-size: rem(14);
             color: $color-text-primary;
 
-            &:hover { background-color: $color-bg-hover; }
+            &:hover {
+              background-color: $color-bg-hover;
+            }
 
             .item_left {
               display: flex;
               align-items: center;
               gap: rem(10);
             }
-            .check_icon { display: none; }
-            &.active .check_icon { display: block; }
+            .check_icon {
+              display: none;
+            }
+            &.active .check_icon {
+              display: block;
+            }
           }
         }
       }
@@ -201,9 +209,36 @@
         gap: rem(2);
       }
 
+   
       .group_item {
-        display: flex;
-        align-items: center;
+        position: relative; 
+
+        .chat_hover_actions {
+          position: absolute;
+          right: rem(4);
+          top: 50%;
+          transform: translateY(-50%);
+          display: none;
+          align-items: center;
+          gap: rem(2);
+          background: linear-gradient(
+            90deg,
+            transparent,
+            $color-bg-sidebar 20%
+          );
+          padding-left: rem(20);
+        }
+
+        &:hover .chat_hover_actions {
+          display: flex;
+        }
+      }
+
+      // Add inside .sidebar_footer
+      .profile_menu {
+        bottom: calc(100% + 8px);
+        left: 0;
+        width: 100%;
       }
 
       .history_icon {
@@ -224,8 +259,10 @@
         text-overflow: ellipsis;
         text-decoration: none;
         flex: 1;
-        
-        &:hover { background-color: $color-bg-hover; }
+
+        &:hover {
+          background-color: $color-bg-hover;
+        }
       }
     }
   }
@@ -233,7 +270,7 @@
   &_footer {
     flex-shrink: 0;
     padding: rem(12);
-    
+
     .profile_btn {
       display: flex;
       align-items: center;
@@ -245,8 +282,10 @@
       border-radius: rem(8);
       cursor: pointer;
       text-align: left;
-      
-      &:hover { background-color: $color-bg-hover; }
+
+      &:hover {
+        background-color: $color-bg-hover;
+      }
 
       .avatar--pink {
         width: rem(32);
@@ -264,9 +303,15 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        
-        .profile_name { font-size: rem(14); font-weight: 600; }
-        .plan_name { font-size: rem(12); color: $color-text-muted; }
+
+        .profile_name {
+          font-size: rem(14);
+          font-weight: 600;
+        }
+        .plan_name {
+          font-size: rem(12);
+          color: $color-text-muted;
+        }
       }
     }
   }

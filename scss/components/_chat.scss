@@ -1,0 +1,126 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.message_row {
+  display: flex;
+  gap: rem(16);
+  width: 100%;
+  max-width: rem(750);
+  margin: 0 auto;
+  
+  /* === USER MESSAGE (Right Side, Blue Bubble) === */
+  &--user {
+    justify-content: flex-end;
+    
+    .message_content {
+      background-color: #2563eb; // Modern Blue
+      border-radius: rem(20) rem(20) rem(4) rem(20); // Chat bubble tail effect
+      padding: rem(12) rem(20);
+      max-width: 75%;
+      
+      .message_text {
+        color: #ffffff; // White text for the blue background
+      }
+    }
+    
+    .message_avatar { 
+      display: none; // Hides the avatar on the user side for a cleaner look
+    }
+  }
+
+  /* === AI MESSAGE (Left Side, Transparent/Standard Block) === */
+  &--assistant {
+    justify-content: flex-start;
+    
+    .message_avatar {
+      width: rem(32);
+      height: rem(32);
+      border-radius: 50%;
+      border: 1px solid $color-border;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      
+      .avatar_icon { width: rem(20); height: rem(20); }
+    }
+    
+    .message_content {
+      flex: 1;
+      padding-top: rem(6);
+      max-width: calc(100% - 48px); // Prevents it from overflowing past the avatar
+    }
+  }
+}
+
+.message_text {
+  font-size: rem(16);
+  line-height: 1.6;
+  color: $color-text-primary;
+}
+
+.message_actions {
+  display: flex;
+  gap: rem(8);
+  margin-top: rem(12);
+  
+  .action_btn {
+    background: none;
+    border: none;
+    padding: rem(6);
+    border-radius: rem(6);
+    cursor: pointer;
+    &:hover { background-color: #f4f4f4; }
+    .action_icon { width: rem(16); height: rem(16); opacity: 0.6; }
+  }
+}
+
+/* === DARK THEME CODE BLOCKS === */
+.code_block {
+  margin-top: rem(16);
+  margin-bottom: rem(16);
+  background-color: #0d0d0d; // Deep black background
+  border-radius: rem(12);
+  overflow: hidden;
+  width: 100%;
+
+  .code_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(8) rem(16);
+    background-color: #2f2f2f; // Lighter grey header
+    
+    .code_lang {
+      color: #b4b4b4;
+      font-size: rem(12);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .code_copy_btn {
+      color: #b4b4b4;
+      font-size: rem(12);
+      display: flex;
+      align-items: center;
+      gap: rem(6);
+      background: none;
+      border: none;
+      cursor: pointer;
+      &:hover { color: #ffffff; }
+    }
+  }
+
+  .code_body {
+    padding: rem(16);
+    overflow-x: auto; // Allows long code lines to scroll horizontally
+    
+    pre { margin: 0; }
+    .code_line {
+      color: #e6e6e6; // Light grey syntax text
+      font-family: monospace;
+      font-size: rem(14);
+      line-height: 1.5;
+    }
+  }
+}

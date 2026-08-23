@@ -1,0 +1,83 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.popover_wrapper {
+  position: relative;
+}
+
+.dropdown_menu {
+  position: absolute;
+  background: #ffffff;
+  border-radius: rem(12);
+  box-shadow: 0 rem(4) rem(24) rgba(0,0,0,0.15);
+  padding: rem(8);
+  min-width: rem(220);
+  z-index: 100;
+  
+  // Hides the menu by default
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(rem(4));
+  
+  // Only transitions these 3 properties so JS positioning doesn't fly away
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .menu_item {
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+    width: 100%;
+    background: none;
+    border: none;
+    padding: rem(10) rem(12);
+    border-radius: rem(8);
+    cursor: pointer;
+    font-size: rem(14);
+    color: $color-text-primary;
+    text-align: left;
+
+    &:hover { background-color: #f4f4f4; }
+  }
+
+  .menu_divider {
+    height: 1px;
+    background-color: $color-border;
+    margin: rem(4) 0;
+  }
+  
+  .menu_text {
+    padding: rem(8) rem(12);
+    font-size: rem(14);
+    color: $color-text-muted;
+  }
+}
+
+// === MODIFIERS ===
+
+// Forces menu to open upwards
+.dropdown_menu--up {
+  top: auto;
+  bottom: calc(100% + 8px); 
+  transform: translateY(rem(4)); 
+  &.is-open {
+    transform: translateY(0);
+  }
+}
+
+// Forces menu to open to the right
+.dropdown_menu--right {
+  top: 0;
+  bottom: auto;
+  left: calc(100% + 8px);
+  right: auto;
+  transform: translateX(rem(-4));
+  &.is-open {
+    transform: translateX(0);
+  }
+}

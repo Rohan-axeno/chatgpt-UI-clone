@@ -13,7 +13,11 @@
 
 @use 'components/buttons';
 @use 'components/composer'; 
+@use 'components/modal';
 @use 'components/tooltip';
+@use 'components/dropdown';
+@use 'components/chat';
+
 
 
 @use 'pages/home';

@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 body {
   font-family: $font-family-base;
@@ -12,7 +12,6 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
 
 .utils_icon,
 .history_icon,
@@ -30,9 +29,23 @@ a {
   flex-shrink: 0 !important;
 }
 
-
 .utils_icon {
   width: rem(18) !important;
   height: rem(18) !important;
   min-width: rem(18) !important;
+}
+
+.w_100 {
+  width: 100%;
+}
+.hidden {
+  display: none !important;
+}
+.text_danger {
+  color: #ef4444 !important;
+}
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }

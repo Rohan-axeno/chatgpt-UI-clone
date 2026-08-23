@@ -1,15 +1,21 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .modal_overlay {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  display: none; // JS toggles to flex
+  display: none; 
   align-items: flex-start;
   justify-content: center;
-  padding-top: 10vh; 
+  padding-top: 10vh;
   z-index: 1000;
+  &.is-open {
+    display: flex;
+  }
 }
 
 .search_modal {
@@ -17,7 +23,7 @@
   width: 100%;
   max-width: rem(600);
   border-radius: rem(16);
-  box-shadow: 0 rem(8) rem(32) rgba(0,0,0,0.15);
+  box-shadow: 0 rem(8) rem(32) rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   max-height: 80vh;
@@ -35,8 +41,10 @@
       font-size: rem(16);
       padding: rem(8);
       outline: none;
-      
-      &::placeholder { color: $color-text-muted; }
+
+      &::placeholder {
+        color: $color-text-muted;
+      }
     }
   }
 
@@ -48,7 +56,8 @@
     gap: rem(20);
     @include hide-scrollbar;
 
-    .new_chat_row, .chat_row {
+    .new_chat_row,
+    .chat_row {
       display: flex;
       align-items: center;
       gap: rem(12);
@@ -62,7 +71,9 @@
       color: $color-text-primary;
       text-align: left;
 
-      &:hover { background-color: $color-bg-hover; }
+      &:hover {
+        background-color: $color-bg-hover;
+      }
     }
 
     .search_group {

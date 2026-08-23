@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 
 .composer_wrapper {
   position: relative;
@@ -8,8 +8,8 @@
   width: 100%;
   background-color: #f4f4f4;
   border-radius: rem(32);
-  padding: rem(4) rem(8); 
-  box-shadow: 0 rem(2) rem(6) rgba(0,0,0,0.05);
+  padding: rem(4) rem(8);
+  box-shadow: 0 rem(2) rem(6) rgba(0, 0, 0, 0.05);
   margin-bottom: rem(24);
 
   .btn_add {
@@ -26,8 +26,8 @@
     flex: 1;
     background: transparent;
     border: none;
-    padding: rem(8) rem(12); 
-    font-size: rem(15); 
+    padding: rem(8) rem(12);
+    font-size: rem(15);
     outline: none;
     line-height: 1.5;
 
@@ -36,8 +36,68 @@
     }
   }
 
- 
+  .attachment_preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border: 1px solid $color-border;
+    border-radius: rem(12);
+    padding: rem(8) rem(12);
+    margin-bottom: rem(12);
+    width: max-content;
+    gap: rem(16);
+    position: relative;
 
+    .file_info {
+      display: flex;
+      align-items: center;
+      gap: rem(12);
+    }
+    .file_icon_wrap {
+      width: rem(36);
+      height: rem(36);
+      background: #f4f4f4;
+      border-radius: rem(8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .file_details {
+      display: flex;
+      flex-direction: column;
+    }
+    .file_name {
+      font-size: rem(14);
+      font-weight: 600;
+      color: $color-text-primary;
+    }
+    .file_type {
+      font-size: rem(12);
+      color: $color-text-muted;
+    }
+
+    .remove_file_btn {
+      position: absolute;
+      top: rem(-8);
+      right: rem(-8);
+      background: #212121;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: rem(20);
+      height: rem(20);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .action_icon {
+        filter: invert(1);
+        width: rem(12) !important;
+        height: rem(12) !important;
+      }
+    }
+  }
 
   .composer_actions {
     display: flex;
@@ -54,8 +114,10 @@
       color: $color-text-secondary;
       padding: rem(8);
       border-radius: rem(16);
-      
-      &:hover { background-color: rgba(0,0,0,0.05); }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
 
       .action_icon {
         width: rem(16);
@@ -70,22 +132,24 @@
       height: rem(36);
       justify-content: center;
       color: #ffffff;
-      
-      &:hover { background-color: darken(#3b82f6, 10%); }
+
+      &:hover {
+        background-color: darken(#3b82f6, 10%);
+      }
     }
   }
 }
 
 .attachment_menu {
   position: absolute;
-  bottom: calc(100% + 12px);
+  top: calc(100% + 12px); 
+  bottom: auto;
   left: 0;
-  width: 100%;
+  width: 100%; 
   background: #ffffff;
   border-radius: rem(16);
   box-shadow: 0 rem(4) rem(24) rgba(0,0,0,0.15);
   padding: rem(8);
-  display: none; // JS will toggle to flex
   flex-direction: column;
   z-index: 10;
 
@@ -101,13 +165,15 @@
     cursor: pointer;
     text-align: left;
 
-    &:hover { background-color: #f4f4f4; }
+    &:hover {
+      background-color: #f4f4f4;
+    }
 
     .item_text {
       display: flex;
       align-items: center;
       gap: rem(8);
-      
+
       .title {
         font-size: rem(14);
         color: $color-text-primary;
