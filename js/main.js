@@ -26,6 +26,11 @@
           menu.classList.remove('is-open');
         }
       });
+      document.querySelectorAll('.group_item.has-open-menu').forEach(function (item) {
+        if (!exceptMenu || !item.contains(exceptMenu)) {
+          item.classList.remove('has-open-menu');
+        }
+      });
     }
 
     // Click outside — close all
@@ -39,6 +44,9 @@
       const wrapper = triggerBtn.closest('.popover_wrapper');
       if (!wrapper) return;
       const targetMenu = wrapper.querySelector(':scope > .dropdown_menu');
+      if (!targetMenu) return;
+
+      const groupItem = triggerBtn.closest('.group_item');
 
       // If it's a nested trigger, only close sibling nested menus
       if (triggerBtn.classList.contains('js-toggle-nested')) {
@@ -52,31 +60,45 @@
         closeAllDropdowns(targetMenu);
       }
 
-      if (targetMenu) {
-        const isOpen = targetMenu.classList.toggle('is-open');
+      const isOpen = targetMenu.classList.toggle('is-open');
 
-        // Position --right menus using fixed positioning
-        if (isOpen && targetMenu.classList.contains('dropdown_menu--right') && !targetMenu.classList.contains('nested_menu')) {
-          const btnRect = triggerBtn.getBoundingClientRect();
-          targetMenu.style.position = 'fixed';
-          targetMenu.style.top = btnRect.top + 'px';
-          targetMenu.style.left = (btnRect.right + 8) + 'px';
-          targetMenu.style.bottom = 'auto';
-          targetMenu.style.right = 'auto';
+      // Keep group item hover container visible while menu is open
+      if (groupItem) {
+        groupItem.classList.toggle('has-open-menu', isOpen);
+      }
+
+      // Check if button is near bottom of viewport -> flip to open upward
+      if (isOpen) {
+        const btnRect = triggerBtn.getBoundingClientRect();
+        if (btnRect.bottom > window.innerHeight - 250) {
+          targetMenu.classList.add('dropdown_menu--up');
+        } else {
+          targetMenu.classList.remove('dropdown_menu--up');
         }
       }
     }
   });
 
-  // Close dropdowns on scroll
+  // Close dropdowns on scroll inside sidebar
   const sidebarContent = document.querySelector('.sidebar_content');
   if (sidebarContent) {
     sidebarContent.addEventListener('scroll', function () {
       document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
         menu.classList.remove('is-open');
       });
+      document.querySelectorAll('.group_item.has-open-menu').forEach(function (item) {
+        item.classList.remove('has-open-menu');
+      });
     });
   }
+
+  // Recents new chat button listener
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('#recentsNewChatBtn')) {
+      const newChatBtn = document.querySelector('#newChatBtn');
+      if (newChatBtn) newChatBtn.click();
+    }
+  });
 
   // ============================================================
   // 2. MESSAGE ACTIONS (Copy, Like, Dislike, Regenerate)
@@ -246,6 +268,9 @@
         // Close any open dropdowns
         document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
           menu.classList.remove('is-open');
+        });
+        document.querySelectorAll('.group_item.has-open-menu').forEach(function (item) {
+          item.classList.remove('has-open-menu');
         });
       }
     }

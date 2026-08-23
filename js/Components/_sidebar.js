@@ -196,11 +196,28 @@
                 <img class="hover_action_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
               </button>
               <div class="dropdown_menu dropdown_menu--right chat_options_menu" role="menu">
+                <button class="menu_item js-share-chat" role="menuitem" data-id="${chat.id}">
+                  <img class="menu_item_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" /> Share
+                </button>
                 <button class="menu_item js-rename-chat" role="menuitem" data-id="${chat.id}">
                   <img class="menu_item_icon" src="./assets/icons/pencil.svg" alt="" aria-hidden="true" /> Rename
                 </button>
+                <div class="menu_divider"></div>
+                <button class="menu_item js-pin-chat" role="menuitem" data-id="${chat.id}">
+                  <img class="menu_item_icon" src="./assets/icons/pin.svg" alt="" aria-hidden="true" /> Pin chat
+                </button>
+                <button class="menu_item js-archive-chat" role="menuitem" data-id="${chat.id}">
+                  <img class="menu_item_icon" src="./assets/icons/download.svg" alt="" aria-hidden="true" /> Archive
+                </button>
                 <button class="menu_item text_danger js-delete-chat" role="menuitem" data-id="${chat.id}">
                   <img class="menu_item_icon" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" /> Delete
+                </button>
+                <div class="menu_divider"></div>
+                <button class="menu_item js-move-chat" role="menuitem" data-id="${chat.id}">
+                  <span class="menu_item_left">
+                    <img class="menu_item_icon" src="./assets/icons/folder-closed.svg" alt="" aria-hidden="true" /> Move to project
+                  </span>
+                  <img class="menu_item_arrow" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" style="transform: rotate(-90deg);" />
                 </button>
               </div>
             </div>
@@ -230,6 +247,22 @@
     // Deactivate new chat
     document.querySelectorAll('.utils_item.active').forEach(function (item) {
       item.classList.remove('active');
+    });
+  });
+
+  // ---- Share Chat ----
+  document.addEventListener('click', function (e) {
+    const shareBtn = e.target.closest('.js-share-chat');
+    if (!shareBtn) return;
+
+    const chatId = shareBtn.dataset.id;
+    if (typeof copyToClipboard === 'function') {
+      copyToClipboard(window.location.origin + window.location.pathname + '#' + chatId).then(function () {
+        alert('Share link copied to clipboard!');
+      });
+    }
+    document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
+      menu.classList.remove('is-open');
     });
   });
 
@@ -270,6 +303,55 @@
     document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
       menu.classList.remove('is-open');
     });
+  });
+
+  // ---- Archive Chat ----
+  document.addEventListener('click', function (e) {
+    const archiveBtn = e.target.closest('.js-archive-chat');
+    if (!archiveBtn) return;
+
+    const chatId = archiveBtn.dataset.id;
+    const index = chatHistory.findIndex(function (c) { return c.id === chatId; });
+    if (index > -1) {
+      chatHistory.splice(index, 1);
+      renderSidebar();
+    }
+    document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
+      menu.classList.remove('is-open');
+    });
+  });
+
+  // ---- Pin Chat from menu ----
+  document.addEventListener('click', function (e) {
+    const pinBtn = e.target.closest('.js-pin-chat');
+    if (!pinBtn) return;
+
+    const chatId = pinBtn.dataset.id;
+    const chat = chatHistory.find(function (c) { return c.id === chatId; });
+    if (chat) {
+      chat.pinned = true;
+      alert('Chat pinned to top!');
+    }
+    document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
+      menu.classList.remove('is-open');
+    });
+  });
+
+  // ---- Organize Chats (In one list vs By project) ----
+  document.addEventListener('click', function (e) {
+    const orgItem = e.target.closest('.organize_popover .popover_item');
+    if (!orgItem) return;
+
+    document.querySelectorAll('.organize_popover .popover_item').forEach(function (item) {
+      item.classList.remove('active');
+    });
+    orgItem.classList.add('active');
+
+    // Close dropdown after selection
+    setTimeout(function () {
+      const orgPopover = orgItem.closest('.organize_popover');
+      if (orgPopover) orgPopover.classList.remove('is-open');
+    }, 200);
   });
 
   // ---- Load Chat ----

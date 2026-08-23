@@ -326,61 +326,9 @@
         }
 
         .organize_popover {
-          position: absolute;
-          top: 100%;
+          top: calc(100% + #{$spacing-4});
           right: 0;
-          background: $color-bg-primary;
-          border-radius: $radius-lg;
-          box-shadow: $shadow-md;
-          width: rem(200);
-          padding: $spacing-8;
-          z-index: $z-dropdown;
-          display: none;
-
-          .popover_title {
-            font-size: $font-size-xs;
-            color: $color-text-muted;
-            padding: $spacing-8 $spacing-12;
-          }
-
-          .popover_item {
-            @include flex-between;
-            width: 100%;
-            background: none;
-            border: none;
-            padding: $spacing-10 $spacing-12;
-            border-radius: $radius-md;
-            cursor: pointer;
-            font-size: $font-size-base;
-            color: $color-text-primary;
-            transition: background-color $transition-fast;
-
-            &:hover {
-              background-color: $color-bg-hover;
-            }
-
-            .item_left {
-              display: flex;
-              align-items: center;
-              gap: $spacing-10;
-
-              .item_left_icon {
-                width: $icon-base;
-                height: $icon-base;
-                object-fit: contain;
-              }
-            }
-
-            .check_icon {
-              display: none;
-              width: $icon-base;
-              height: $icon-base;
-            }
-
-            &.active .check_icon {
-              display: block;
-            }
-          }
+          left: auto;
         }
       }
 
@@ -398,21 +346,28 @@
 
       .group_item {
         position: relative;
+        display: flex;
+        align-items: center;
+
+        &.has-open-menu {
+          z-index: 100;
+        }
 
         .chat_hover_actions {
           position: absolute;
           right: $spacing-4;
-          top: 50%;
-          transform: translateY(-50%);
+          top: 0;
+          bottom: 0;
           display: none;
           align-items: center;
           gap: $spacing-2;
           background: linear-gradient(
             90deg,
             transparent,
-            $color-bg-secondary 20%
+            $color-bg-secondary 25%
           );
           padding-left: $spacing-20;
+          border-radius: $radius-md;
 
           .hover_action_icon {
             width: $icon-base;
@@ -421,7 +376,8 @@
           }
         }
 
-        &:hover .chat_hover_actions {
+        &:hover .chat_hover_actions,
+        &.has-open-menu .chat_hover_actions {
           display: flex;
         }
       }

@@ -97,19 +97,30 @@
                         <button class="icon_btn js-toggle-chat-options" aria-label="More options">
                           <img class="hover_action_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
                         </button>
-                        <!-- Chat Options Popover -->
+                        <!-- Chat Options Popover (Matching Screenshot 1) -->
                         <div class="dropdown_menu dropdown_menu--right chat_options_menu" role="menu">
-                          <button class="menu_item" role="menuitem">
+                          <button class="menu_item js-share-chat" role="menuitem" data-id="pinned-1">
                             <img class="menu_item_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" /> Share
                           </button>
-                          <button class="menu_item js-rename-chat" role="menuitem">
+                          <button class="menu_item js-rename-chat" role="menuitem" data-id="pinned-1">
                             <img class="menu_item_icon" src="./assets/icons/pencil.svg" alt="" aria-hidden="true" /> Rename
                           </button>
-                          <button class="menu_item" role="menuitem">
+                          <div class="menu_divider"></div>
+                          <button class="menu_item js-unpin-chat" role="menuitem" data-id="pinned-1">
                             <img class="menu_item_icon" src="./assets/icons/pin-off.svg" alt="" aria-hidden="true" /> Unpin chat
                           </button>
-                          <button class="menu_item text_danger js-delete-chat" role="menuitem">
+                          <button class="menu_item js-archive-chat" role="menuitem" data-id="pinned-1">
+                            <img class="menu_item_icon" src="./assets/icons/download.svg" alt="" aria-hidden="true" /> Archive
+                          </button>
+                          <button class="menu_item text_danger js-delete-chat" role="menuitem" data-id="pinned-1">
                             <img class="menu_item_icon" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" /> Delete
+                          </button>
+                          <div class="menu_divider"></div>
+                          <button class="menu_item js-move-chat" role="menuitem" data-id="pinned-1">
+                            <span class="menu_item_left">
+                              <img class="menu_item_icon" src="./assets/icons/folder-closed.svg" alt="" aria-hidden="true" /> Move to project
+                            </span>
+                            <img class="menu_item_arrow" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" style="transform: rotate(-90deg);" />
                           </button>
                         </div>
                       </div>
@@ -126,25 +137,28 @@
                     <img class="dropdown_btn_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
                   </button>
                   <div class="header_actions">
-                    <button class="icon_btn" aria-label="New chat">
+                    <button class="icon_btn tooltip_trigger" aria-label="New chat" id="recentsNewChatBtn">
                       <img class="header_action_icon" src="./assets/icons/square-pen.svg" alt="" aria-hidden="true" />
+                      <span class="tooltip_box tooltip_box--top">New chat</span>
                     </button>
                     <div class="popover_wrapper">
                       <button class="icon_btn js-toggle-organize" aria-label="Organize chats">
                         <img class="header_action_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
                       </button>
+                      <!-- Organize Chats Popover (Matching Screenshot 2) -->
                       <div class="dropdown_menu dropdown_menu--right organize_popover" role="menu">
                         <div class="popover_title">Organize chats</div>
-                        <button class="popover_item active" role="menuitem">
+                        <button class="popover_item active" role="menuitem" data-mode="list">
                           <div class="item_left">
                             <img class="item_left_icon" src="./assets/icons/list.svg" alt="" aria-hidden="true" /> In one list
                           </div>
-                          <img class="check_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                          <span class="check_icon">✓</span>
                         </button>
-                        <button class="popover_item" role="menuitem">
+                        <button class="popover_item" role="menuitem" data-mode="project">
                           <div class="item_left">
                             <img class="item_left_icon" src="./assets/icons/folder-closed.svg" alt="" aria-hidden="true" /> By project
                           </div>
+                          <span class="check_icon">✓</span>
                         </button>
                       </div>
                     </div>

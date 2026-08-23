@@ -2,7 +2,7 @@
 @use "../abstracts/mixins" as *;
 
 // ============================================================
-// DROPDOWN / POPOVER
+// DROPDOWN / POPOVER SYSTEM
 // ============================================================
 
 .popover_wrapper {
@@ -12,8 +12,8 @@
 .dropdown_menu {
   position: absolute;
   background: $color-bg-primary;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-lg;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-xl;
   padding: $spacing-8;
   min-width: rem(220);
   z-index: $z-dropdown;
@@ -23,7 +23,7 @@
   visibility: hidden;
   transform: translateY($spacing-4);
 
-  // Only transitions these 3 properties so JS positioning doesn't fly away
+  // Smooth transitions
   transition: opacity $transition-base, visibility $transition-base, transform $transition-base;
 
   &.is-open {
@@ -56,6 +56,19 @@
       height: $icon-base;
       object-fit: contain;
       flex-shrink: 0;
+    }
+
+    .menu_item_left {
+      display: flex;
+      align-items: center;
+      gap: $spacing-12;
+    }
+
+    .menu_item_arrow {
+      width: $icon-sm;
+      height: $icon-sm;
+      margin-left: auto;
+      object-fit: contain;
     }
   }
 
@@ -93,5 +106,76 @@
   transform: translateX(rem(-4));
   &.is-open {
     transform: translateX(0);
+  }
+}
+
+// Specific styling for Chat Options Menu (Matching Screenshot 1)
+.chat_options_menu {
+  top: calc(100% + #{$spacing-4});
+  right: 0;
+  left: auto;
+  min-width: rem(210);
+  padding: $spacing-6;
+  z-index: $z-modal;
+
+  &.dropdown_menu--up {
+    top: auto;
+    bottom: calc(100% + #{$spacing-4});
+  }
+}
+
+// Specific styling for Organize Popover (Matching Screenshot 2)
+.organize_popover {
+  top: calc(100% + #{$spacing-4});
+  right: 0;
+  left: auto;
+  min-width: rem(190);
+  padding: $spacing-8;
+
+  .popover_title {
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    padding: $spacing-6 $spacing-12 $spacing-8;
+    font-weight: $font-weight-normal;
+  }
+
+  .popover_item {
+    @include flex-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: $spacing-10 $spacing-12;
+    border-radius: $radius-md;
+    cursor: pointer;
+    font-size: $font-size-base;
+    color: $color-text-primary;
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: $color-bg-surface;
+    }
+
+    .item_left {
+      display: flex;
+      align-items: center;
+      gap: $spacing-12;
+
+      .item_left_icon {
+        width: $icon-base;
+        height: $icon-base;
+        object-fit: contain;
+      }
+    }
+
+    .check_icon {
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      color: $color-text-primary;
+      visibility: hidden;
+    }
+
+    &.active .check_icon {
+      visibility: visible;
+    }
   }
 }
