@@ -1,5 +1,9 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// ============================================================
+// DROPDOWN / POPOVER
+// ============================================================
 
 .popover_wrapper {
   position: relative;
@@ -7,20 +11,20 @@
 
 .dropdown_menu {
   position: absolute;
-  background: #ffffff;
-  border-radius: rem(12);
-  box-shadow: 0 rem(4) rem(24) rgba(0,0,0,0.15);
-  padding: rem(8);
+  background: $color-bg-primary;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  padding: $spacing-8;
   min-width: rem(220);
-  z-index: 100;
-  
+  z-index: $z-dropdown;
+
   // Hides the menu by default
   opacity: 0;
   visibility: hidden;
-  transform: translateY(rem(4));
-  
+  transform: translateY($spacing-4);
+
   // Only transitions these 3 properties so JS positioning doesn't fly away
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transition: opacity $transition-base, visibility $transition-base, transform $transition-base;
 
   &.is-open {
     opacity: 1;
@@ -31,29 +35,39 @@
   .menu_item {
     display: flex;
     align-items: center;
-    gap: rem(12);
+    gap: $spacing-12;
     width: 100%;
     background: none;
     border: none;
-    padding: rem(10) rem(12);
-    border-radius: rem(8);
+    padding: $spacing-10 $spacing-12;
+    border-radius: $radius-md;
     cursor: pointer;
-    font-size: rem(14);
+    font-size: $font-size-base;
     color: $color-text-primary;
     text-align: left;
+    transition: background-color $transition-fast;
 
-    &:hover { background-color: #f4f4f4; }
+    &:hover {
+      background-color: $color-bg-surface;
+    }
+
+    .menu_item_icon {
+      width: $icon-base;
+      height: $icon-base;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
   }
 
   .menu_divider {
-    height: 1px;
+    height: rem(1);
     background-color: $color-border;
-    margin: rem(4) 0;
+    margin: $spacing-4 0;
   }
-  
+
   .menu_text {
-    padding: rem(8) rem(12);
-    font-size: rem(14);
+    padding: $spacing-8 $spacing-12;
+    font-size: $font-size-base;
     color: $color-text-muted;
   }
 }
@@ -63,8 +77,8 @@
 // Forces menu to open upwards
 .dropdown_menu--up {
   top: auto;
-  bottom: calc(100% + 8px); 
-  transform: translateY(rem(4)); 
+  bottom: calc(100% + #{$spacing-8});
+  transform: translateY($spacing-4);
   &.is-open {
     transform: translateY(0);
   }
@@ -74,7 +88,7 @@
 .dropdown_menu--right {
   top: 0;
   bottom: auto;
-  left: calc(100% + 8px);
+  left: calc(100% + #{$spacing-8});
   right: auto;
   transform: translateX(rem(-4));
   &.is-open {

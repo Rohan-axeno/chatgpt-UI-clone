@@ -5,6 +5,7 @@
 
 @use 'base/reset';
 @use 'base/base';
+@use 'base/typography';
 
 
 @use 'layout/container';
@@ -17,7 +18,6 @@
 @use 'components/tooltip';
 @use 'components/dropdown';
 @use 'components/chat';
-
 
 
 @use 'pages/home';

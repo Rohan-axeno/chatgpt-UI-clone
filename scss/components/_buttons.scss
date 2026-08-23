@@ -1,14 +1,29 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// ============================================================
+// BUTTONS
+// ============================================================
 
 .icon_btn {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: rem(6);
-  border-radius: rem(6);
-  
+  padding: $spacing-6;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color $transition-base;
+
   &:hover {
     background-color: $color-bg-hover;
+  }
+
+  .icon_btn_img {
+    width: $icon-base;
+    height: $icon-base;
+    object-fit: contain;
+    display: block;
   }
 }

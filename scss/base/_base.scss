@@ -1,51 +1,102 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-body {
+// ============================================================
+// BASE STYLES (applied via .app_layout scope)
+// ============================================================
+.app_root {
   font-family: $font-family-base;
   color: $color-text-primary;
-  background-color: $color-bg-main;
+  background-color: $color-bg-primary;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
 }
 
-a {
+.link_reset {
   text-decoration: none;
   color: inherit;
 }
 
-.utils_icon,
-.history_icon,
-.action_icon,
-.store_icon,
-.icon_btn img,
-.suggestion_content img,
-.menu_item img {
-  width: rem(16) !important;
-  height: rem(16) !important;
-  min-width: rem(16) !important;
-  max-width: rem(16) !important;
-  object-fit: contain !important;
-  display: block !important;
-  flex-shrink: 0 !important;
+// ============================================================
+// ICON SIZING SYSTEM (class-based, no element selectors)
+// ============================================================
+.icon_size_base {
+  width: $icon-base;
+  height: $icon-base;
+  min-width: $icon-base;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
-.utils_icon {
-  width: rem(18) !important;
-  height: rem(18) !important;
-  min-width: rem(18) !important;
+.icon_size_md {
+  width: $icon-md;
+  height: $icon-md;
+  min-width: $icon-md;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
+.icon_size_sm {
+  width: $icon-sm;
+  height: $icon-sm;
+  min-width: $icon-sm;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.icon_size_xs {
+  width: $icon-xs;
+  height: $icon-xs;
+  min-width: $icon-xs;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+// ============================================================
+// UTILITY CLASSES
+// ============================================================
 .w_100 {
   width: 100%;
 }
+
 .hidden {
-  display: none !important;
+  display: none;
 }
+
 .text_danger {
-  color: #ef4444 !important;
+  color: $color-danger;
 }
-.flex_between {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+
+.visually_hidden {
+  position: absolute;
+  width: rem(1);
+  height: rem(1);
+  padding: 0;
+  margin: rem(-1);
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ============================================================
+// ACCESSIBILITY — Focus States
+// ============================================================
+.icon_btn,
+.action_btn,
+.model_selector_btn,
+.profile_btn,
+.suggestion_btn,
+.menu_item,
+.group_toggle_btn,
+.dropdown_btn,
+.chat_row,
+.new_chat_row {
+  @include focus-visible;
 }

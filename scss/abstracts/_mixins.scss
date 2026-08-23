@@ -1,6 +1,10 @@
 @use "sass:math";
 
+// ============================================================
+// FUNCTIONS
+// ============================================================
 
+// Convert px to rem
 @function rem($px) {
   @if math.is-unitless($px) {
     @return math.div($px, 16) * 1rem;
@@ -8,11 +12,79 @@
   @return $px;
 }
 
-// Mixin: Hide Scrollbar
+// ============================================================
+// MIXINS
+// ============================================================
+
+// Hide Scrollbar
 @mixin hide-scrollbar {
   &::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+// Responsive Breakpoints
+$breakpoint-mobile: rem(480);
+$breakpoint-tablet: rem(768);
+$breakpoint-desktop: rem(1024);
+$breakpoint-wide: rem(1280);
+
+@mixin mobile-only {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin wide-up {
+  @media (min-width: $breakpoint-wide) {
+    @content;
+  }
+}
+
+// Text truncation
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Focus visible state
+@mixin focus-visible {
+  &:focus-visible {
+    outline: rem(2) solid var(--focus-color, #3b82f6);
+    outline-offset: rem(2);
+  }
+}
+
+// Flexbox helpers
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

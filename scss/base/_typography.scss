@@ -1,18 +1,53 @@
-.page-body {
-    color: $color-text;
-    font-family: $font-family-base;
-    font-size: rem(16);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// ============================================================
+// TYPOGRAPHY
+// ============================================================
+
+.heading_xl {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  line-height: $line-height-snug;
 }
 
-.heading-default {
-    color: $color-text;
-    font-weight: 900;
-    line-height: 1;
+.heading_lg {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  line-height: $line-height-snug;
 }
 
-.text-default {
-    color: $color-text-secondary;
+.heading_md {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  line-height: $line-height-snug;
+}
+
+.text_body {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+  color: $color-text-primary;
+}
+
+.text_sm {
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text-secondary;
+}
+
+.text_xs {
+  font-size: $font-size-xs;
+  line-height: $line-height-normal;
+  color: $color-text-muted;
+}
+
+.text_label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: rem(0.5);
 }

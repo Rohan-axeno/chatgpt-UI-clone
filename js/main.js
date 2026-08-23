@@ -1,254 +1,254 @@
-// --- 1. Global Dropdown / Popover Logic ---
-document.addEventListener('click', (e) => {
-  const isDropdownButton = e.target.closest('#modelSelectorBtn, .js-toggle-chat-options, .js-toggle-profile, .js-toggle-nested, .js-toggle-attachment, .js-toggle-organize');
-  const isClickInsideDropdown = e.target.closest('.dropdown_menu');
+// ============================================================
+// js/main.js — Global Application Logic
+// ============================================================
 
-  const closeAllDropdowns = (exceptMenu = null) => {
-    document.querySelectorAll('.dropdown_menu.is-open').forEach(menu => {
-      if (menu !== exceptMenu && !menu.contains(exceptMenu)) {
+(function () {
+
+  // ============================================================
+  // 1. GLOBAL DROPDOWN / POPOVER SYSTEM
+  // ============================================================
+  const dropdownTriggers = [
+    '#modelSelectorBtn',
+    '.js-toggle-chat-options',
+    '.js-toggle-profile',
+    '.js-toggle-nested',
+    '.js-toggle-attachment',
+    '.js-toggle-organize'
+  ].join(', ');
+
+  document.addEventListener('click', function (e) {
+    const triggerBtn = e.target.closest(dropdownTriggers);
+    const isInsideDropdown = e.target.closest('.dropdown_menu');
+
+    function closeAllDropdowns(exceptMenu) {
+      document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
+        if (menu !== exceptMenu && (!exceptMenu || !menu.contains(exceptMenu))) {
+          menu.classList.remove('is-open');
+        }
+      });
+    }
+
+    // Click outside — close all
+    if (!triggerBtn && !isInsideDropdown) {
+      closeAllDropdowns();
+      return;
+    }
+
+    // Click on trigger button
+    if (triggerBtn) {
+      const wrapper = triggerBtn.closest('.popover_wrapper');
+      if (!wrapper) return;
+      const targetMenu = wrapper.querySelector(':scope > .dropdown_menu');
+
+      // If it's a nested trigger, only close sibling nested menus
+      if (triggerBtn.classList.contains('js-toggle-nested')) {
+        const parentMenu = triggerBtn.closest('.dropdown_menu');
+        if (parentMenu) {
+          parentMenu.querySelectorAll('.nested_menu.is-open').forEach(function (menu) {
+            if (menu !== targetMenu) menu.classList.remove('is-open');
+          });
+        }
+      } else {
+        closeAllDropdowns(targetMenu);
+      }
+
+      if (targetMenu) {
+        const isOpen = targetMenu.classList.toggle('is-open');
+
+        // Position --right menus using fixed positioning
+        if (isOpen && targetMenu.classList.contains('dropdown_menu--right') && !targetMenu.classList.contains('nested_menu')) {
+          const btnRect = triggerBtn.getBoundingClientRect();
+          targetMenu.style.position = 'fixed';
+          targetMenu.style.top = btnRect.top + 'px';
+          targetMenu.style.left = (btnRect.right + 8) + 'px';
+          targetMenu.style.bottom = 'auto';
+          targetMenu.style.right = 'auto';
+        }
+      }
+    }
+  });
+
+  // Close dropdowns on scroll
+  const sidebarContent = document.querySelector('.sidebar_content');
+  if (sidebarContent) {
+    sidebarContent.addEventListener('scroll', function () {
+      document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
         menu.classList.remove('is-open');
-
-        if (menu.id === 'attachmentMenu') {
-          const suggestions = document.querySelector('.suggestions');
-          if (suggestions) suggestions.style.display = 'flex';
-        }
-      }
-    });
-  };
-
-  if (!isDropdownButton && !isClickInsideDropdown) {
-    closeAllDropdowns();
-    return;
-  }
-
-  if (isDropdownButton) {
-    const wrapper = isDropdownButton.closest('.popover_wrapper');
-    const targetMenu = wrapper.querySelector(':scope > .dropdown_menu');
-
-    if (isDropdownButton.classList.contains('js-toggle-nested')) {
-      const siblingMenus = isDropdownButton.closest('.dropdown_menu').querySelectorAll('.nested_menu');
-      siblingMenus.forEach(menu => {
-        if (menu !== targetMenu) menu.classList.remove('is-open');
       });
-    } else {
-      closeAllDropdowns(targetMenu);
-    }
-
-    if (targetMenu) {
-      const isOpen = targetMenu.classList.toggle('is-open');
-
-      if (targetMenu.id === 'attachmentMenu') {
-        const suggestions = document.querySelector('.suggestions');
-        if (suggestions) suggestions.style.display = isOpen ? 'none' : 'flex';
-      }
-
-      if (isOpen && targetMenu.classList.contains('dropdown_menu--right') && !targetMenu.classList.contains('nested_menu')) {
-        const btnRect = isDropdownButton.getBoundingClientRect();
-        targetMenu.style.position = 'fixed';
-        targetMenu.style.top = `${btnRect.top}px`;
-        targetMenu.style.left = `${btnRect.right + 8}px`; 
-        targetMenu.style.bottom = 'auto';
-        targetMenu.style.right = 'auto';
-      }
-    }
-  }
-});
-
-const sidebarContent = document.querySelector('.sidebar_content');
-if (sidebarContent) {
-  sidebarContent.addEventListener('scroll', () => {
-    document.querySelectorAll('.dropdown_menu.is-open').forEach(menu => {
-      menu.classList.remove('is-open');
     });
-  });
-}
+  }
 
-// --- 2. Search Modal Logic ---
-const searchTriggerBtn = document.querySelector('#searchTriggerBtn');
-const searchModal = document.querySelector('#searchModal');
-const closeSearchModalBtn = document.querySelector('#closeSearchModalBtn');
-
-if (searchTriggerBtn && searchModal) {
-  searchTriggerBtn.addEventListener('click', () => {
-    searchModal.classList.add('is-open');
-    setTimeout(() => searchModal.querySelector('.search_modal_input').focus(), 100);
-  });
-}
-
-if (closeSearchModalBtn) {
-  closeSearchModalBtn.addEventListener('click', () => {
-    searchModal.classList.remove('is-open');
-  });
-}
-
-if (searchModal) {
-  searchModal.addEventListener('click', (e) => {
-    if (e.target === searchModal) {
-      searchModal.classList.remove('is-open');
+  // ============================================================
+  // 2. MESSAGE ACTIONS (Copy, Like, Dislike, Regenerate)
+  // ============================================================
+  document.addEventListener('click', function (e) {
+    // ---- Copy Message ----
+    const copyBtn = e.target.closest('.js-copy-msg');
+    if (copyBtn) {
+      const messageRow = copyBtn.closest('.message_row');
+      const textEl = messageRow ? messageRow.querySelector('.message_text') : null;
+      const text = textEl ? textEl.textContent : '';
+      copyToClipboard(text).then(function () {
+        showCopyFeedback(copyBtn, 'Copied!');
+      });
+      return;
     }
-  });
-}
 
-// --- 3. Attachment Preview Card Logic ---
-const removeFileBtn = document.querySelector('#removeFileBtn');
-const attachmentPreview = document.querySelector('#attachmentPreview');
+    // ---- Copy Code Block ----
+    const codeCopyBtn = e.target.closest('.js-copy-code');
+    if (codeCopyBtn) {
+      const codeBlock = codeCopyBtn.closest('.code_block');
+      const codeEl = codeBlock ? codeBlock.querySelector('.code_line') : null;
+      const code = codeEl ? codeEl.textContent : '';
+      copyToClipboard(code).then(function () {
+        codeCopyBtn.textContent = 'Copied!';
+        setTimeout(function () {
+          codeCopyBtn.innerHTML = '<img class="code_copy_icon" src="./assets/icons/copy.svg" alt="" aria-hidden="true" /> Copy code';
+        }, 1500);
+      });
+      return;
+    }
 
-if (removeFileBtn && attachmentPreview) {
-  removeFileBtn.addEventListener('click', () => {
-    attachmentPreview.classList.add('hidden'); 
-  });
-}
+    // ---- Like ----
+    const likeBtn = e.target.closest('.js-like-msg');
+    if (likeBtn) {
+      const dislikeBtn = likeBtn.parentElement.querySelector('.js-dislike-msg');
+      likeBtn.classList.toggle('is-active');
+      if (dislikeBtn) dislikeBtn.classList.remove('is-active');
+      return;
+    }
 
-// --- 4. Chat Engine & State Toggle Logic ---
-const chatInput = document.querySelector('#chatInput');
-const chatGreeting = document.querySelector('#chatGreeting');
-const chatSuggestions = document.querySelector('#chatSuggestions');
-const chatFeed = document.querySelector('#chatFeed');
+    // ---- Dislike ----
+    const dislikeBtn = e.target.closest('.js-dislike-msg');
+    if (dislikeBtn) {
+      const likeSibling = dislikeBtn.parentElement.querySelector('.js-like-msg');
+      dislikeBtn.classList.toggle('is-active');
+      if (likeSibling) likeSibling.classList.remove('is-active');
+      return;
+    }
 
-if (chatInput && chatGreeting && chatSuggestions && chatFeed) {
-  chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && chatInput.value.trim() !== '') {
-      const userText = chatInput.value.trim();
+    // ---- Regenerate ----
+    const regenBtn = e.target.closest('.js-regenerate');
+    if (regenBtn) {
+      const messageRow = regenBtn.closest('.message_row');
+      if (!messageRow) return;
 
-      chatInput.value = '';
-      chatGreeting.classList.add('hidden');
-      chatSuggestions.classList.add('hidden');
-      chatFeed.classList.remove('hidden');
+      const contentEl = messageRow.querySelector('.message_content');
+      if (!contentEl) return;
 
-      if (typeof appendUserMessage === 'function') {
-        appendUserMessage(userText);
+      // Get alternate response
+      const altResponse = typeof alternateResponses !== 'undefined' ? alternateResponses : null;
+      if (!altResponse) return;
+
+      // Determine which type to use
+      const hasCode = messageRow.querySelector('.code_block');
+      let newText, newExtras;
+
+      if (hasCode && altResponse.code) {
+        newText = altResponse.code.text;
+        newExtras = altResponse.code;
+      } else {
+        newText = altResponse.general;
+        newExtras = null;
       }
 
-      setTimeout(() => {
-        if (typeof appendAssistantMessage === 'function') {
-          if (userText.toLowerCase().includes('code') || userText.toLowerCase().includes('server')) {
-            appendAssistantMessage(mockResponses.code.text, mockResponses.code);
-          } else {
-            appendAssistantMessage(mockResponses.general);
-          }
-        }
-      }, 1500);
-    }
-  });
-}
+      // Build new content
+      let richHtml = '';
+      if (newExtras && newExtras.language && newExtras.snippet) {
+        richHtml = buildCodeBlockHtml(newExtras);
+      }
 
-// =========================================================================
-// --- 5. NEW: DYNAMIC DATA INJECTION (Sidebar & Search) ---
-// =========================================================================
-
-function renderSidebar() {
-  const historyGroups = document.querySelectorAll('.history_group');
-  if (historyGroups.length < 2) return; 
-  
-  const recentList = historyGroups[1].querySelector('.group_list');
-  if (!recentList) return;
-
-  // Clear hardcoded HTML
-  recentList.innerHTML = ''; 
-
-  if (typeof chatHistory === 'undefined') return;
-
-  chatHistory.forEach(chat => {
-    const li = document.createElement('li');
-    li.classList.add('group_item');
-    li.innerHTML = `<a href="#" class="group_link" data-id="${chat.id}">${chat.title}</a>`;
-    recentList.appendChild(li);
-  });
-}
-
-function renderSearchModal(searchTerm = '') {
-  const searchBody = document.querySelector('.search_body');
-  if (!searchBody) return;
-  if (typeof chatHistory === 'undefined') return;
-
-  const groupedChats = { Today: [], Yesterday: [], Older: [] };
-  
-  chatHistory.forEach(chat => {
-    if (chat.title.toLowerCase().includes(searchTerm.toLowerCase())) {
-      if (groupedChats[chat.group]) groupedChats[chat.group].push(chat);
-    }
-  });
-
-  let html = `
-    <button class="new_chat_row">
-      <img src="./assets/icons/edit.svg" alt="" /> New chat
-    </button>
-  `;
-
-  for (const [groupName, chats] of Object.entries(groupedChats)) {
-    if (chats.length > 0) {
-      html += `<div class="search_group"><h3 class="group_title">${groupName}</h3>`;
-      chats.forEach(chat => {
-        html += `
-          <button class="chat_row" data-id="${chat.id}">
-            <img src="./assets/icons/chat-bubble.svg" alt="" /> ${chat.title}
+      contentEl.innerHTML = `
+        <div class="message_text">${escapeHtml(newText)}${richHtml}</div>
+        <div class="message_actions">
+          <button class="msg_action_btn js-copy-msg tooltip_trigger" aria-label="Copy message" data-text="${escapeHtml(newText)}">
+            <img class="msg_action_icon" src="./assets/icons/copy.svg" alt="" aria-hidden="true" />
+            <span class="tooltip_box">Copy</span>
           </button>
-        `;
-      });
-      html += `</div>`;
-    }
-  }
-  searchBody.innerHTML = html;
-}
-
-// Live Search Listener
-const searchModalInputField = document.querySelector('.search_modal_input');
-if (searchModalInputField) {
-  searchModalInputField.addEventListener('input', (e) => {
-    renderSearchModal(e.target.value);
-  });
-}
-
-// Initialize dynamic rendering on page load
-renderSidebar();
-renderSearchModal();
-
-
-// =========================================================================
-// --- 6. NEW: CHAT SWITCHING LOGIC (Click to load past chats) ---
-// =========================================================================
-
-function loadChat(chatId) {
-  if (typeof chatHistory === 'undefined') return;
-  const chat = chatHistory.find(c => c.id === chatId);
-  if (!chat) return;
-
-  // Reset UI elements
-  if (chatGreeting) chatGreeting.classList.add('hidden');
-  if (chatSuggestions) chatSuggestions.classList.add('hidden');
-  
-  if (chatFeed) {
-    chatFeed.classList.remove('hidden');
-    chatFeed.innerHTML = ''; 
-  }
-
-  // Inject messages from the selected chat history
-  chat.messages.forEach(msg => {
-    if (msg.role === 'user' && typeof appendUserMessage === 'function') {
-      appendUserMessage(msg.content);
-    } else if (msg.role === 'assistant' && typeof appendAssistantMessage === 'function') {
-      appendAssistantMessage(msg.content, msg.code); 
+          <button class="msg_action_btn js-like-msg tooltip_trigger" aria-label="Like">
+            <img class="msg_action_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" style="transform:rotate(180deg)" />
+            <span class="tooltip_box">Like</span>
+          </button>
+          <button class="msg_action_btn js-dislike-msg tooltip_trigger" aria-label="Dislike">
+            <img class="msg_action_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+            <span class="tooltip_box">Dislike</span>
+          </button>
+          <button class="msg_action_btn js-regenerate tooltip_trigger" aria-label="Regenerate">
+            <img class="msg_action_icon" src="./assets/icons/message-circle-dashed.svg" alt="" aria-hidden="true" />
+            <span class="tooltip_box">Regenerate</span>
+          </button>
+        </div>
+      `;
+      return;
     }
   });
 
-  // Close the search modal if it was open
-  if (searchModal) searchModal.classList.remove('is-open');
-}
+  // ============================================================
+  // 3. MODEL SELECTOR
+  // ============================================================
+  document.addEventListener('click', function (e) {
+    const modelOption = e.target.closest('.model_option');
+    if (!modelOption) return;
 
-// Event Delegation for clicking on dynamic chat links
-document.addEventListener('click', (e) => {
-  
-  // 1. If they click a link in the sidebar
-  const chatLink = e.target.closest('.group_link');
-  if (chatLink && chatLink.dataset.id) {
-    e.preventDefault();
-    loadChat(chatLink.dataset.id);
-  }
+    const modelName = modelOption.querySelector('.model_name');
+    const selectorBtn = document.querySelector('#modelSelectorBtn');
 
-  // 2. If they click a button in the search modal
-  const chatRow = e.target.closest('.chat_row');
-  if (chatRow && chatRow.dataset.id) {
-    e.preventDefault();
-    loadChat(chatRow.dataset.id);
-  }
-});
+    // Update selected state
+    document.querySelectorAll('.model_option').forEach(function (opt) {
+      opt.classList.remove('is-selected');
+    });
+    modelOption.classList.add('is-selected');
+
+    // Update button text
+    if (selectorBtn && modelName) {
+      selectorBtn.childNodes[0].textContent = modelName.textContent.trim() + ' ';
+    }
+
+    // Close dropdown
+    const dropdown = document.querySelector('#modelDropdown');
+    if (dropdown) dropdown.classList.remove('is-open');
+  });
+
+  // ============================================================
+  // 4. KEYBOARD SHORTCUTS
+  // ============================================================
+  document.addEventListener('keydown', function (e) {
+    // Ctrl+K — Open search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      const searchBtn = document.querySelector('#searchTriggerBtn');
+      if (searchBtn) searchBtn.click();
+    }
+
+    // Ctrl+Shift+O — New chat
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'O') {
+      e.preventDefault();
+      const newChatBtn = document.querySelector('#newChatBtn');
+      if (newChatBtn) newChatBtn.click();
+    }
+
+    // Ctrl+Shift+S — Toggle sidebar
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
+      e.preventDefault();
+      const sidebarBtn = document.querySelector('#sidebarToggleBtn');
+      if (sidebarBtn) sidebarBtn.click();
+    }
+
+    // Escape — Close modals
+    if (e.key === 'Escape') {
+      const searchModal = document.querySelector('#searchModal');
+      const settingsModal = document.querySelector('#settingsModal');
+      if (searchModal && searchModal.classList.contains('is-open')) {
+        searchModal.classList.remove('is-open');
+      } else if (settingsModal && settingsModal.classList.contains('is-open')) {
+        settingsModal.classList.remove('is-open');
+      } else {
+        // Close any open dropdowns
+        document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
+          menu.classList.remove('is-open');
+        });
+      }
+    }
+  });
+
+})();

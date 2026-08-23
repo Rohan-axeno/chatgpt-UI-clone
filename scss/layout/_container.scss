@@ -1,3 +1,10 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// ============================================================
+// APP LAYOUT
+// ============================================================
+
 .app_layout {
   display: flex;
   height: 100vh;
@@ -5,15 +12,85 @@
   overflow: hidden;
 }
 
+// ============================================================
+// MAIN VIEW
+// ============================================================
+
 .main_view {
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
+  min-width: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
+// ============================================================
+// MAIN HEADER
+// ============================================================
+
 .main_header {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: sticky;
+  top: 0;
+  @include flex-between;
+  padding: $spacing-12 $spacing-16;
+  z-index: $z-sticky;
+  flex-shrink: 0;
+
+  .header_left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-8;
+  }
+
+  .header_right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-8;
+  }
+
+  // Mobile sidebar toggle (hidden on desktop)
+  .mobile_menu_btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-6;
+    border-radius: $radius-sm;
+
+    &:hover {
+      background-color: $color-bg-hover;
+    }
+
+    .mobile_menu_icon {
+      width: $icon-lg;
+      height: $icon-lg;
+    }
+
+    @include mobile-only {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// ============================================================
+// MOBILE OVERLAY (for sidebar drawer)
+// ============================================================
+
+.sidebar_overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-bg-overlay;
+  z-index: $z-overlay;
+
+  &.is-visible {
+    display: block;
+  }
 }

@@ -1,18 +1,121 @@
 @use '../abstracts/mixins' as *;
 
-$color-bg-sidebar: #f9f9f9;
-$color-bg-main: #ffffff;
+// ============================================================
+// DESIGN TOKENS
+// ============================================================
+
+// --- Colors ---
+$color-bg-primary: #ffffff;
+$color-bg-secondary: #f9f9f9;
+$color-bg-surface: #f4f4f4;
 $color-bg-hover: #ececec;
+$color-bg-dark: #212121;
+$color-bg-overlay: rgba(0, 0, 0, 0.4);
+
 $color-text-primary: #0d0d0d;
 $color-text-secondary: #666666;
 $color-text-muted: #999999;
+$color-text-inverse: #ffffff;
+
 $color-blue-accent: #3b82f6;
+$color-blue-accent-hover: #2563eb;
+$color-user-bubble: #f4f4f4;
 $color-pink-avatar: #d568a2;
+$color-danger: #ef4444;
+$color-success: #22c55e;
+
 $color-border: #e5e5e5;
+$color-border-light: #f0f0f0;
 
+// Code block colors
+$color-code-bg: #0d0d0d;
+$color-code-header: #2f2f2f;
+$color-code-text: #e6e6e6;
+$color-code-muted: #b4b4b4;
 
+// --- Spacing Scale ---
+$spacing-2: rem(2);
+$spacing-4: rem(4);
+$spacing-6: rem(6);
+$spacing-8: rem(8);
+$spacing-10: rem(10);
+$spacing-12: rem(12);
+$spacing-14: rem(14);
+$spacing-16: rem(16);
+$spacing-20: rem(20);
+$spacing-24: rem(24);
+$spacing-32: rem(32);
+$spacing-40: rem(40);
+$spacing-48: rem(48);
+$spacing-60: rem(60);
+$spacing-80: rem(80);
+
+// --- Typography ---
 $font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
 
+$font-size-xs: rem(12);
+$font-size-sm: rem(13);
+$font-size-base: rem(14);
+$font-size-md: rem(15);
+$font-size-lg: rem(16);
+$font-size-xl: rem(18);
+$font-size-2xl: rem(24);
+$font-size-3xl: rem(32);
 
-$sidebar-width: rem(260); 
-$transition-speed: 0.2s;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1;
+$line-height-snug: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.6;
+
+// --- Border Radius ---
+$radius-sm: rem(6);
+$radius-md: rem(8);
+$radius-lg: rem(12);
+$radius-xl: rem(16);
+$radius-2xl: rem(20);
+$radius-full: rem(32);
+$radius-circle: 50%;
+
+// --- Shadows ---
+$shadow-sm: 0 rem(2) rem(6) rgba(0, 0, 0, 0.05);
+$shadow-md: 0 rem(4) rem(20) rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 rem(4) rem(24) rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 rem(8) rem(32) rgba(0, 0, 0, 0.15);
+$shadow-tooltip: 0 rem(4) rem(6) rgba(0, 0, 0, 0.1);
+
+// --- Z-Index Scale ---
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-overlay: 500;
+$z-modal: 1000;
+$z-tooltip: 1100;
+
+// --- Transitions ---
+$transition-fast: 0.15s ease;
+$transition-base: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+// --- Layout ---
+$sidebar-width: rem(260);
+$sidebar-collapsed-width: rem(56);
+$chat-max-width: rem(750);
+$content-max-width: rem(1440);
+
+$padding-desktop: $spacing-80;
+$padding-tablet: $spacing-40;
+$padding-mobile: $spacing-20;
+
+// --- Icon Sizes ---
+$icon-xs: rem(12);
+$icon-sm: rem(14);
+$icon-base: rem(16);
+$icon-md: rem(18);
+$icon-lg: rem(20);
+$icon-xl: rem(24);
+$icon-2xl: rem(32);

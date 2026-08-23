@@ -1,187 +1,399 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
+// ============================================================
+// COMPOSER
+// ============================================================
+
 .composer_wrapper {
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   width: 100%;
-  background-color: #f4f4f4;
-  border-radius: rem(32);
-  padding: rem(4) rem(8);
-  box-shadow: 0 rem(2) rem(6) rgba(0, 0, 0, 0.05);
-  margin-bottom: rem(24);
+  background-color: $color-bg-surface;
+  border-radius: $radius-full;
+  padding: $spacing-6 $spacing-8;
+  box-shadow: $shadow-sm;
+  margin-bottom: $spacing-24;
+  transition: border-radius $transition-base;
 
-  .btn_add {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: rem(8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  // When attachment is shown, adjust border-radius
+  &.has-attachment {
+    border-radius: $radius-xl;
   }
 
-  .composer_input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: rem(8) rem(12);
-    font-size: rem(15);
-    outline: none;
-    line-height: 1.5;
-
-    &::placeholder {
-      color: $color-text-muted;
-    }
+  @include mobile-only {
+    margin-bottom: $spacing-8;
+    padding: $spacing-4 $spacing-6;
   }
 
+  // ---- Attachment Preview (inside composer) ----
   .attachment_preview {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff;
-    border: 1px solid $color-border;
-    border-radius: rem(12);
-    padding: rem(8) rem(12);
-    margin-bottom: rem(12);
+    background-color: $color-bg-primary;
+    border: rem(1) solid $color-border;
+    border-radius: $radius-lg;
+    padding: $spacing-8 $spacing-12;
+    margin: $spacing-4 $spacing-4 $spacing-8;
     width: max-content;
-    gap: rem(16);
+    max-width: 100%;
+    gap: $spacing-16;
     position: relative;
+
+    // Strictly hidden when .hidden class is present
+    &.hidden {
+      display: none;
+    }
 
     .file_info {
       display: flex;
       align-items: center;
-      gap: rem(12);
+      gap: $spacing-12;
+      min-width: 0;
     }
+
     .file_icon_wrap {
       width: rem(36);
       height: rem(36);
-      background: #f4f4f4;
-      border-radius: rem(8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: $color-bg-surface;
+      border-radius: $radius-md;
+      @include flex-center;
+      flex-shrink: 0;
+
+      .file_type_icon {
+        width: $icon-base;
+        height: $icon-base;
+      }
     }
+
     .file_details {
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
+
     .file_name {
-      font-size: rem(14);
-      font-weight: 600;
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
       color: $color-text-primary;
+      @include truncate;
     }
-    .file_type {
-      font-size: rem(12);
+
+    .file_meta {
+      font-size: $font-size-xs;
       color: $color-text-muted;
+    }
+
+    // Upload progress bar
+    .upload_progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: rem(3);
+      background-color: $color-bg-hover;
+      border-radius: 0 0 $radius-lg $radius-lg;
+      overflow: hidden;
+
+      &.hidden {
+        display: none;
+      }
+
+      .upload_bar {
+        height: 100%;
+        background-color: $color-blue-accent;
+        border-radius: inherit;
+        transition: width $transition-slow;
+      }
+    }
+
+    // Error state
+    &.has-error {
+      border-color: $color-danger;
+
+      .file_meta {
+        color: $color-danger;
+      }
     }
 
     .remove_file_btn {
       position: absolute;
       top: rem(-8);
       right: rem(-8);
-      background: #212121;
-      color: white;
+      background: $color-bg-dark;
+      color: $color-text-inverse;
       border: none;
-      border-radius: 50%;
-      width: rem(20);
-      height: rem(20);
+      border-radius: $radius-circle;
+      width: $spacing-20;
+      height: $spacing-20;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .action_icon {
+      @include flex-center;
+      transition: opacity $transition-fast;
+
+      .remove_icon {
+        width: $icon-xs;
+        height: $icon-xs;
         filter: invert(1);
-        width: rem(12) !important;
-        height: rem(12) !important;
       }
+    }
+  }
+
+  // ---- Input Row (All items perfectly centered on the same horizontal line) ----
+  .composer_input_row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: $spacing-4;
+  }
+
+  // Wrapper for plus attachment button to keep popover relative
+  .composer_attach_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .btn_add {
+    width: rem(36);
+    height: rem(36);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: $radius-circle;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: $color-bg-hover;
+    }
+
+    .btn_add_icon {
+      width: $icon-base;
+      height: $icon-base;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  .composer_textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: $spacing-6 $spacing-8;
+    font-size: $font-size-md;
+    font-family: $font-family-base;
+    outline: none;
+    line-height: $line-height-normal;
+    resize: none;
+    min-height: rem(36);
+    max-height: rem(200);
+    overflow-y: auto;
+    margin: 0;
+    display: block;
+
+    @include mobile-only {
+      padding: $spacing-6 $spacing-4;
+      font-size: $font-size-base;
+    }
+
+    &::placeholder {
+      color: $color-text-muted;
     }
   }
 
   .composer_actions {
     display: flex;
     align-items: center;
-    gap: rem(8);
+    gap: $spacing-4;
+    flex-shrink: 0;
+    margin-left: auto;
+
+    @include mobile-only {
+      gap: $spacing-2;
+    }
 
     .action_btn {
       display: flex;
       align-items: center;
-      gap: rem(6);
+      gap: $spacing-6;
       background: none;
       border: none;
       cursor: pointer;
       color: $color-text-secondary;
-      padding: rem(8);
-      border-radius: rem(16);
+      padding: $spacing-8;
+      border-radius: $radius-xl;
+      font-size: $font-size-base;
+      transition: background-color $transition-fast;
+      white-space: nowrap;
+
+      @include mobile-only {
+        padding: $spacing-6;
+
+        .action_label {
+          display: none;
+        }
+      }
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }
 
       .action_icon {
-        width: rem(16);
-        height: rem(16);
+        width: $icon-base;
+        height: $icon-base;
+        object-fit: contain;
       }
     }
 
-    .btn_voice {
-      background-color: $color-blue-accent;
-      border-radius: 50%;
+    // Single unified spot for the 3 state-swapping buttons
+    .composer_state_btn_wrap {
+      position: relative;
       width: rem(36);
       height: rem(36);
+      display: flex;
+      align-items: center;
       justify-content: center;
-      color: #ffffff;
+      flex-shrink: 0;
 
-      &:hover {
-        background-color: darken(#3b82f6, 10%);
+      .btn_voice,
+      .btn_send,
+      .btn_stop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: rem(36);
+        height: rem(36);
+        margin: 0;
+        padding: 0;
+        border-radius: $radius-circle;
+        @include flex-center;
+        cursor: pointer;
+        border: none;
+        transition: opacity $transition-fast, transform $transition-fast, background-color $transition-fast;
+
+        &.hidden {
+          display: none;
+        }
+      }
+
+      .btn_voice {
+        background-color: $color-blue-accent;
+        color: $color-text-inverse;
+
+        &:hover {
+          background-color: $color-blue-accent-hover;
+        }
+
+        .voice_icon {
+          width: $icon-base;
+          height: $icon-base;
+          filter: invert(1);
+        }
+      }
+
+      .btn_send {
+        background-color: $color-text-primary;
+        color: $color-text-inverse;
+
+        &:hover {
+          opacity: 0.85;
+        }
+
+        &.is-disabled {
+          opacity: 0.3;
+          cursor: default;
+        }
+
+        .send_icon {
+          width: $icon-base;
+          height: $icon-base;
+          filter: invert(1);
+        }
+      }
+
+      .btn_stop {
+        background-color: $color-text-primary;
+
+        &:hover {
+          opacity: 0.85;
+        }
+
+        .stop_icon {
+          width: $icon-sm;
+          height: $icon-sm;
+          background-color: $color-text-inverse;
+          border-radius: $spacing-2;
+        }
       }
     }
   }
 }
 
+// ---- Attachment Menu (positioned relative to composer) ----
 .attachment_menu {
   position: absolute;
-  top: calc(100% + 12px); 
-  bottom: auto;
+  bottom: calc(100% + #{$spacing-12});
+  top: auto;
   left: 0;
-  width: 100%; 
-  background: #ffffff;
-  border-radius: rem(16);
-  box-shadow: 0 rem(4) rem(24) rgba(0,0,0,0.15);
-  padding: rem(8);
+  width: rem(280);
+  background: $color-bg-primary;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+  padding: $spacing-8;
   flex-direction: column;
-  z-index: 10;
+  z-index: $z-dropdown;
 
   .menu_item {
     display: flex;
     align-items: center;
-    gap: rem(12);
+    gap: $spacing-12;
     width: 100%;
     background: none;
     border: none;
-    padding: rem(12);
-    border-radius: rem(12);
+    padding: $spacing-12;
+    border-radius: $radius-lg;
     cursor: pointer;
     text-align: left;
+    transition: background-color $transition-fast;
 
     &:hover {
-      background-color: #f4f4f4;
+      background-color: $color-bg-surface;
+    }
+
+    .menu_item_icon {
+      width: $icon-base;
+      height: $icon-base;
+      object-fit: contain;
+      flex-shrink: 0;
     }
 
     .item_text {
       display: flex;
-      align-items: center;
-      gap: rem(8);
+      flex-direction: column;
+      gap: $spacing-2;
 
       .title {
-        font-size: rem(14);
+        font-size: $font-size-base;
         color: $color-text-primary;
       }
+
       .desc {
-        font-size: rem(14);
+        font-size: $font-size-xs;
         color: $color-text-muted;
       }
     }
   }
+}
+
+// Hidden file input
+.file_input_hidden {
+  display: none;
 }

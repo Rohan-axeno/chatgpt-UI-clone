@@ -1,4 +1,12 @@
-* {
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+// ============================================================
+// RESET
+// ============================================================
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
