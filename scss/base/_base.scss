@@ -1,9 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// BASE STYLES (applied via .app_layout scope)
-// ============================================================
 .app_root {
   font-family: $font-family-base;
   color: $color-text-primary;
@@ -19,9 +16,6 @@
   color: inherit;
 }
 
-// ============================================================
-// ICON SIZING SYSTEM (class-based, no element selectors)
-// ============================================================
 .icon_size_base {
   width: $icon-base;
   height: $icon-base;
@@ -58,9 +52,6 @@
   flex-shrink: 0;
 }
 
-// ============================================================
-// UTILITY CLASSES
-// ============================================================
 .w_100 {
   width: 100%;
 }
@@ -85,9 +76,6 @@
   border: 0;
 }
 
-// ============================================================
-// ACCESSIBILITY — Focus States
-// ============================================================
 .icon_btn,
 .action_btn,
 .model_selector_btn,

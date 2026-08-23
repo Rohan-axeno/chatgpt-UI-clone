@@ -1,12 +1,4 @@
-// ============================================================
-// js/main.js — Global Application Logic
-// ============================================================
-
 (function () {
-
-  // ============================================================
-  // 1. GLOBAL DROPDOWN / POPOVER SYSTEM
-  // ============================================================
   const dropdownTriggers = [
     '#modelSelectorBtn',
     '.js-toggle-chat-options',
@@ -33,13 +25,11 @@
       });
     }
 
-    // Click outside — close all
     if (!triggerBtn && !isInsideDropdown) {
       closeAllDropdowns();
       return;
     }
 
-    // Click on trigger button
     if (triggerBtn) {
       const wrapper = triggerBtn.closest('.popover_wrapper');
       if (!wrapper) return;
@@ -48,7 +38,6 @@
 
       const groupItem = triggerBtn.closest('.group_item');
 
-      // If it's a nested trigger, only close sibling nested menus
       if (triggerBtn.classList.contains('js-toggle-nested')) {
         const parentMenu = triggerBtn.closest('.dropdown_menu');
         if (parentMenu) {
@@ -62,12 +51,10 @@
 
       const isOpen = targetMenu.classList.toggle('is-open');
 
-      // Keep group item hover container visible while menu is open
       if (groupItem) {
         groupItem.classList.toggle('has-open-menu', isOpen);
       }
 
-      // Check if button is near bottom of viewport -> flip to open upward
       if (isOpen) {
         const btnRect = triggerBtn.getBoundingClientRect();
         if (btnRect.bottom > window.innerHeight - 250) {
@@ -79,7 +66,6 @@
     }
   });
 
-  // Close dropdowns on scroll inside sidebar
   const sidebarContent = document.querySelector('.sidebar_content');
   if (sidebarContent) {
     sidebarContent.addEventListener('scroll', function () {
@@ -92,7 +78,6 @@
     });
   }
 
-  // Recents new chat button listener
   document.addEventListener('click', function (e) {
     if (e.target.closest('#recentsNewChatBtn')) {
       const newChatBtn = document.querySelector('#newChatBtn');
@@ -100,11 +85,7 @@
     }
   });
 
-  // ============================================================
-  // 2. MESSAGE ACTIONS (Copy, Like, Dislike, Regenerate)
-  // ============================================================
   document.addEventListener('click', function (e) {
-    // ---- Copy Message ----
     const copyBtn = e.target.closest('.js-copy-msg');
     if (copyBtn) {
       const messageRow = copyBtn.closest('.message_row');
@@ -116,7 +97,6 @@
       return;
     }
 
-    // ---- Copy Code Block ----
     const codeCopyBtn = e.target.closest('.js-copy-code');
     if (codeCopyBtn) {
       const codeBlock = codeCopyBtn.closest('.code_block');
@@ -131,7 +111,6 @@
       return;
     }
 
-    // ---- Like ----
     const likeBtn = e.target.closest('.js-like-msg');
     if (likeBtn) {
       const dislikeBtn = likeBtn.parentElement.querySelector('.js-dislike-msg');
@@ -140,7 +119,6 @@
       return;
     }
 
-    // ---- Dislike ----
     const dislikeBtn = e.target.closest('.js-dislike-msg');
     if (dislikeBtn) {
       const likeSibling = dislikeBtn.parentElement.querySelector('.js-like-msg');
@@ -149,7 +127,6 @@
       return;
     }
 
-    // ---- Regenerate ----
     const regenBtn = e.target.closest('.js-regenerate');
     if (regenBtn) {
       const messageRow = regenBtn.closest('.message_row');
@@ -158,11 +135,9 @@
       const contentEl = messageRow.querySelector('.message_content');
       if (!contentEl) return;
 
-      // Get alternate response
       const altResponse = typeof alternateResponses !== 'undefined' ? alternateResponses : null;
       if (!altResponse) return;
 
-      // Determine which type to use
       const hasCode = messageRow.querySelector('.code_block');
       let newText, newExtras;
 
@@ -174,7 +149,6 @@
         newExtras = null;
       }
 
-      // Build new content
       let richHtml = '';
       if (newExtras && newExtras.language && newExtras.snippet) {
         richHtml = buildCodeBlockHtml(newExtras);
@@ -205,9 +179,6 @@
     }
   });
 
-  // ============================================================
-  // 3. MODEL SELECTOR
-  // ============================================================
   document.addEventListener('click', function (e) {
     const modelOption = e.target.closest('.model_option');
     if (!modelOption) return;
@@ -215,48 +186,38 @@
     const modelName = modelOption.querySelector('.model_name');
     const selectorBtn = document.querySelector('#modelSelectorBtn');
 
-    // Update selected state
     document.querySelectorAll('.model_option').forEach(function (opt) {
       opt.classList.remove('is-selected');
     });
     modelOption.classList.add('is-selected');
 
-    // Update button text
     if (selectorBtn && modelName) {
       selectorBtn.childNodes[0].textContent = modelName.textContent.trim() + ' ';
     }
 
-    // Close dropdown
     const dropdown = document.querySelector('#modelDropdown');
     if (dropdown) dropdown.classList.remove('is-open');
   });
 
-  // ============================================================
-  // 4. KEYBOARD SHORTCUTS
-  // ============================================================
   document.addEventListener('keydown', function (e) {
-    // Ctrl+K — Open search
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       const searchBtn = document.querySelector('#searchTriggerBtn');
       if (searchBtn) searchBtn.click();
     }
 
-    // Ctrl+Shift+O — New chat
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'O') {
       e.preventDefault();
       const newChatBtn = document.querySelector('#newChatBtn');
       if (newChatBtn) newChatBtn.click();
     }
 
-    // Ctrl+Shift+S — Toggle sidebar
     if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
       e.preventDefault();
       const sidebarBtn = document.querySelector('#sidebarToggleBtn');
       if (sidebarBtn) sidebarBtn.click();
     }
 
-    // Escape — Close modals
     if (e.key === 'Escape') {
       const searchModal = document.querySelector('#searchModal');
       const settingsModal = document.querySelector('#settingsModal');
@@ -265,7 +226,6 @@
       } else if (settingsModal && settingsModal.classList.contains('is-open')) {
         settingsModal.classList.remove('is-open');
       } else {
-        // Close any open dropdowns
         document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
           menu.classList.remove('is-open');
         });

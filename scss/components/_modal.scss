@@ -1,10 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// MODAL
-// ============================================================
-
 .modal_overlay {
   position: fixed;
   top: 0;
@@ -22,10 +18,6 @@
     display: flex;
   }
 }
-
-// ============================================================
-// SEARCH MODAL
-// ============================================================
 
 .search_modal {
   background-color: $color-bg-primary;
@@ -123,10 +115,6 @@
     }
   }
 }
-
-// ============================================================
-// SETTINGS MODAL
-// ============================================================
 
 .settings_modal {
   background-color: $color-bg-primary;
@@ -262,7 +250,6 @@
       }
     }
 
-    // Toggle switch
     .toggle_switch {
       position: relative;
       width: rem(44);
@@ -295,7 +282,6 @@
       }
     }
 
-    // Theme selector
     .theme_options {
       display: flex;
       gap: $spacing-12;
@@ -348,7 +334,6 @@
       }
     }
 
-    // Select dropdown for settings
     .setting_select {
       padding: $spacing-8 $spacing-12;
       border: rem(1) solid $color-border;
@@ -365,7 +350,6 @@
       }
     }
 
-    // Keyboard shortcuts
     .shortcut_list {
       list-style: none;
 

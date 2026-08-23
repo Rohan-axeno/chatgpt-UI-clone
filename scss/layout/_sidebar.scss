@@ -1,10 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// SIDEBAR
-// ============================================================
-
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -17,7 +13,6 @@
   position: relative;
   z-index: calc(#{$z-overlay} + 1);
 
-  // Expanded container takes full height
   .sidebar_full {
     display: flex;
     flex-direction: column;
@@ -27,7 +22,6 @@
     transition: opacity $transition-fast;
   }
 
-  // Collapsed rail (hidden by default in expanded mode)
   .sidebar_rail {
     display: none;
     flex-direction: column;
@@ -113,7 +107,6 @@
     }
   }
 
-  // Desktop Collapsed State (Slim Rail Mode)
   &.is-collapsed {
     width: $sidebar-collapsed-width;
     overflow: visible;
@@ -140,7 +133,6 @@
     }
   }
 
-  // Mobile: off-canvas drawer
   @include mobile-only {
     position: fixed;
     top: 0;
@@ -153,7 +145,6 @@
     }
   }
 
-  // ---- Sidebar Nav ----
   &_nav {
     flex-shrink: 0;
     @include flex-between;
@@ -184,7 +175,6 @@
     }
   }
 
-  // ---- Sidebar Content (scrollable area) ----
   &_content {
     flex: 1;
     overflow-y: auto;
@@ -195,7 +185,6 @@
     @include hide-scrollbar;
   }
 
-  // ---- Sidebar Utils (New Chat, Library, etc.) ----
   &_utils {
     .utils_list {
       list-style: none;
@@ -234,7 +223,6 @@
     }
   }
 
-  // ---- Chat History ----
   .recents {
     display: flex;
     flex-direction: column;
@@ -338,7 +326,6 @@
         flex-direction: column;
         gap: $spacing-2;
 
-        // Collapsible group
         &.is-hidden {
           display: none;
         }
@@ -420,7 +407,6 @@
     }
   }
 
-  // ---- Sidebar Footer ----
   &_footer {
     flex-shrink: 0;
     padding: $spacing-12;

@@ -1,24 +1,13 @@
-// ============================================================
-// js/Utils/helper.js — Utility Functions
-// ============================================================
-
-/**
- * Escapes HTML entities to prevent XSS
- */
 function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
 }
 
-/**
- * Copies text to clipboard and returns a promise
- */
 function copyToClipboard(text) {
   if (navigator.clipboard) {
     return navigator.clipboard.writeText(text);
   }
-  // Fallback for older browsers
   const textarea = document.createElement('textarea');
   textarea.value = text;
   textarea.style.position = 'fixed';
@@ -30,9 +19,6 @@ function copyToClipboard(text) {
   return Promise.resolve();
 }
 
-/**
- * Formats file size from bytes to human readable
- */
 function formatFileSize(bytes) {
   if (bytes === 0) return '0 Bytes';
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
@@ -40,16 +26,10 @@ function formatFileSize(bytes) {
   return parseFloat((bytes / Math.pow(1024, i)).toFixed(1)) + ' ' + sizes[i];
 }
 
-/**
- * Generates a unique ID
- */
 function generateId() {
   return 'id-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
 }
 
-/**
- * Debounce function for search input
- */
 function debounce(func, wait) {
   let timeout;
   return function (...args) {
@@ -58,18 +38,12 @@ function debounce(func, wait) {
   };
 }
 
-/**
- * Scrolls an element to its bottom
- */
 function scrollToBottom(element) {
   if (element) {
     element.scrollTop = element.scrollHeight;
   }
 }
 
-/**
- * Shows a temporary feedback tooltip on a button
- */
 function showCopyFeedback(button, text) {
   const existing = button.querySelector('.copy_feedback');
   if (existing) {

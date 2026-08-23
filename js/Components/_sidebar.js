@@ -1,7 +1,3 @@
-// ============================================================
-// js/Components/_sidebar.js — Sidebar Logic
-// ============================================================
-
 (function () {
   const sidebar = document.querySelector('#sidebar');
   const sidebarToggleBtn = document.querySelector('#sidebarToggleBtn');
@@ -12,7 +8,6 @@
 
   if (!sidebar) return;
 
-  // ---- Sidebar Toggle (Desktop: collapse to rail, Mobile: drawer) ----
   function toggleSidebar() {
     const isMobile = window.innerWidth < 768;
 
@@ -39,7 +34,6 @@
     document.body.style.overflow = '';
   }
 
-  // Toggle buttons
   if (sidebarToggleBtn) {
     sidebarToggleBtn.addEventListener('click', toggleSidebar);
   }
@@ -56,34 +50,28 @@
     sidebarOverlay.addEventListener('click', closeMobileSidebar);
   }
 
-  // ---- Collapsed Rail Button Listeners ----
   document.addEventListener('click', function (e) {
-    // Rail: New chat
     if (e.target.closest('.js-new-chat-rail')) {
       resetToNewChat();
       return;
     }
 
-    // Rail: Search
     if (e.target.closest('.js-search-rail')) {
       const searchTriggerBtn = document.querySelector('#searchTriggerBtn');
       if (searchTriggerBtn) searchTriggerBtn.click();
       return;
     }
 
-    // Rail: Pinned
     if (e.target.closest('.js-pinned-rail')) {
       loadChat('pinned-1');
       return;
     }
 
-    // Rail: Recents (expand sidebar or load first recent)
     if (e.target.closest('.js-recents-rail')) {
       expandSidebar();
       return;
     }
 
-    // Rail: Profile / Settings
     if (e.target.closest('.js-toggle-profile-rail')) {
       const settingsModal = document.querySelector('#settingsModal');
       if (settingsModal) settingsModal.classList.add('is-open');
@@ -91,7 +79,6 @@
     }
   });
 
-  // ---- New Chat ----
   if (newChatBtn) {
     newChatBtn.addEventListener('click', function () {
       resetToNewChat();
@@ -127,7 +114,6 @@
       chatInput.focus();
     }
 
-    // Remove active state from all chat links
     document.querySelectorAll('.group_link.is-active').forEach(function (link) {
       link.classList.remove('is-active');
     });
@@ -136,14 +122,12 @@
       window._resetComposer();
     }
 
-    // Set new chat as active in utils
     document.querySelectorAll('.utils_item').forEach(function (item) {
       item.classList.remove('active');
     });
     if (newChatBtn) newChatBtn.classList.add('active');
   }
 
-  // ---- Collapsible Groups (Pinned toggle) ----
   document.querySelectorAll('.group_toggle_btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       const isCollapsed = btn.classList.toggle('is-collapsed');
@@ -155,28 +139,24 @@
     });
   });
 
-  // ---- Render Sidebar Chat History ----
   function renderSidebar() {
     const recentsList = document.querySelector('#recentsList');
     if (!recentsList || typeof chatHistory === 'undefined') return;
 
     recentsList.innerHTML = '';
 
-    // Group chats by their group property
     const grouped = {};
     chatHistory.forEach(function (chat) {
       if (!grouped[chat.group]) grouped[chat.group] = [];
       grouped[chat.group].push(chat);
     });
 
-    // Render grouped with date headers
     const groupOrder = ['Today', 'Yesterday', 'Previous 7 days', 'Older'];
 
     groupOrder.forEach(function (groupName) {
       const chats = grouped[groupName];
       if (!chats || !chats.length) return;
 
-      // Add group header
       const headerLi = document.createElement('li');
       headerLi.className = 'group_title';
       headerLi.textContent = groupName;
@@ -228,7 +208,6 @@
     });
   }
 
-  // ---- Chat Selection ----
   document.addEventListener('click', function (e) {
     const chatLink = e.target.closest('.group_link[data-id]');
     if (!chatLink) return;
@@ -238,19 +217,16 @@
     loadChat(chatId);
     closeMobileSidebar();
 
-    // Update active state
     document.querySelectorAll('.group_link.is-active').forEach(function (link) {
       link.classList.remove('is-active');
     });
     chatLink.classList.add('is-active');
 
-    // Deactivate new chat
     document.querySelectorAll('.utils_item.active').forEach(function (item) {
       item.classList.remove('active');
     });
   });
 
-  // ---- Share Chat ----
   document.addEventListener('click', function (e) {
     const shareBtn = e.target.closest('.js-share-chat');
     if (!shareBtn) return;
@@ -266,7 +242,6 @@
     });
   });
 
-  // ---- Delete Chat ----
   document.addEventListener('click', function (e) {
     const deleteBtn = e.target.closest('.js-delete-chat');
     if (!deleteBtn) return;
@@ -278,13 +253,11 @@
       renderSidebar();
     }
 
-    // Close any open dropdowns
     document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
       menu.classList.remove('is-open');
     });
   });
 
-  // ---- Rename Chat ----
   document.addEventListener('click', function (e) {
     const renameBtn = e.target.closest('.js-rename-chat');
     if (!renameBtn) return;
@@ -299,13 +272,11 @@
       renderSidebar();
     }
 
-    // Close dropdowns
     document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
       menu.classList.remove('is-open');
     });
   });
 
-  // ---- Archive Chat ----
   document.addEventListener('click', function (e) {
     const archiveBtn = e.target.closest('.js-archive-chat');
     if (!archiveBtn) return;
@@ -321,7 +292,6 @@
     });
   });
 
-  // ---- Pin Chat from menu ----
   document.addEventListener('click', function (e) {
     const pinBtn = e.target.closest('.js-pin-chat');
     if (!pinBtn) return;
@@ -337,7 +307,6 @@
     });
   });
 
-  // ---- Organize Chats (In one list vs By project) ----
   document.addEventListener('click', function (e) {
     const orgItem = e.target.closest('.organize_popover .popover_item');
     if (!orgItem) return;
@@ -347,18 +316,15 @@
     });
     orgItem.classList.add('active');
 
-    // Close dropdown after selection
     setTimeout(function () {
       const orgPopover = orgItem.closest('.organize_popover');
       if (orgPopover) orgPopover.classList.remove('is-open');
     }, 200);
   });
 
-  // ---- Load Chat ----
   function loadChat(chatId) {
     if (typeof chatHistory === 'undefined') return;
 
-    // Handle pinned chat
     if (chatId === 'pinned-1') {
       const chatGreeting = document.querySelector('#chatGreeting');
       const chatSuggestions = document.querySelector('#chatSuggestions');
@@ -410,22 +376,18 @@
       }
     });
 
-    // Close search modal
     const searchModal = document.querySelector('#searchModal');
     if (searchModal) searchModal.classList.remove('is-open');
   }
 
-  // ---- Window Resize Handler ----
   window.addEventListener('resize', debounce(function () {
     if (window.innerWidth >= 768) {
       closeMobileSidebar();
     }
   }, 250));
 
-  // Initialize
   renderSidebar();
 
-  // Expose for global / modal access
   window._renderSidebar = renderSidebar;
   window._loadChat = loadChat;
   window._toggleSidebar = toggleSidebar;

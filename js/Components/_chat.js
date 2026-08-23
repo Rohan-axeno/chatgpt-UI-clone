@@ -1,10 +1,3 @@
-// ============================================================
-// js/Components/_chat.js — Chat Message Rendering
-// ============================================================
-
-/**
- * Appends a user message bubble to the chat feed
- */
 function appendUserMessage(text) {
   const chatFeed = document.querySelector('#chatFeed');
   if (!chatFeed) return;
@@ -22,9 +15,6 @@ function appendUserMessage(text) {
   scrollToBottom(chatFeed);
 }
 
-/**
- * Shows the typing indicator
- */
 function showTypingIndicator() {
   const chatFeed = document.querySelector('#chatFeed');
   if (!chatFeed) return;
@@ -47,17 +37,11 @@ function showTypingIndicator() {
   scrollToBottom(chatFeed);
 }
 
-/**
- * Removes the typing indicator
- */
 function removeTypingIndicator() {
   const indicator = document.querySelector('#typingIndicator');
   if (indicator) indicator.remove();
 }
 
-/**
- * Builds HTML for a code block
- */
 function buildCodeBlockHtml(codeData) {
   if (!codeData) return '';
   const escapedSnippet = escapeHtml(codeData.snippet);
@@ -76,18 +60,12 @@ function buildCodeBlockHtml(codeData) {
   `;
 }
 
-/**
- * Builds HTML for a list in message
- */
 function buildListHtml(items) {
   if (!items || !items.length) return '';
   const listItems = items.map(item => `<li class="msg_list_item">${escapeHtml(item)}</li>`).join('');
   return `<ol class="msg_list">${listItems}</ol>`;
 }
 
-/**
- * Builds HTML for a table in message
- */
 function buildTableHtml(tableData) {
   if (!tableData) return '';
   const headerCells = tableData.headers.map(h => `<th class="msg_th">${escapeHtml(h)}</th>`).join('');
@@ -106,9 +84,6 @@ function buildTableHtml(tableData) {
   `;
 }
 
-/**
- * Appends an assistant message bubble to the chat feed
- */
 function appendAssistantMessage(text, extras) {
   const chatFeed = document.querySelector('#chatFeed');
   if (!chatFeed) return;
@@ -116,22 +91,18 @@ function appendAssistantMessage(text, extras) {
   let richContentHtml = '';
 
   if (extras) {
-    // Code block
     if (extras.language && extras.snippet) {
       richContentHtml += buildCodeBlockHtml(extras);
     }
-    // Code from nested object
     if (extras.code) {
       richContentHtml += buildCodeBlockHtml(extras.code);
     }
-    // List
     if (extras.list) {
       richContentHtml += buildListHtml(extras.list);
     }
     if (extras.items) {
       richContentHtml += buildListHtml(extras.items);
     }
-    // Table
     if (extras.table) {
       richContentHtml += buildTableHtml(extras.table);
     }

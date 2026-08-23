@@ -1,20 +1,12 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// APP LAYOUT
-// ============================================================
-
 .app_layout {
   display: flex;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
 }
-
-// ============================================================
-// MAIN VIEW
-// ============================================================
 
 .main_view {
   flex: 1;
@@ -25,10 +17,6 @@
   height: 100vh;
   overflow: hidden;
 }
-
-// ============================================================
-// MAIN HEADER
-// ============================================================
 
 .main_header {
   position: sticky;
@@ -50,7 +38,6 @@
     gap: $spacing-8;
   }
 
-  // Mobile sidebar toggle (hidden on desktop)
   .mobile_menu_btn {
     display: none;
     background: none;
@@ -75,10 +62,6 @@
     }
   }
 }
-
-// ============================================================
-// MOBILE OVERLAY (for sidebar drawer)
-// ============================================================
 
 .sidebar_overlay {
   display: none;

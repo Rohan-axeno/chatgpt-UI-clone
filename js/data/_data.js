@@ -1,7 +1,3 @@
-// ============================================================
-// js/data/_data.js — Mock Data Store
-// ============================================================
-
 const chatHistory = [
   {
     id: "chat-1",
@@ -168,7 +164,6 @@ const chatHistory = [
   }
 ];
 
-// Mock responses for live chat
 const mockResponses = {
   general: "That's a great question! As a simulated frontend environment, I can render these chat bubbles flawlessly, but I am currently not connected to a live language model API. This response is a static mock demonstrating the UI interaction flow.",
   
@@ -205,7 +200,6 @@ const mockResponses = {
   }
 };
 
-// Alternate responses for regeneration
 const alternateResponses = {
   general: "Let me think about that differently. While this is a frontend-only simulation, the architecture demonstrates modern chat UI patterns including real-time message rendering, dynamic state management, and responsive layout behavior — all built with vanilla JavaScript.",
 
@@ -216,7 +210,6 @@ const alternateResponses = {
   }
 };
 
-// Model data
 const modelData = [
   { id: "gpt-4o", name: "GPT-4o", desc: "Fast and versatile", category: "Fast" },
   { id: "gpt-4", name: "GPT-4", desc: "Balanced performance", category: "Balanced" },

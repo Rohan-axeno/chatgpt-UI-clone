@@ -1,7 +1,3 @@
-// ============================================================
-// js/Components/_composer.js — Composer Logic
-// ============================================================
-
 (function () {
   const chatInput = document.querySelector('#chatInput');
   const sendBtn = document.querySelector('#sendBtn');
@@ -20,8 +16,6 @@
 
   if (!chatInput) return;
 
-  // ---- State Management for the Unified Button Spot ----
-  // States: 'idle' (voice), 'typing' (send), 'generating' (pause/stop)
   let currentComposerState = 'idle';
 
   function setComposerState(state) {
@@ -36,14 +30,12 @@
       if (sendBtn) sendBtn.classList.remove('hidden');
       if (stopBtn) stopBtn.classList.add('hidden');
     } else {
-      // 'idle'
       if (voiceBtn) voiceBtn.classList.remove('hidden');
       if (sendBtn) sendBtn.classList.add('hidden');
       if (stopBtn) stopBtn.classList.add('hidden');
     }
   }
 
-  // ---- Auto-growing Textarea & Input Listener ----
   function autoGrow() {
     chatInput.style.height = 'auto';
     chatInput.style.height = chatInput.scrollHeight + 'px';
@@ -52,13 +44,11 @@
   chatInput.addEventListener('input', function () {
     autoGrow();
 
-    // Only update between idle and typing if we are NOT in generating state
     if (currentComposerState !== 'generating') {
       const hasText = chatInput.value.trim().length > 0;
       setComposerState(hasText ? 'typing' : 'idle');
     }
 
-    // Hide suggestions while user is typing
     const chatSuggestions = document.querySelector('#chatSuggestions');
     const chatFeed = document.querySelector('#chatFeed');
     const isFeedActive = chatFeed && !chatFeed.classList.contains('hidden');
@@ -72,7 +62,6 @@
     }
   });
 
-  // ---- Send Message ----
   function sendMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
@@ -82,52 +71,41 @@
     const chatFeed = document.querySelector('#chatFeed');
     const chatContainer = document.querySelector('#chatContainer');
 
-    // Clear input & reset height
     chatInput.value = '';
     chatInput.style.height = 'auto';
 
-    // Remove attachment if present
     hideAttachment();
 
-    // Switch to active chat layout
     if (chatGreeting) chatGreeting.classList.add('hidden');
     if (chatSuggestions) chatSuggestions.classList.add('hidden');
     if (chatFeed) chatFeed.classList.remove('hidden');
     if (chatContainer) chatContainer.classList.add('is-chatting');
 
-    // Add user message to conversation
     if (typeof appendUserMessage === 'function') {
       appendUserMessage(text);
     }
 
-    // Show typing indicator
     if (typeof showTypingIndicator === 'function') {
       showTypingIndicator();
     }
 
-    // Switch button to Pause / Stop in the exact same slot
     setComposerState('generating');
 
-    // Clear any previous ongoing generating timeout
     if (window._generatingTimeout) {
       clearTimeout(window._generatingTimeout);
       window._generatingTimeout = null;
     }
 
-    // 1500ms Simulated AI Generation
     window._generatingTimeout = setTimeout(function () {
       window._generatingTimeout = null;
 
-      // Remove typing indicator dots
       if (typeof removeTypingIndicator === 'function') {
         removeTypingIndicator();
       }
 
-      // Restore button state
       const hasText = chatInput.value.trim().length > 0;
       setComposerState(hasText ? 'typing' : 'idle');
 
-      // Append predefined AI response
       if (typeof appendAssistantMessage === 'function') {
         const lowerText = text.toLowerCase();
 
@@ -146,7 +124,6 @@
     }, 1500);
   }
 
-  // Form submit listener (Enter key or form submit)
   if (composerForm) {
     composerForm.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -156,7 +133,6 @@
     });
   }
 
-  // Enter to send (Shift+Enter for newline)
   chatInput.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -166,7 +142,6 @@
     }
   });
 
-  // ---- Pause / Stop Generating Button Listener ----
   if (stopBtn) {
     stopBtn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -175,18 +150,15 @@
         window._generatingTimeout = null;
       }
 
-      // Remove typing indicator dots immediately
       if (typeof removeTypingIndicator === 'function') {
         removeTypingIndicator();
       }
 
-      // Switch back to typing or idle state — NO conversation / AI message is loaded!
       const hasText = chatInput.value.trim().length > 0;
       setComposerState(hasText ? 'typing' : 'idle');
     });
   }
 
-  // ---- File Picker & Attachment Flow ----
   if (filePickerBtn && fileInput) {
     filePickerBtn.addEventListener('click', function () {
       fileInput.click();
@@ -207,7 +179,6 @@
         if (composerWrapper) composerWrapper.classList.add('has-attachment');
       }
 
-      // Simulate upload progress
       simulateUpload();
     });
   }
@@ -230,7 +201,6 @@
     }, 200);
   }
 
-  // ---- Remove Attachment ----
   function hideAttachment() {
     if (attachmentPreview) {
       attachmentPreview.classList.add('hidden');
@@ -244,12 +214,10 @@
     removeFileBtn.addEventListener('click', hideAttachment);
   }
 
-  // ---- Suggestion Clicks ----
   document.addEventListener('click', function (e) {
     const suggestionBtn = e.target.closest('.suggestion_btn');
     if (!suggestionBtn) return;
 
-    // Check if close/dismiss icon was clicked
     if (e.target.closest('.close_icon')) {
       suggestionBtn.remove();
       return;
@@ -263,10 +231,8 @@
     }
   });
 
-  // Initialize button state
   setComposerState('idle');
 
-  // Expose reset function for new chat
   window._resetComposer = function () {
     if (window._generatingTimeout) {
       clearTimeout(window._generatingTimeout);

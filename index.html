@@ -9,16 +9,9 @@
   </head>
   <body class="app_root">
     <div class="app_layout">
-      <!-- ============================================================ -->
-      <!-- SIDEBAR OVERLAY (mobile backdrop) -->
-      <!-- ============================================================ -->
       <div class="sidebar_overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
-      <!-- ============================================================ -->
-      <!-- SIDEBAR -->
-      <!-- ============================================================ -->
       <aside class="sidebar" id="sidebar" aria-label="Chat history sidebar">
-        <!-- 1. FULL EXPANDED SIDEBAR -->
         <div class="sidebar_full">
           <nav class="sidebar_nav" aria-label="Sidebar navigation">
             <div class="logo">
@@ -38,7 +31,6 @@
           </nav>
 
           <div class="sidebar_content">
-            <!-- Sidebar Utils -->
             <div class="sidebar_utils">
               <ul class="utils_list" role="list">
                 <li class="utils_item active" id="newChatBtn" role="button" tabindex="0" aria-label="New chat">
@@ -72,7 +64,6 @@
               </ul>
             </div>
 
-            <!-- Pinned Section -->
             <div class="recents">
               <div class="history_group">
                 <div class="group_header">
@@ -87,7 +78,6 @@
                       <img class="history_icon" src="./assets/icons/message-circle.svg" alt="" aria-hidden="true" />
                       Hub Issues Summary
                     </a>
-                    <!-- Hover Actions -->
                     <div class="chat_hover_actions">
                       <button class="icon_btn tooltip_trigger" aria-label="Unpin chat">
                         <img class="hover_action_icon" src="./assets/icons/pin-off.svg" alt="" aria-hidden="true" />
@@ -97,7 +87,6 @@
                         <button class="icon_btn js-toggle-chat-options" aria-label="More options">
                           <img class="hover_action_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
                         </button>
-                        <!-- Chat Options Popover (Matching Screenshot 1) -->
                         <div class="dropdown_menu dropdown_menu--right chat_options_menu" role="menu">
                           <button class="menu_item js-share-chat" role="menuitem" data-id="pinned-1">
                             <img class="menu_item_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" /> Share
@@ -129,7 +118,6 @@
                 </ul>
               </div>
 
-              <!-- Recents Section (dynamically populated) -->
               <div class="history_group" id="recentsGroup">
                 <div class="history_header">
                   <button class="dropdown_btn" aria-expanded="true">
@@ -145,7 +133,6 @@
                       <button class="icon_btn js-toggle-organize" aria-label="Organize chats">
                         <img class="header_action_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
                       </button>
-                      <!-- Organize Chats Popover (Matching Screenshot 2) -->
                       <div class="dropdown_menu dropdown_menu--right organize_popover" role="menu">
                         <div class="popover_title">Organize chats</div>
                         <button class="popover_item active" role="menuitem" data-mode="list">
@@ -164,14 +151,11 @@
                     </div>
                   </div>
                 </div>
-                <ul class="group_list" id="recentsList" role="list">
-                  <!-- Dynamically populated by JS -->
-                </ul>
+                <ul class="group_list" id="recentsList" role="list"></ul>
               </div>
             </div>
           </div>
 
-          <!-- Sidebar Footer / Profile -->
           <div class="sidebar_footer">
             <div class="popover_wrapper w_100">
               <button class="profile_btn js-toggle-profile" aria-label="Open profile menu">
@@ -183,7 +167,6 @@
                 <img class="store_icon" src="./assets/icons/store.svg" alt="" aria-hidden="true" />
               </button>
 
-              <!-- Profile Popover -->
               <div class="dropdown_menu profile_menu dropdown_menu--up" role="menu">
                 <div class="popover_wrapper w_100 nested_trigger">
                   <button class="menu_item profile_summary js-toggle-nested" role="menuitem">
@@ -253,7 +236,6 @@
           </div>
         </div>
 
-        <!-- 2. COLLAPSED RAIL (Shown when .sidebar.is-collapsed on desktop) -->
         <div class="sidebar_rail" aria-hidden="true">
           <div class="rail_top">
             <button class="rail_btn tooltip_trigger js-toggle-sidebar" id="railExpandBtn" aria-label="Open sidebar">
@@ -286,13 +268,9 @@
         </div>
       </aside>
 
-      <!-- ============================================================ -->
-      <!-- MAIN VIEW -->
-      <!-- ============================================================ -->
       <main class="main_view" id="mainView">
         <header class="main_header">
           <div class="header_left">
-            <!-- Mobile menu button -->
             <button class="mobile_menu_btn" id="mobileMenuBtn" aria-label="Open sidebar">
               <img class="mobile_menu_icon" src="./assets/icons/panel-left.svg" alt="" aria-hidden="true" />
             </button>
@@ -302,7 +280,6 @@
                 ChatGPT
                 <img class="model_chevron" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
               </button>
-              <!-- Model Popover -->
               <div class="dropdown_menu" id="modelDropdown" role="listbox" aria-label="Select model">
                 <button class="model_option is-selected" role="option" data-model="gpt-4o">
                   <span class="model_name">
@@ -332,23 +309,17 @@
           <div class="header_right">
             <button class="icon_btn tooltip_trigger" id="tempChatBtn" aria-label="Temporary chat">
               <img class="refresh_btn_icon" src="./assets/icons/message-circle-dashed.svg" alt="" aria-hidden="true" />
-              <span class="tooltip_box">Temporary chat</span>
+              <span class="tooltip_box tooltip_box--bottom-right">Temporary chat</span>
             </button>
           </div>
         </header>
 
         <section class="chat_container" id="chatContainer" aria-label="Chat area">
-          <!-- STATE 1: ACTIVE CHAT FEED (hidden by default) -->
-          <div class="chat_feed hidden" id="chatFeed" role="log" aria-live="polite" aria-label="Chat messages">
-            <!-- Messages injected by JS -->
-          </div>
+          <div class="chat_feed hidden" id="chatFeed" role="log" aria-live="polite" aria-label="Chat messages"></div>
 
-          <!-- STATE 2: INITIAL GREETING -->
           <h1 class="chat_greeting" id="chatGreeting">What's on the agenda today?</h1>
 
-          <!-- THE COMPOSER -->
           <form class="composer_wrapper" id="composerForm" aria-label="Message composer" autocomplete="off">
-            <!-- Attachment Preview (hidden by default) -->
             <div class="attachment_preview hidden" id="attachmentPreview">
               <div class="file_info">
                 <div class="file_icon_wrap">
@@ -367,14 +338,12 @@
               </button>
             </div>
 
-            <!-- Input Row -->
             <div class="composer_input_row">
               <div class="popover_wrapper composer_attach_wrap">
                 <button type="button" class="btn_add tooltip_trigger js-toggle-attachment" aria-label="Attach files">
                   <img class="btn_add_icon" src="./assets/icons/plus.svg" alt="" aria-hidden="true" />
                   <span class="tooltip_box tooltip_box--top">Attach files</span>
                 </button>
-                <!-- Attachment Menu -->
                 <div class="dropdown_menu attachment_menu" id="attachmentMenu" role="menu">
                   <button type="button" class="menu_item" id="filePickerBtn" role="menuitem">
                     <img class="menu_item_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" />
@@ -393,7 +362,6 @@
                 </div>
               </div>
 
-              <!-- Hidden file input -->
               <input type="file" class="file_input_hidden" id="fileInput" aria-label="Upload file" />
 
               <textarea
@@ -415,21 +383,17 @@
                   <span class="tooltip_box tooltip_box--top">Dictate <span class="shortcut">Ctrl + Shift + D</span></span>
                 </button>
                 
-                <!-- UNIFIED STATE BUTTON CONTAINER (Exact same spot) -->
                 <div class="composer_state_btn_wrap">
-                  <!-- 1. Voice button (Default state) -->
                   <button type="button" class="action_btn btn_voice tooltip_trigger" id="voiceBtn" aria-label="Start voice">
                     <img class="voice_icon" src="./assets/icons/audio-lines.svg" alt="" aria-hidden="true" />
                     <span class="tooltip_box tooltip_box--top">Start Voice</span>
                   </button>
 
-                  <!-- 2. Send button (Shown when user is typing) -->
                   <button type="submit" class="action_btn btn_send tooltip_trigger hidden" id="sendBtn" aria-label="Send message">
                     <img class="send_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" />
                     <span class="tooltip_box tooltip_box--top">Send message</span>
                   </button>
 
-                  <!-- 3. Pause / Stop button (Shown when 1500ms delay is running) -->
                   <button type="button" class="action_btn btn_stop tooltip_trigger hidden" id="stopBtn" aria-label="Stop generating">
                     <div class="stop_icon"></div>
                     <span class="tooltip_box tooltip_box--top">Stop generating</span>
@@ -439,7 +403,6 @@
             </div>
           </form>
 
-          <!-- INITIAL SUGGESTIONS -->
           <div class="suggestions" id="chatSuggestions">
             <button class="suggestion_btn" data-prompt="Create an image of a sunset over mountains">
               <div class="suggestion_content">
@@ -464,9 +427,6 @@
       </main>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- SEARCH MODAL -->
-    <!-- ============================================================ -->
     <div class="modal_overlay" id="searchModal" role="dialog" aria-modal="true" aria-label="Search chats">
       <div class="search_modal">
         <div class="search_header">
@@ -482,15 +442,10 @@
             <img class="icon_btn_img" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" />
           </button>
         </div>
-        <div class="search_body" id="searchBody">
-          <!-- Dynamically populated by JS -->
-        </div>
+        <div class="search_body" id="searchBody"></div>
       </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- SETTINGS MODAL -->
-    <!-- ============================================================ -->
     <div class="modal_overlay" id="settingsModal" role="dialog" aria-modal="true" aria-label="Settings">
       <div class="settings_modal">
         <div class="settings_header">
@@ -500,7 +455,6 @@
           </button>
         </div>
         <div class="settings_body">
-          <!-- Settings Navigation -->
           <nav class="settings_sidebar" aria-label="Settings sections">
             <button class="settings_nav_item active" data-section="general">
               <img class="settings_nav_icon" src="./assets/icons/write.svg" alt="" aria-hidden="true" /> General
@@ -519,9 +473,7 @@
             </button>
           </nav>
 
-          <!-- Settings Content Panels -->
           <div class="settings_content">
-            <!-- General -->
             <div class="settings_panel" id="panel-general">
               <div class="settings_section">
                 <h3 class="section_title">General</h3>
@@ -567,7 +519,6 @@
               </div>
             </div>
 
-            <!-- Appearance -->
             <div class="settings_panel hidden" id="panel-appearance">
               <div class="settings_section">
                 <h3 class="section_title">Appearance</h3>
@@ -589,7 +540,6 @@
               </div>
             </div>
 
-            <!-- Profile -->
             <div class="settings_panel hidden" id="panel-profile">
               <div class="settings_section">
                 <h3 class="section_title">Profile</h3>
@@ -617,7 +567,6 @@
               </div>
             </div>
 
-            <!-- Keyboard Shortcuts -->
             <div class="settings_panel hidden" id="panel-shortcuts">
               <div class="settings_section">
                 <h3 class="section_title">Keyboard shortcuts</h3>
@@ -664,7 +613,6 @@
               </div>
             </div>
 
-            <!-- Notifications -->
             <div class="settings_panel hidden" id="panel-notifications">
               <div class="settings_section">
                 <h3 class="section_title">Notifications</h3>
@@ -693,9 +641,6 @@
       </div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- SCRIPTS -->
-    <!-- ============================================================ -->
     <script src="js/data/_data.js" defer></script>
     <script src="js/Utils/helper.js" defer></script>
     <script src="js/Components/_chat.js" defer></script>

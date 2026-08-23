@@ -1,10 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// CHAT MESSAGES
-// ============================================================
-
 .message_row {
   display: flex;
   gap: $spacing-16;
@@ -12,7 +8,6 @@
   max-width: $chat-max-width;
   margin: 0 auto;
 
-  // === USER MESSAGE ===
   &--user {
     justify-content: flex-end;
 
@@ -32,7 +27,6 @@
     }
   }
 
-  // === ASSISTANT MESSAGE ===
   &--assistant {
     justify-content: flex-start;
 
@@ -64,7 +58,6 @@
   color: $color-text-primary;
   word-wrap: break-word;
 
-  // Styled lists within messages
   .msg_list {
     list-style-position: inside;
     padding-left: $spacing-8;
@@ -76,7 +69,6 @@
     }
   }
 
-  // Styled links within messages
   .msg_link {
     color: $color-blue-accent;
     text-decoration: underline;
@@ -87,7 +79,6 @@
     }
   }
 
-  // Inline code
   .msg_code_inline {
     background-color: $color-bg-surface;
     padding: $spacing-2 $spacing-6;
@@ -96,13 +87,11 @@
     font-size: $font-size-base;
   }
 
-  // Bold text
   .msg_bold {
     font-weight: $font-weight-semibold;
   }
 }
 
-// === MESSAGE ACTIONS (Copy, Like, Dislike, Regenerate) ===
 .message_actions {
   display: flex;
   gap: $spacing-4;
@@ -132,14 +121,12 @@
       opacity: 0.8;
     }
 
-    // Active state for like/dislike
     &.is-active {
       .msg_action_icon {
         opacity: 1;
       }
     }
 
-    // Copy success tooltip
     .copy_feedback {
       position: absolute;
       bottom: calc(100% + #{$spacing-4});
@@ -164,7 +151,6 @@
   }
 }
 
-// === TYPING INDICATOR ===
 .typing_indicator {
   display: flex;
   gap: $spacing-16;
@@ -216,7 +202,6 @@
   }
 }
 
-// === CODE BLOCKS ===
 .code_block {
   margin-top: $spacing-16;
   margin-bottom: $spacing-16;
@@ -277,7 +262,6 @@
   }
 }
 
-// === MARKDOWN TABLE ===
 .msg_table_wrap {
   overflow-x: auto;
   margin: $spacing-16 0;

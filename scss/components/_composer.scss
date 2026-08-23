@@ -1,10 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// COMPOSER
-// ============================================================
-
 .composer_wrapper {
   position: relative;
   display: flex;
@@ -17,7 +13,6 @@
   margin-bottom: $spacing-24;
   transition: border-radius $transition-base;
 
-  // When attachment is shown, adjust border-radius
   &.has-attachment {
     border-radius: $radius-xl;
   }
@@ -27,7 +22,6 @@
     padding: $spacing-4 $spacing-6;
   }
 
-  // ---- Attachment Preview (inside composer) ----
   .attachment_preview {
     display: flex;
     align-items: center;
@@ -42,7 +36,6 @@
     gap: $spacing-16;
     position: relative;
 
-    // Strictly hidden when .hidden class is present
     &.hidden {
       display: none;
     }
@@ -86,7 +79,6 @@
       color: $color-text-muted;
     }
 
-    // Upload progress bar
     .upload_progress {
       position: absolute;
       bottom: 0;
@@ -109,7 +101,6 @@
       }
     }
 
-    // Error state
     &.has-error {
       border-color: $color-danger;
 
@@ -140,7 +131,6 @@
     }
   }
 
-  // ---- Input Row (All items perfectly centered on the same horizontal line) ----
   .composer_input_row {
     display: flex;
     align-items: center;
@@ -148,7 +138,6 @@
     gap: $spacing-4;
   }
 
-  // Wrapper for plus attachment button to keep popover relative
   .composer_attach_wrap {
     display: flex;
     align-items: center;
@@ -253,7 +242,6 @@
       }
     }
 
-    // Single unified spot for the 3 state-swapping buttons
     .composer_state_btn_wrap {
       position: relative;
       width: rem(36);
@@ -337,7 +325,6 @@
   }
 }
 
-// ---- Attachment Menu (positioned relative to composer) ----
 .attachment_menu {
   position: absolute;
   bottom: calc(100% + #{$spacing-12});
@@ -393,7 +380,6 @@
   }
 }
 
-// Hidden file input
 .file_input_hidden {
   display: none;
 }

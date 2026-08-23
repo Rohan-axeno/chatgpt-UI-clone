@@ -1,23 +1,18 @@
-
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
-
 
 @use 'base/reset';
 @use 'base/base';
 @use 'base/typography';
 
-
 @use 'layout/container';
-@use 'layout/sidebar'; 
-
+@use 'layout/sidebar';
 
 @use 'components/buttons';
-@use 'components/composer'; 
+@use 'components/composer';
 @use 'components/modal';
 @use 'components/tooltip';
 @use 'components/dropdown';
 @use 'components/chat';
-
 
 @use 'pages/home';

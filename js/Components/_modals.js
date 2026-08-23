@@ -1,11 +1,4 @@
-// ============================================================
-// js/Components/_modals.js — Modal & Settings Logic
-// ============================================================
-
 (function () {
-  // ============================================================
-  // SEARCH MODAL
-  // ============================================================
   const searchTriggerBtn = document.querySelector('#searchTriggerBtn');
   const searchModal = document.querySelector('#searchModal');
   const closeSearchModalBtn = document.querySelector('#closeSearchModalBtn');
@@ -41,7 +34,6 @@
     });
   }
 
-  // Search rendering
   function renderSearchModal(searchTerm) {
     if (!searchBody || typeof chatHistory === 'undefined') return;
 
@@ -54,7 +46,6 @@
       if (grouped[chat.group]) {
         grouped[chat.group].push(chat);
       } else {
-        // Map other groups to Older
         grouped.Older.push(chat);
       }
     });
@@ -96,14 +87,12 @@
     searchBody.innerHTML = html;
   }
 
-  // Live search
   if (searchModalInput) {
     searchModalInput.addEventListener('input', debounce(function (e) {
       renderSearchModal(e.target.value);
     }, 150));
   }
 
-  // Chat selection from search
   if (searchBody) {
     searchBody.addEventListener('click', function (e) {
       const chatRow = e.target.closest('.chat_row[data-id]');
@@ -121,19 +110,14 @@
     });
   }
 
-  // Initialize search modal content
   renderSearchModal('');
 
-  // ============================================================
-  // SETTINGS MODAL
-  // ============================================================
   const settingsTriggerBtn = document.querySelector('#settingsTriggerBtn');
   const settingsModal = document.querySelector('#settingsModal');
   const closeSettingsBtn = document.querySelector('#closeSettingsBtn');
 
   function openSettingsModal() {
     if (!settingsModal) return;
-    // Close profile menu first
     document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
       menu.classList.remove('is-open');
     });
@@ -159,18 +143,15 @@
     });
   }
 
-  // Settings navigation
   document.querySelectorAll('.settings_nav_item').forEach(function (navItem) {
     navItem.addEventListener('click', function () {
       const section = navItem.dataset.section;
 
-      // Update active nav
       document.querySelectorAll('.settings_nav_item').forEach(function (item) {
         item.classList.remove('active');
       });
       navItem.classList.add('active');
 
-      // Show panel
       document.querySelectorAll('.settings_panel').forEach(function (panel) {
         panel.classList.add('hidden');
       });
@@ -179,7 +160,6 @@
     });
   });
 
-  // Toggle switches
   document.addEventListener('click', function (e) {
     const toggle = e.target.closest('.toggle_switch');
     if (toggle) {
@@ -187,7 +167,6 @@
     }
   });
 
-  // Theme options
   document.addEventListener('click', function (e) {
     const themeOption = e.target.closest('.theme_option');
     if (themeOption) {

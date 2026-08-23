@@ -1,10 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// TOOLTIP SYSTEM
-// ============================================================
-
 .tooltip_trigger {
   position: relative;
 
@@ -38,11 +34,6 @@
   }
 }
 
-// ============================================================
-// CONTEXTUAL TOOLTIP POSITIONS
-// ============================================================
-
-// 1. Top Position (Default for composer buttons & message actions)
 .tooltip_box--top,
 .composer_wrapper .tooltip_box,
 .message_actions .tooltip_box {
@@ -53,7 +44,6 @@
   transform: translateX(-50%);
 }
 
-// 2. Right / Side Position (For sidebar rail icons — pops out into main view)
 .tooltip_box--right,
 .tooltip_box--side,
 .sidebar_rail .tooltip_box {
@@ -64,7 +54,6 @@
   transform: translateY(-50%);
 }
 
-// 3. Bottom Position (For general top header elements)
 .tooltip_box--bottom {
   top: calc(100% + #{$spacing-8});
   bottom: auto;
@@ -73,7 +62,6 @@
   transform: translateX(-50%);
 }
 
-// 4. Bottom-Right Position (For header buttons on right edge like temporary chat & sidebar close)
 .tooltip_box--bottom-right,
 .main_header .header_right .tooltip_box,
 .sidebar_nav .nav_icons .tooltip_box {

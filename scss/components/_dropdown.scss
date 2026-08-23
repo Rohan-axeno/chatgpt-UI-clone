@@ -1,10 +1,6 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixins" as *;
 
-// ============================================================
-// DROPDOWN / POPOVER SYSTEM
-// ============================================================
-
 .popover_wrapper {
   position: relative;
 }
@@ -17,13 +13,9 @@
   padding: $spacing-8;
   min-width: rem(220);
   z-index: $z-dropdown;
-
-  // Hides the menu by default
   opacity: 0;
   visibility: hidden;
   transform: translateY($spacing-4);
-
-  // Smooth transitions
   transition: opacity $transition-base, visibility $transition-base, transform $transition-base;
 
   &.is-open {
@@ -85,9 +77,6 @@
   }
 }
 
-// === MODIFIERS ===
-
-// Forces menu to open upwards
 .dropdown_menu--up {
   top: auto;
   bottom: calc(100% + #{$spacing-8});
@@ -97,7 +86,6 @@
   }
 }
 
-// Forces menu to open to the right
 .dropdown_menu--right {
   top: 0;
   bottom: auto;
@@ -109,7 +97,6 @@
   }
 }
 
-// Specific styling for Chat Options Menu (Matching Screenshot 1)
 .chat_options_menu {
   top: calc(100% + #{$spacing-4});
   right: 0;
@@ -124,7 +111,6 @@
   }
 }
 
-// Specific styling for Organize Popover (Matching Screenshot 2)
 .organize_popover {
   top: calc(100% + #{$spacing-4});
   right: 0;
