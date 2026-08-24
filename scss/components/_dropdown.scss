@@ -135,10 +135,20 @@
   min-width: rem(210);
   padding: $spacing-6;
   z-index: $z-modal;
+  transform: translateY($spacing-4);
+
+  &.is-open {
+    transform: translateY(0);
+  }
 
   &.dropdown_menu--up {
     top: auto;
     bottom: calc(100% + #{$spacing-4});
+    transform: translateY(-#{$spacing-4});
+
+    &.is-open {
+      transform: translateY(0);
+    }
   }
 }
 

@@ -36,6 +36,7 @@
 
 .tooltip_box--top,
 .composer_wrapper .tooltip_box,
+.chat_hover_actions .tooltip_box,
 .message_actions .tooltip_box {
   bottom: calc(100% + #{$spacing-10});
   top: auto;

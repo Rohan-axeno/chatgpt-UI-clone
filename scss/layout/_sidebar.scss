@@ -335,9 +335,11 @@
         position: relative;
         display: flex;
         align-items: center;
+        border-radius: $radius-md;
 
-        &.has-open-menu {
-          z-index: 100;
+        &:hover .group_link,
+        &.has-open-menu .group_link {
+          background-color: $color-bg-hover;
         }
 
         .chat_hover_actions {
@@ -345,27 +347,50 @@
           right: $spacing-4;
           top: 0;
           bottom: 0;
-          display: none;
+          display: flex;
           align-items: center;
           gap: $spacing-2;
           background: linear-gradient(
             90deg,
-            transparent,
-            $color-bg-secondary 25%
+            rgba(236, 236, 236, 0) 0%,
+            $color-bg-hover 25%,
+            $color-bg-hover 100%
           );
           padding-left: $spacing-20;
-          border-radius: $radius-md;
+          padding-right: $spacing-2;
+          border-radius: 0 $radius-md $radius-md 0;
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transition: opacity $transition-fast, visibility $transition-fast;
+          z-index: 2;
 
           .hover_action_icon {
             width: $icon-base;
             height: $icon-base;
             object-fit: contain;
           }
+
+          .icon_btn {
+            padding: $spacing-4;
+            border-radius: $radius-sm;
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.08);
+            }
+          }
         }
 
         &:hover .chat_hover_actions,
+        &:focus-within .chat_hover_actions,
         &.has-open-menu .chat_hover_actions {
-          display: flex;
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+
+        &.has-open-menu {
+          z-index: 100;
         }
       }
 

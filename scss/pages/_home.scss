@@ -154,22 +154,27 @@
     flex-direction: column;
     padding: 0 $spacing-16;
     padding-bottom: $spacing-12;
-    justify-content: space-between;
+    height: 100%;
 
     &.is-chatting {
       justify-content: flex-start;
     }
 
     .chat_greeting {
-      margin-top: auto;
-      margin-bottom: auto;
-      padding: $spacing-20 0;
-      align-self: center;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0;
+      padding: $spacing-16 0;
+      width: 100%;
     }
 
     .composer_wrapper {
       margin-bottom: $spacing-8;
       align-self: stretch;
+      flex-shrink: 0;
     }
 
     .suggestions {
@@ -182,6 +187,10 @@
   font-size: $font-size-3xl;
   font-weight: $font-weight-semibold;
   color: $color-text-primary;
+
+  &.hidden {
+    display: none !important;
+  }
 
   @include mobile-only {
     font-size: $font-size-2xl;

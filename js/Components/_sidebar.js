@@ -79,12 +79,33 @@
     }
   });
 
-  if (newChatBtn) {
-    newChatBtn.addEventListener('click', function () {
+  // Handle sidebar utils items (New chat, Library, Projects, Scheduled, Plugins, Codex, More)
+  document.addEventListener('click', function (e) {
+    const utilsItem = e.target.closest('.utils_item');
+    if (!utilsItem) return;
+
+    if (utilsItem.id === 'newChatBtn' || utilsItem === newChatBtn) {
       resetToNewChat();
       closeMobileSidebar();
+      return;
+    }
+
+    // Deselect all active chat links
+    document.querySelectorAll('.group_link.is-active').forEach(function (link) {
+      link.classList.remove('is-active');
     });
 
+    // Deselect all utils items
+    document.querySelectorAll('.utils_item').forEach(function (item) {
+      item.classList.remove('active');
+    });
+
+    // Mark clicked utils item as active
+    utilsItem.classList.add('active');
+    closeMobileSidebar();
+  });
+
+  if (newChatBtn) {
     newChatBtn.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -209,6 +230,10 @@
   }
 
   document.addEventListener('click', function (e) {
+    if (e.target.closest('.chat_hover_actions') || e.target.closest('.popover_wrapper')) {
+      return;
+    }
+
     const chatLink = e.target.closest('.group_link[data-id]');
     if (!chatLink) return;
 
@@ -224,6 +249,29 @@
 
     document.querySelectorAll('.utils_item.active').forEach(function (item) {
       item.classList.remove('active');
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    const unpinBtn = e.target.closest('.js-unpin-chat, .js-unpin-btn');
+    if (!unpinBtn) return;
+
+    const chatId = unpinBtn.dataset.id;
+    if (chatId === 'pinned-1') {
+      const pinnedItem = unpinBtn.closest('.group_item');
+      if (pinnedItem) pinnedItem.remove();
+    } else if (typeof chatHistory !== 'undefined') {
+      const chat = chatHistory.find(function (c) { return c.id === chatId; });
+      if (chat) {
+        chat.pinned = false;
+        renderSidebar();
+      }
+    }
+    document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
+      menu.classList.remove('is-open');
+    });
+    document.querySelectorAll('.group_item.has-open-menu').forEach(function (item) {
+      item.classList.remove('has-open-menu');
     });
   });
 

@@ -516,29 +516,48 @@
   position: relative;
   display: flex;
   align-items: center;
+  border-radius: 0.5rem;
 }
-.sidebar .recents .history_group .group_item.has-open-menu {
-  z-index: 100;
+.sidebar .recents .history_group .group_item:hover .group_link, .sidebar .recents .history_group .group_item.has-open-menu .group_link {
+  background-color: #ececec;
 }
 .sidebar .recents .history_group .group_item .chat_hover_actions {
   position: absolute;
   right: 0.25rem;
   top: 0;
   bottom: 0;
-  display: none;
+  display: flex;
   align-items: center;
   gap: 0.125rem;
-  background: linear-gradient(90deg, transparent, #f9f9f9 25%);
+  background: linear-gradient(90deg, rgba(236, 236, 236, 0) 0%, #ececec 25%, #ececec 100%);
   padding-left: 1.25rem;
-  border-radius: 0.5rem;
+  padding-right: 0.125rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  z-index: 2;
 }
 .sidebar .recents .history_group .group_item .chat_hover_actions .hover_action_icon {
   width: 1rem;
   height: 1rem;
   object-fit: contain;
 }
-.sidebar .recents .history_group .group_item:hover .chat_hover_actions, .sidebar .recents .history_group .group_item.has-open-menu .chat_hover_actions {
-  display: flex;
+.sidebar .recents .history_group .group_item .chat_hover_actions .icon_btn {
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+}
+.sidebar .recents .history_group .group_item .chat_hover_actions .icon_btn:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.sidebar .recents .history_group .group_item:hover .chat_hover_actions, .sidebar .recents .history_group .group_item:focus-within .chat_hover_actions, .sidebar .recents .history_group .group_item.has-open-menu .chat_hover_actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.sidebar .recents .history_group .group_item.has-open-menu {
+  z-index: 100;
 }
 .sidebar .recents .history_group .profile_menu {
   bottom: calc(100% + 0.5rem);
@@ -1396,6 +1415,7 @@
 
 .tooltip_box--top,
 .composer_wrapper .tooltip_box,
+.chat_hover_actions .tooltip_box,
 .message_actions .tooltip_box {
   bottom: calc(100% + 0.625rem);
   top: auto;
@@ -1557,10 +1577,18 @@
   min-width: 13.125rem;
   padding: 0.375rem;
   z-index: 1000;
+  transform: translateY(0.25rem);
+}
+.chat_options_menu.is-open {
+  transform: translateY(0);
 }
 .chat_options_menu.dropdown_menu--up {
   top: auto;
   bottom: calc(100% + 0.25rem);
+  transform: translateY(-0.25rem);
+}
+.chat_options_menu.dropdown_menu--up.is-open {
+  transform: translateY(0);
 }
 
 .organize_popover {
@@ -2042,20 +2070,25 @@
     flex-direction: column;
     padding: 0 1rem;
     padding-bottom: 0.75rem;
-    justify-content: space-between;
+    height: 100%;
   }
   .chat_container.is-chatting {
     justify-content: flex-start;
   }
   .chat_container .chat_greeting {
-    margin-top: auto;
-    margin-bottom: auto;
-    padding: 1.25rem 0;
-    align-self: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 1rem 0;
+    width: 100%;
   }
   .chat_container .composer_wrapper {
     margin-bottom: 0.5rem;
     align-self: stretch;
+    flex-shrink: 0;
   }
   .chat_container .suggestions {
     display: none;
@@ -2066,6 +2099,9 @@
   font-size: 2rem;
   font-weight: 600;
   color: #0d0d0d;
+}
+.chat_greeting.hidden {
+  display: none !important;
 }
 @media (max-width: 48rem) {
   .chat_greeting {
