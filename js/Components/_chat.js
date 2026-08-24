@@ -164,7 +164,7 @@ function appendAssistantMessage(text, extras) {
           <span class="tooltip_box">Dislike</span>
         </button>
         <button class="msg_action_btn js-regenerate tooltip_trigger" aria-label="Regenerate">
-          <img class="msg_action_icon" src="./assets/icons/message-circle-dashed.svg" alt="" aria-hidden="true" />
+          <img class="msg_action_icon" src="./assets/icons/refresh-cw.svg" alt="regenerate" aria-hidden="true" />
           <span class="tooltip_box">Regenerate</span>
         </button>
       </div>

@@ -97,6 +97,37 @@
   }
 }
 
+.profile_menu {
+  bottom: calc(100% + #{$spacing-8});
+  left: 0;
+  width: 100%;
+  min-width: rem(240);
+  z-index: calc(#{$z-dropdown} + 10);
+}
+
+.nested_trigger {
+  position: relative;
+}
+
+.nested_menu {
+  top: 0;
+  bottom: auto;
+  left: calc(100% + #{$spacing-8});
+  right: auto;
+  min-width: rem(240);
+  z-index: calc(#{$z-dropdown} + 20);
+  box-shadow: $shadow-xl;
+
+  &.dropdown_menu--up {
+    top: auto;
+    bottom: 0;
+    transform: translateX(rem(-4));
+    &.is-open {
+      transform: translateX(0);
+    }
+  }
+}
+
 .chat_options_menu {
   top: calc(100% + #{$spacing-4});
   right: 0;

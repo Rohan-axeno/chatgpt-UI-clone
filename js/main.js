@@ -57,10 +57,18 @@
 
       if (isOpen) {
         const btnRect = triggerBtn.getBoundingClientRect();
-        if (btnRect.bottom > window.innerHeight - 250) {
-          targetMenu.classList.add('dropdown_menu--up');
+        if (triggerBtn.classList.contains('js-toggle-nested')) {
+          if (btnRect.bottom > window.innerHeight - 180) {
+            targetMenu.classList.add('dropdown_menu--up');
+          } else {
+            targetMenu.classList.remove('dropdown_menu--up');
+          }
         } else {
-          targetMenu.classList.remove('dropdown_menu--up');
+          if (btnRect.bottom > window.innerHeight - 250) {
+            targetMenu.classList.add('dropdown_menu--up');
+          } else {
+            targetMenu.classList.remove('dropdown_menu--up');
+          }
         }
       }
     }
@@ -170,7 +178,7 @@
             <span class="tooltip_box">Dislike</span>
           </button>
           <button class="msg_action_btn js-regenerate tooltip_trigger" aria-label="Regenerate">
-            <img class="msg_action_icon" src="./assets/icons/message-circle-dashed.svg" alt="" aria-hidden="true" />
+            <img class="msg_action_icon" src="./assets/icons/refresh-cw.svg" alt="regenerate" aria-hidden="true" />
             <span class="tooltip_box">Regenerate</span>
           </button>
         </div>

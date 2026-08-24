@@ -18,7 +18,7 @@
     flex-direction: column;
     height: 100%;
     width: $sidebar-width;
-    overflow: hidden;
+    overflow: visible;
     transition: opacity $transition-fast;
   }
 
@@ -410,6 +410,8 @@
   &_footer {
     flex-shrink: 0;
     padding: $spacing-12;
+    position: relative;
+    z-index: $z-dropdown;
 
     .profile_btn {
       display: flex;
