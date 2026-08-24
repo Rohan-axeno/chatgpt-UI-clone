@@ -1,3 +1,26 @@
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function formatSyntaxHighlight(code, lang) {
+  if (!code) return '';
+  let result = code;
+
+  result = result.replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*|#[^\n]*)/g, '<span class="token_comment">$1</span>');
+
+  result = result.replace(/(&quot;.*?&quot;|&#39;.*?&#39;|`.*?`|'.*?'|".*?")/g, '<span class="token_string">$1</span>');
+
+  result = result.replace(/\b(@media|@include|@use|@function|@return|import|from|const|let|var|function|return|def|class|if|else|export|as)\b/g, '<span class="token_keyword">$1</span>');
+
+  result = result.replace(/\b(\d+(?:px|rem|em|%|vh|vw|ms|s)?)\b/g, '<span class="token_number">$1</span>');
+
+  result = result.replace(/(\.[\w-]+)/g, '<span class="token_selector">$1</span>');
+
+  return result;
+}
+
 function appendUserMessage(text) {
   const chatFeed = document.querySelector('#chatFeed');
   if (!chatFeed) return;
@@ -24,7 +47,7 @@ function showTypingIndicator() {
   indicator.id = 'typingIndicator';
   indicator.innerHTML = `
     <div class="typing_avatar">
-      <img class="avatar_icon" src="./assets/icons/new-chat.svg" alt="ChatGPT" />
+      <img class="avatar_icon" src="./assets/icons/blossom.svg" alt="ChatGPT" />
     </div>
     <div class="typing_dots">
       <span class="dot"></span>
@@ -45,16 +68,22 @@ function removeTypingIndicator() {
 function buildCodeBlockHtml(codeData) {
   if (!codeData) return '';
   const escapedSnippet = escapeHtml(codeData.snippet);
+  const lang = escapeHtml(codeData.language || 'code').toUpperCase();
+  const highlighted = formatSyntaxHighlight(escapedSnippet, codeData.language);
+
   return `
     <div class="code_block">
       <div class="code_header">
-        <span class="code_lang">${escapeHtml(codeData.language)}</span>
+        <div class="code_lang_wrap">
+          <span class="code_tag_icon">&lt;/&gt;</span>
+          <span class="code_lang">${lang}</span>
+        </div>
         <button class="code_copy_btn js-copy-code" data-code="${escapedSnippet}" aria-label="Copy code">
           <img class="code_copy_icon" src="./assets/icons/copy.svg" alt="" aria-hidden="true" /> Copy code
         </button>
       </div>
       <div class="code_body">
-        <pre class="code_pre"><code class="code_line">${escapedSnippet}</code></pre>
+        <pre class="code_pre"><code class="code_line">${highlighted}</code></pre>
       </div>
     </div>
   `;
@@ -117,7 +146,7 @@ function appendAssistantMessage(text, extras) {
   row.dataset.msgId = msgId;
   row.innerHTML = `
     <div class="message_avatar">
-      <img class="avatar_icon" src="./assets/icons/new-chat.svg" alt="ChatGPT" />
+      <img class="avatar_icon" src="./assets/icons/blossom.svg" alt="ChatGPT" />
     </div>
     <div class="message_content">
       <div class="message_text">${escapeHtml(text)}${richContentHtml}</div>

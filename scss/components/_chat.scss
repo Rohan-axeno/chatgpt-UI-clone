@@ -206,24 +206,38 @@
   margin-top: $spacing-16;
   margin-bottom: $spacing-16;
   background-color: $color-code-bg;
-  border-radius: $radius-lg;
+  border: rem(1) solid $color-border;
+  border-radius: $radius-xl;
   overflow: hidden;
   width: 100%;
 
   .code_header {
     @include flex-between;
-    padding: $spacing-8 $spacing-16;
+    padding: $spacing-10 $spacing-16;
     background-color: $color-code-header;
+    border-bottom: rem(1) solid $color-border-light;
 
-    .code_lang {
-      color: $color-code-muted;
-      font-size: $font-size-xs;
-      font-weight: $font-weight-semibold;
-      text-transform: uppercase;
+    .code_lang_wrap {
+      display: flex;
+      align-items: center;
+      gap: $spacing-8;
+
+      .code_tag_icon {
+        font-size: $font-size-xs;
+        font-weight: $font-weight-bold;
+        color: $color-text-secondary;
+        font-family: $font-family-mono;
+      }
+
+      .code_lang {
+        color: $color-text-primary;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+      }
     }
 
     .code_copy_btn {
-      color: $color-code-muted;
+      color: $color-text-secondary;
       font-size: $font-size-xs;
       display: flex;
       align-items: center;
@@ -231,22 +245,24 @@
       background: none;
       border: none;
       cursor: pointer;
-      transition: color $transition-fast;
+      padding: $spacing-4 $spacing-8;
+      border-radius: $radius-sm;
+      transition: background-color $transition-fast, color $transition-fast;
 
       &:hover {
-        color: $color-text-inverse;
+        color: $color-text-primary;
+        background-color: $color-bg-hover;
       }
 
       .code_copy_icon {
-        width: $icon-xs;
-        height: $icon-xs;
-        filter: invert(1);
+        width: $icon-sm;
+        height: $icon-sm;
       }
     }
   }
 
   .code_body {
-    padding: $spacing-16;
+    padding: $spacing-16 $spacing-20;
     overflow-x: auto;
 
     .code_pre {
@@ -257,7 +273,32 @@
       color: $color-code-text;
       font-family: $font-family-mono;
       font-size: $font-size-base;
-      line-height: $line-height-normal;
+      line-height: $line-height-relaxed;
+
+      .token_keyword {
+        color: $color-code-keyword;
+      }
+
+      .token_number {
+        color: $color-code-number;
+      }
+
+      .token_string {
+        color: $color-code-string;
+      }
+
+      .token_comment {
+        color: $color-code-comment;
+        font-style: italic;
+      }
+
+      .token_property {
+        color: $color-code-property;
+      }
+
+      .token_selector {
+        color: $color-code-selector;
+      }
     }
   }
 }

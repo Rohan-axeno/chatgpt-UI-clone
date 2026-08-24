@@ -1,8 +1,7 @@
 # ChatGPT UI Clone
 
-A pixel-accurate frontend recreation of the ChatGPT web application built using only **HTML5 + SCSS + Vanilla JavaScript** — no frameworks, no libraries, no backend.
+ ChatGPT web application built using only **HTML5 + SCSS + Vanilla JavaScript** — no frameworks, no libraries, no backend.
 
-> **Purpose**: Learning and demonstrating proficiency in complex modern web UI development using fundamental web technologies.
 
 ---
 
@@ -13,7 +12,7 @@ A pixel-accurate frontend recreation of the ChatGPT web application built using 
 
 ### Installation
 ```bash
-git clone https://github.com/your-username/chatgpt-UI-clone.git
+git clone 
 cd chatgpt-UI-clone
 npm install
 ```
@@ -186,26 +185,9 @@ All JS is modular and uses Vanilla JavaScript only:
 - [x] Keyboard shortcuts (Ctrl+K, Ctrl+Shift+O/S, Escape)
 - [x] Accessibility (semantic HTML, ARIA, focus states)
 
----
 
-## ⚠️ Known Limitations
 
-- No actual AI/API integration (all responses are mock data)
-- No data persistence (conversations reset on page refresh)
-- No dark mode implementation (only UI toggle exists)
-- Code blocks lack syntax highlighting (would require a library)
-- No drag-and-drop for file attachments
-- Attachment upload is simulated (no actual file storage)
 
----
 
-## 🚀 What I Would Improve with Additional Time
 
-1. **Dark mode** — Full theme implementation using CSS custom properties
-2. **Syntax highlighting** — Custom tokenizer for code blocks
-3. **LocalStorage persistence** — Save conversations and settings
-4. **Drag-and-drop attachments** — Enhanced file upload UX
-5. **Markdown rendering** — Full markdown parser for assistant messages
-6. **Animation polish** — Page transitions, message entrance animations
-7. **Virtual scrolling** — For conversations with hundreds of messages
-8. **Service Worker** — Offline support and caching
+

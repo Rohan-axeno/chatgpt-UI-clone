@@ -154,10 +154,10 @@ const chatHistory = [
       },
       {
         role: "assistant",
-        content: "CSS Grid is perfect for dashboard layouts. Here's a responsive grid that adapts from mobile to desktop:",
+        content: "Here is an example of structuring responsive breakpoints using mobile-first SCSS media queries:\n\nSo **mobile is the base design**, and larger screens progressively enhance it. This avoids the messy \"desktop CSS first → override everything for mobile\" approach you were concerned about earlier.",
         code: {
-          language: "css",
-          snippet: `.dashboard {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 1.5rem;\n  padding: 2rem;\n}\n\n.card {\n  background: #fff;\n  border-radius: 12px;\n  padding: 1.5rem;\n  box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n}`
+          language: "SCSS",
+          snippet: `@media (min-width: 768px) {\n  .hero {\n    padding: 60px 40px;\n  }\n}\n\n/* Desktop */\n@media (min-width: 1024px) {\n  .hero {\n    padding: 80px 60px;\n  }\n}`
         }
       }
     ]
@@ -168,9 +168,9 @@ const mockResponses = {
   general: "That's a great question! As a simulated frontend environment, I can render these chat bubbles flawlessly, but I am currently not connected to a live language model API. This response is a static mock demonstrating the UI interaction flow.",
   
   code: {
-    text: "Here's a basic Node.js HTTP server that you can use as a starting point. It listens on port 3000 and responds to all requests:",
-    language: "javascript",
-    snippet: `const http = require('http');\n\nconst server = http.createServer((req, res) => {\n  res.writeHead(200, { 'Content-Type': 'application/json' });\n  res.end(JSON.stringify({ message: 'Hello World!' }));\n});\n\nserver.listen(3000, () => {\n  console.log('Server running on port 3000');\n});`
+    text: "Here is an example of structuring responsive breakpoints using mobile-first SCSS media queries:\n\nSo **mobile is the base design**, and larger screens progressively enhance it. This avoids the messy \"desktop CSS first → override everything for mobile\" approach you were concerned about earlier.",
+    language: "SCSS",
+    snippet: `@media (min-width: 768px) {\n  .hero {\n    padding: 60px 40px;\n  }\n}\n\n/* Desktop */\n@media (min-width: 1024px) {\n  .hero {\n    padding: 80px 60px;\n  }\n}`
   },
 
   creative: "I'd love to help with that! Here are some creative ideas:\n\n• Start with a bold color palette that reflects your brand identity\n• Use asymmetric layouts to create visual interest\n• Incorporate micro-interactions for a premium feel\n• Consider dark mode as the default for a modern aesthetic",

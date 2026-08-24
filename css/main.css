@@ -1764,8 +1764,9 @@
 .code_block {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  background-color: #0d0d0d;
-  border-radius: 0.75rem;
+  background-color: #f9f9f9;
+  border: 0.0625rem solid #e5e5e5;
+  border-radius: 1rem;
   overflow: hidden;
   width: 100%;
 }
@@ -1773,17 +1774,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: #2f2f2f;
+  padding: 0.625rem 1rem;
+  background-color: #f9f9f9;
+  border-bottom: 0.0625rem solid #f0f0f0;
 }
-.code_block .code_header .code_lang {
-  color: #b4b4b4;
+.code_block .code_header .code_lang_wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.code_block .code_header .code_lang_wrap .code_tag_icon {
   font-size: 0.75rem;
+  font-weight: 700;
+  color: #666666;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+.code_block .code_header .code_lang_wrap .code_lang {
+  color: #0d0d0d;
+  font-size: 0.8125rem;
   font-weight: 600;
-  text-transform: uppercase;
 }
 .code_block .code_header .code_copy_btn {
-  color: #b4b4b4;
+  color: #666666;
   font-size: 0.75rem;
   display: flex;
   align-items: center;
@@ -1791,28 +1803,49 @@
   background: none;
   border: none;
   cursor: pointer;
-  transition: color 0.15s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 .code_block .code_header .code_copy_btn:hover {
-  color: #ffffff;
+  color: #0d0d0d;
+  background-color: #ececec;
 }
 .code_block .code_header .code_copy_btn .code_copy_icon {
-  width: 0.75rem;
-  height: 0.75rem;
-  filter: invert(1);
+  width: 0.875rem;
+  height: 0.875rem;
 }
 .code_block .code_body {
-  padding: 1rem;
+  padding: 1rem 1.25rem;
   overflow-x: auto;
 }
 .code_block .code_body .code_pre {
   margin: 0;
 }
 .code_block .code_body .code_line {
-  color: #e6e6e6;
+  color: #0d0d0d;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1.6;
+}
+.code_block .code_body .code_line .token_keyword {
+  color: #b83280;
+}
+.code_block .code_body .code_line .token_number {
+  color: #c2410c;
+}
+.code_block .code_body .code_line .token_string {
+  color: #15803d;
+}
+.code_block .code_body .code_line .token_comment {
+  color: #6b7280;
+  font-style: italic;
+}
+.code_block .code_body .code_line .token_property {
+  color: #1f2937;
+}
+.code_block .code_body .code_line .token_selector {
+  color: #9a3412;
 }
 
 .msg_table_wrap {

@@ -22,10 +22,17 @@ $color-success: #22c55e;
 $color-border: #e5e5e5;
 $color-border-light: #f0f0f0;
 
-$color-code-bg: #0d0d0d;
-$color-code-header: #2f2f2f;
-$color-code-text: #e6e6e6;
-$color-code-muted: #b4b4b4;
+$color-code-bg: #f9f9f9;
+$color-code-header: #f9f9f9;
+$color-code-border: #e5e5e5;
+$color-code-text: #0d0d0d;
+$color-code-muted: #666666;
+$color-code-keyword: #b83280;
+$color-code-number: #c2410c;
+$color-code-string: #15803d;
+$color-code-comment: #6b7280;
+$color-code-selector: #9a3412;
+$color-code-property: #1f2937;
 
 $spacing-2: rem(2);
 $spacing-4: rem(4);
