@@ -12,7 +12,7 @@
 
 ### Installation
 ```bash
-git clone 
+git clone https://github.com/Rohan-axeno/chatgpt-UI-clone
 cd chatgpt-UI-clone
 npm install
 ```
