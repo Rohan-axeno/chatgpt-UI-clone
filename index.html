@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ChatGPT UI Clone — A frontend recreation of the ChatGPT web interface built with HTML5, SCSS, and Vanilla JavaScript for learning purposes." />
+    <meta
+      name="description"
+      content="ChatGPT UI Clone — A frontend recreation of the ChatGPT web interface built with HTML5, SCSS, and Vanilla JavaScript for learning purposes."
+    />
     <title>ChatGPT Clone</title>
     <link rel="stylesheet" href="css/main.css?v=1.3" />
   </head>
@@ -19,13 +22,35 @@
               <span class="brand_plan">Go</span>
             </div>
             <div class="nav_icons">
-              <button class="icon_btn tooltip_trigger" id="searchTriggerBtn" aria-label="Search chats">
-                <img class="nav_icon_img" src="./assets/icons/magnifying-glass.svg" alt="" aria-hidden="true" />
-                <span class="tooltip_box tooltip_box--bottom-right">Search chats <span class="shortcut">Ctrl + K</span></span>
+              <button
+                class="icon_btn tooltip_trigger"
+                id="searchTriggerBtn"
+                aria-label="Search chats"
+              >
+                <img
+                  class="nav_icon_img"
+                  src="./assets/icons/magnifying-glass.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span class="tooltip_box tooltip_box--bottom-right"
+                  >Search chats <span class="shortcut">Ctrl + K</span></span
+                >
               </button>
-              <button class="icon_btn tooltip_trigger" id="sidebarToggleBtn" aria-label="Collapse sidebar">
-                <img class="nav_icon_img" src="./assets/icons/panel-left.svg" alt="" aria-hidden="true" />
-                <span class="tooltip_box tooltip_box--bottom-right">Close sidebar</span>
+              <button
+                class="icon_btn tooltip_trigger"
+                id="sidebarToggleBtn"
+                aria-label="Collapse sidebar"
+              >
+                <img
+                  class="nav_icon_img"
+                  src="./assets/icons/panel-left.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span class="tooltip_box tooltip_box--bottom-right"
+                  >Close sidebar</span
+                >
               </button>
             </div>
           </nav>
@@ -33,32 +58,73 @@
           <div class="sidebar_content">
             <div class="sidebar_utils">
               <ul class="utils_list" role="list">
-                <li class="utils_item active" id="newChatBtn" role="button" tabindex="0" aria-label="New chat">
-                  <img class="utils_icon" src="./assets/icons/square-pen.svg" alt="" aria-hidden="true" />
+                <li
+                  class="utils_item active"
+                  id="newChatBtn"
+                  role="button"
+                  tabindex="0"
+                  aria-label="New chat"
+                >
+                  <img
+                    class="utils_icon"
+                    src="./assets/icons/square-pen.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="utils_link">New chat</span>
                 </li>
                 <li class="utils_item">
-                  <img class="utils_icon" src="./assets/icons/library-big.svg" alt="" aria-hidden="true" />
+                  <img
+                    class="utils_icon"
+                    src="./assets/icons/library-big.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="utils_link">Library</span>
                 </li>
                 <li class="utils_item">
-                  <img class="utils_icon" src="./assets/icons/folder-closed.svg" alt="" aria-hidden="true" />
+                  <img
+                    class="utils_icon"
+                    src="./assets/icons/folder-closed.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="utils_link">Projects</span>
                 </li>
                 <li class="utils_item">
-                  <img class="utils_icon" src="./assets/icons/clock-7.svg" alt="" aria-hidden="true" />
+                  <img
+                    class="utils_icon"
+                    src="./assets/icons/clock-7.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="utils_link">Scheduled</span>
                 </li>
                 <li class="utils_item">
-                  <img class="utils_icon" src="./assets/icons/house-plug.svg" alt="" aria-hidden="true" />
+                  <img
+                    class="utils_icon"
+                    src="./assets/icons/house-plug.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="utils_link">Plugins</span>
                 </li>
                 <li class="utils_item">
-                  <img class="utils_icon" src="./assets/icons/codex.svg" alt="" aria-hidden="true" />
+                  <img
+                    class="utils_icon"
+                    src="./assets/icons/codex.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="utils_link">Codex</span>
                 </li>
                 <li class="utils_item">
-                  <img class="utils_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
+                  <img
+                    class="utils_icon"
+                    src="./assets/icons/dots-horizontal.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="utils_link">More</span>
                 </li>
               </ul>
@@ -67,49 +133,149 @@
             <div class="recents">
               <div class="history_group">
                 <div class="group_header">
-                  <button class="group_toggle_btn" aria-expanded="true" aria-controls="pinnedList">
+                  <button
+                    class="group_toggle_btn"
+                    aria-expanded="true"
+                    aria-controls="pinnedList"
+                  >
                     Pinned
-                    <img class="chevron_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="chevron_icon"
+                      src="./assets/icons/chevron-down.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
                 </div>
                 <ul class="group_list" id="pinnedList" role="list">
                   <li class="group_item">
                     <a href="#" class="group_link" data-id="pinned-1">
-                      <img class="history_icon" src="./assets/icons/message-circle.svg" alt="" aria-hidden="true" />
+                      <img
+                        class="history_icon"
+                        src="./assets/icons/message-circle.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
                       Hub Issues Summary
                     </a>
                     <div class="chat_hover_actions">
-                      <button class="icon_btn tooltip_trigger js-unpin-btn" aria-label="Unpin chat" data-id="pinned-1">
-                        <img class="hover_action_icon" src="./assets/icons/pin-off.svg" alt="" aria-hidden="true" />
+                      <button
+                        class="icon_btn tooltip_trigger js-unpin-btn"
+                        aria-label="Unpin chat"
+                        data-id="pinned-1"
+                      >
+                        <img
+                          class="hover_action_icon"
+                          src="./assets/icons/pin-off.svg"
+                          alt=""
+                          aria-hidden="true"
+                        />
                         <span class="tooltip_box">Unpin chat</span>
                       </button>
                       <div class="popover_wrapper">
-                        <button class="icon_btn js-toggle-chat-options" aria-label="More options">
-                          <img class="hover_action_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
+                        <button
+                          class="icon_btn js-toggle-chat-options"
+                          aria-label="More options"
+                        >
+                          <img
+                            class="hover_action_icon"
+                            src="./assets/icons/dots-horizontal.svg"
+                            alt=""
+                            aria-hidden="true"
+                          />
                         </button>
-                        <div class="dropdown_menu dropdown_menu--right chat_options_menu" role="menu">
-                          <button class="menu_item js-share-chat" role="menuitem" data-id="pinned-1">
-                            <img class="menu_item_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" /> Share
+                        <div
+                          class="dropdown_menu dropdown_menu--right chat_options_menu"
+                          role="menu"
+                        >
+                          <button
+                            class="menu_item js-share-chat"
+                            role="menuitem"
+                            data-id="pinned-1"
+                          >
+                            <img
+                              class="menu_item_icon"
+                              src="./assets/icons/upload.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            Share
                           </button>
-                          <button class="menu_item js-rename-chat" role="menuitem" data-id="pinned-1">
-                            <img class="menu_item_icon" src="./assets/icons/pencil.svg" alt="" aria-hidden="true" /> Rename
+                          <button
+                            class="menu_item js-rename-chat"
+                            role="menuitem"
+                            data-id="pinned-1"
+                          >
+                            <img
+                              class="menu_item_icon"
+                              src="./assets/icons/pencil.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            Rename
                           </button>
                           <div class="menu_divider"></div>
-                          <button class="menu_item js-unpin-chat" role="menuitem" data-id="pinned-1">
-                            <img class="menu_item_icon" src="./assets/icons/pin-off.svg" alt="" aria-hidden="true" /> Unpin chat
+                          <button
+                            class="menu_item js-unpin-chat"
+                            role="menuitem"
+                            data-id="pinned-1"
+                          >
+                            <img
+                              class="menu_item_icon"
+                              src="./assets/icons/pin-off.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            Unpin chat
                           </button>
-                          <button class="menu_item js-archive-chat" role="menuitem" data-id="pinned-1">
-                            <img class="menu_item_icon" src="./assets/icons/download.svg" alt="" aria-hidden="true" /> Archive
+                          <button
+                            class="menu_item js-archive-chat"
+                            role="menuitem"
+                            data-id="pinned-1"
+                          >
+                            <img
+                              class="menu_item_icon"
+                              src="./assets/icons/download.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            Archive
                           </button>
-                          <button class="menu_item text_danger js-delete-chat" role="menuitem" data-id="pinned-1">
-                            <img class="menu_item_icon" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" /> Delete
+                          <button
+                            class="menu_item text_danger js-delete-chat"
+                            role="menuitem"
+                            data-id="pinned-1"
+                          >
+                            <img
+                              class="menu_item_icon"
+                              src="./assets/icons/cross-1.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            Delete
                           </button>
                           <div class="menu_divider"></div>
-                          <button class="menu_item js-move-chat" role="menuitem" data-id="pinned-1">
+                          <button
+                            class="menu_item js-move-chat"
+                            role="menuitem"
+                            data-id="pinned-1"
+                          >
                             <span class="menu_item_left">
-                              <img class="menu_item_icon" src="./assets/icons/folder-closed.svg" alt="" aria-hidden="true" /> Move to project
+                              <img
+                                class="menu_item_icon"
+                                src="./assets/icons/folder-closed.svg"
+                                alt=""
+                                aria-hidden="true"
+                              />
+                              Move to project
                             </span>
-                            <img class="menu_item_arrow" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" style="transform: rotate(-90deg);" />
+                            <img
+                              class="menu_item_arrow"
+                              src="./assets/icons/chevron-down.svg"
+                              alt=""
+                              aria-hidden="true"
+                              style="transform: rotate(-90deg)"
+                            />
                           </button>
                         </div>
                       </div>
@@ -122,28 +288,73 @@
                 <div class="history_header">
                   <button class="dropdown_btn" aria-expanded="true">
                     Recents
-                    <img class="dropdown_btn_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="dropdown_btn_icon"
+                      src="./assets/icons/chevron-down.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
                   <div class="header_actions">
-                    <button class="icon_btn tooltip_trigger" aria-label="New chat" id="recentsNewChatBtn">
-                      <img class="header_action_icon" src="./assets/icons/square-pen.svg" alt="" aria-hidden="true" />
+                    <button
+                      class="icon_btn tooltip_trigger"
+                      aria-label="New chat"
+                      id="recentsNewChatBtn"
+                    >
+                      <img
+                        class="header_action_icon"
+                        src="./assets/icons/square-pen.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
                       <span class="tooltip_box tooltip_box--top">New chat</span>
                     </button>
                     <div class="popover_wrapper">
-                      <button class="icon_btn js-toggle-organize" aria-label="Organize chats">
-                        <img class="header_action_icon" src="./assets/icons/dots-horizontal.svg" alt="" aria-hidden="true" />
+                      <button
+                        class="icon_btn js-toggle-organize"
+                        aria-label="Organize chats"
+                      >
+                        <img
+                          class="header_action_icon"
+                          src="./assets/icons/dots-horizontal.svg"
+                          alt=""
+                          aria-hidden="true"
+                        />
                       </button>
-                      <div class="dropdown_menu dropdown_menu--right organize_popover" role="menu">
+                      <div
+                        class="dropdown_menu dropdown_menu--right organize_popover"
+                        role="menu"
+                      >
                         <div class="popover_title">Organize chats</div>
-                        <button class="popover_item active" role="menuitem" data-mode="list">
+                        <button
+                          class="popover_item active"
+                          role="menuitem"
+                          data-mode="list"
+                        >
                           <div class="item_left">
-                            <img class="item_left_icon" src="./assets/icons/list.svg" alt="" aria-hidden="true" /> In one list
+                            <img
+                              class="item_left_icon"
+                              src="./assets/icons/list.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            In one list
                           </div>
                           <span class="check_icon">✓</span>
                         </button>
-                        <button class="popover_item" role="menuitem" data-mode="project">
+                        <button
+                          class="popover_item"
+                          role="menuitem"
+                          data-mode="project"
+                        >
                           <div class="item_left">
-                            <img class="item_left_icon" src="./assets/icons/folder-closed.svg" alt="" aria-hidden="true" /> By project
+                            <img
+                              class="item_left_icon"
+                              src="./assets/icons/folder-closed.svg"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                            By project
                           </div>
                           <span class="check_icon">✓</span>
                         </button>
@@ -158,78 +369,189 @@
 
           <div class="sidebar_footer">
             <div class="popover_wrapper w_100">
-              <button class="profile_btn js-toggle-profile" aria-label="Open profile menu">
+              <button
+                class="profile_btn js-toggle-profile"
+                aria-label="Open profile menu"
+              >
                 <div class="avatar avatar--pink">RK</div>
                 <div class="profile_info">
                   <span class="profile_name">Rohan Kumar</span>
                   <span class="plan_name">Go</span>
                 </div>
-                <img class="store_icon" src="./assets/icons/store.svg" alt="" aria-hidden="true" />
+                <img
+                  class="store_icon"
+                  src="./assets/icons/store.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
               </button>
 
-              <div class="dropdown_menu profile_menu dropdown_menu--up" role="menu">
+              <div
+                class="dropdown_menu profile_menu dropdown_menu--up"
+                role="menu"
+              >
                 <div class="popover_wrapper w_100 nested_trigger">
-                  <button class="menu_item profile_summary js-toggle-nested" role="menuitem">
+                  <button
+                    class="menu_item profile_summary js-toggle-nested"
+                    role="menuitem"
+                  >
                     <div class="avatar avatar--pink small">RK</div>
                     <div class="profile_info">
                       <span class="profile_name">Rohan kumar</span>
                       <span class="plan_name">Go</span>
                     </div>
-                    <img class="menu_item_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="menu_item_icon"
+                      src="./assets/icons/chevron-down.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
-                  <div class="dropdown_menu dropdown_menu--right nested_menu" role="menu">
+                  <div
+                    class="dropdown_menu dropdown_menu--right nested_menu"
+                    role="menu"
+                  >
                     <div class="menu_text">mcstar6262@gmail.com</div>
-                    <button class="menu_item" role="menuitem" style="justify-content: space-between; width: 100%;">
-                      <span style="display:flex; align-items:center; gap:0.75rem;">
+                    <button
+                      class="menu_item"
+                      role="menuitem"
+                      style="justify-content: space-between; width: 100%"
+                    >
+                      <span
+                        style="display: flex; align-items: center; gap: 0.75rem"
+                      >
                         <span class="avatar avatar--pink small">U1</span>
                         u10111
                       </span>
-                      <img class="menu_item_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                      <img
+                        class="menu_item_icon"
+                        src="./assets/icons/chevron-down.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
                     </button>
                     <div class="menu_divider"></div>
                     <button class="menu_item" role="menuitem">
-                      <img class="menu_item_icon" src="./assets/icons/plus.svg" alt="" aria-hidden="true" /> Add account
+                      <img
+                        class="menu_item_icon"
+                        src="./assets/icons/plus.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      Add account
                     </button>
                   </div>
                 </div>
 
                 <button class="menu_item" role="menuitem">
-                  <img class="menu_item_icon" src="./assets/icons/globe.svg" alt="" aria-hidden="true" /> Upgrade plan
+                  <img
+                    class="menu_item_icon"
+                    src="./assets/icons/globe.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  Upgrade plan
                 </button>
                 <button class="menu_item" role="menuitem">
-                  <img class="menu_item_icon" src="./assets/icons/brain.svg" alt="" aria-hidden="true" /> Personalization
+                  <img
+                    class="menu_item_icon"
+                    src="./assets/icons/brain.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  Personalization
                 </button>
                 <button class="menu_item" role="menuitem">
-                  <img class="menu_item_icon" src="./assets/icons/image.svg" alt="" aria-hidden="true" /> Profile
+                  <img
+                    class="menu_item_icon"
+                    src="./assets/icons/image.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  Profile
                 </button>
-                <button class="menu_item" role="menuitem" id="settingsTriggerBtn">
-                  <img class="menu_item_icon" src="./assets/icons/write.svg" alt="" aria-hidden="true" /> Settings
+                <button
+                  class="menu_item"
+                  role="menuitem"
+                  id="settingsTriggerBtn"
+                >
+                  <img
+                    class="menu_item_icon"
+                    src="./assets/icons/write.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  Settings
                 </button>
                 <div class="menu_divider"></div>
 
                 <div class="popover_wrapper w_100 nested_trigger">
-                  <button class="menu_item js-toggle-nested" role="menuitem" style="justify-content: space-between; width: 100%;">
-                    <span style="display:flex; align-items:center; gap:0.75rem;">
-                      <img class="menu_item_icon" src="./assets/icons/globe.svg" alt="" aria-hidden="true" /> Help
+                  <button
+                    class="menu_item js-toggle-nested"
+                    role="menuitem"
+                    style="justify-content: space-between; width: 100%"
+                  >
+                    <span
+                      style="display: flex; align-items: center; gap: 0.75rem"
+                    >
+                      <img
+                        class="menu_item_icon"
+                        src="./assets/icons/globe.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      Help
                     </span>
-                    <img class="menu_item_icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="menu_item_icon"
+                      src="./assets/icons/chevron-down.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
-                  <div class="dropdown_menu dropdown_menu--right nested_menu" role="menu">
+                  <div
+                    class="dropdown_menu dropdown_menu--right nested_menu"
+                    role="menu"
+                  >
                     <button class="menu_item" role="menuitem">
-                      <img class="menu_item_icon" src="./assets/icons/globe.svg" alt="" aria-hidden="true" /> Help center
+                      <img
+                        class="menu_item_icon"
+                        src="./assets/icons/globe.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      Help center
                     </button>
                     <button class="menu_item" role="menuitem">
-                      <img class="menu_item_icon" src="./assets/icons/pencil.svg" alt="" aria-hidden="true" /> Release notes
+                      <img
+                        class="menu_item_icon"
+                        src="./assets/icons/pencil.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      Release notes
                     </button>
                     <button class="menu_item" role="menuitem">
-                      <img class="menu_item_icon" src="./assets/icons/download.svg" alt="" aria-hidden="true" /> Download apps
+                      <img
+                        class="menu_item_icon"
+                        src="./assets/icons/download.svg"
+                        alt=""
+                        aria-hidden="true"
+                      />
+                      Download apps
                     </button>
                   </div>
                 </div>
 
                 <div class="menu_divider"></div>
                 <button class="menu_item" role="menuitem">
-                  <img class="menu_item_icon" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" /> Log out
+                  <img
+                    class="menu_item_icon"
+                    src="./assets/icons/cross-1.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  Log out
                 </button>
               </div>
             </div>
@@ -238,29 +560,74 @@
 
         <div class="sidebar_rail" aria-hidden="true">
           <div class="rail_top">
-            <button class="rail_btn tooltip_trigger js-toggle-sidebar" id="railExpandBtn" aria-label="Open sidebar">
-              <img class="rail_logo_icon" src="./assets/icons/blossom.svg" alt="Open sidebar" />
+            <button
+              class="rail_btn tooltip_trigger js-toggle-sidebar"
+              id="railExpandBtn"
+              aria-label="Open sidebar"
+            >
+              <img
+                class="rail_logo_icon"
+                src="./assets/icons/blossom.svg"
+                alt="Open sidebar"
+              />
               <span class="tooltip_box tooltip_box--right">Open sidebar</span>
             </button>
-            <button class="rail_btn tooltip_trigger js-new-chat-rail" aria-label="New chat">
-              <img class="rail_icon" src="./assets/icons/square-pen.svg" alt="" aria-hidden="true" />
+            <button
+              class="rail_btn tooltip_trigger js-new-chat-rail"
+              aria-label="New chat"
+            >
+              <img
+                class="rail_icon"
+                src="./assets/icons/square-pen.svg"
+                alt=""
+                aria-hidden="true"
+              />
               <span class="tooltip_box tooltip_box--right">New chat</span>
             </button>
-            <button class="rail_btn tooltip_trigger js-search-rail" aria-label="Search chats">
-              <img class="rail_icon" src="./assets/icons/magnifying-glass.svg" alt="" aria-hidden="true" />
-              <span class="tooltip_box tooltip_box--right">Search chats <span class="shortcut">Ctrl + K</span></span>
+            <button
+              class="rail_btn tooltip_trigger js-search-rail"
+              aria-label="Search chats"
+            >
+              <img
+                class="rail_icon"
+                src="./assets/icons/magnifying-glass.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <span class="tooltip_box tooltip_box--right"
+                >Search chats <span class="shortcut">Ctrl + K</span></span
+              >
             </button>
-            <button class="rail_btn tooltip_trigger js-pinned-rail" aria-label="Pinned chats">
-              <img class="rail_icon" src="./assets/icons/pin.svg" alt="" aria-hidden="true" />
+            <button
+              class="rail_btn tooltip_trigger js-pinned-rail"
+              aria-label="Pinned chats"
+            >
+              <img
+                class="rail_icon"
+                src="./assets/icons/pin.svg"
+                alt=""
+                aria-hidden="true"
+              />
               <span class="tooltip_box tooltip_box--right">Pinned</span>
             </button>
-            <button class="rail_btn tooltip_trigger js-recents-rail" aria-label="Recents">
-              <img class="rail_icon" src="./assets/icons/message-circle.svg" alt="" aria-hidden="true" />
+            <button
+              class="rail_btn tooltip_trigger js-recents-rail"
+              aria-label="Recents"
+            >
+              <img
+                class="rail_icon"
+                src="./assets/icons/message-circle.svg"
+                alt=""
+                aria-hidden="true"
+              />
               <span class="tooltip_box tooltip_box--right">Recents</span>
             </button>
           </div>
           <div class="rail_bottom">
-            <button class="rail_avatar_btn tooltip_trigger js-toggle-profile-rail" aria-label="Profile & settings">
+            <button
+              class="rail_avatar_btn tooltip_trigger js-toggle-profile-rail"
+              aria-label="Profile & settings"
+            >
               <div class="avatar avatar--pink">RK</div>
               <span class="tooltip_box tooltip_box--right">Rohan Kumar</span>
             </button>
@@ -271,34 +638,81 @@
       <main class="main_view" id="mainView">
         <header class="main_header">
           <div class="header_left">
-            <button class="mobile_menu_btn" id="mobileMenuBtn" aria-label="Open sidebar">
-              <img class="mobile_menu_icon" src="./assets/icons/panel-left.svg" alt="" aria-hidden="true" />
+            <button
+              class="mobile_menu_btn"
+              id="mobileMenuBtn"
+              aria-label="Open sidebar"
+            >
+              <img
+                class="mobile_menu_icon"
+                src="./assets/icons/panel-left.svg"
+                alt=""
+                aria-hidden="true"
+              />
             </button>
 
             <div class="popover_wrapper">
-              <button class="model_selector_btn" id="modelSelectorBtn" aria-haspopup="true" aria-expanded="false">
+              <button
+                class="model_selector_btn"
+                id="modelSelectorBtn"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 ChatGPT
-                <img class="model_chevron" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                <img
+                  class="model_chevron"
+                  src="./assets/icons/chevron-down.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
               </button>
-              <div class="dropdown_menu" id="modelDropdown" role="listbox" aria-label="Select model">
-                <button class="model_option is-selected" role="option" data-model="gpt-4o">
+              <div
+                class="dropdown_menu"
+                id="modelDropdown"
+                role="listbox"
+                aria-label="Select model"
+              >
+                <button
+                  class="model_option is-selected"
+                  role="option"
+                  data-model="gpt-4o"
+                >
                   <span class="model_name">
                     GPT-4o
-                    <img class="model_check" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="model_check"
+                      src="./assets/icons/chevron-down.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </span>
                   <span class="model_desc">Fast and versatile</span>
                 </button>
                 <button class="model_option" role="option" data-model="gpt-4">
                   <span class="model_name">
                     GPT-4
-                    <img class="model_check" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="model_check"
+                      src="./assets/icons/chevron-down.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </span>
                   <span class="model_desc">Balanced performance</span>
                 </button>
-                <button class="model_option" role="option" data-model="o1-preview">
+                <button
+                  class="model_option"
+                  role="option"
+                  data-model="o1-preview"
+                >
                   <span class="model_name">
                     o1-preview
-                    <img class="model_check" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="model_check"
+                      src="./assets/icons/chevron-down.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </span>
                   <span class="model_desc">Advanced reasoning</span>
                 </button>
@@ -307,23 +721,56 @@
           </div>
 
           <div class="header_right">
-            <button class="icon_btn tooltip_trigger" id="tempChatBtn" aria-label="Temporary chat">
-              <img class="refresh_btn_icon" src="./assets/icons/message-circle-dashed.svg" alt="" aria-hidden="true" />
-              <span class="tooltip_box tooltip_box--bottom-right">Temporary chat</span>
+            <button
+              class="icon_btn tooltip_trigger"
+              id="tempChatBtn"
+              aria-label="Temporary chat"
+            >
+              <img
+                class="refresh_btn_icon"
+                src="./assets/icons/message-circle-dashed.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <span class="tooltip_box tooltip_box--bottom-right"
+                >Temporary chat</span
+              >
             </button>
           </div>
         </header>
 
-        <section class="chat_container" id="chatContainer" aria-label="Chat area">
-          <div class="chat_feed hidden" id="chatFeed" role="log" aria-live="polite" aria-label="Chat messages"></div>
+        <section
+          class="chat_container"
+          id="chatContainer"
+          aria-label="Chat area"
+        >
+          <div
+            class="chat_feed hidden"
+            id="chatFeed"
+            role="log"
+            aria-live="polite"
+            aria-label="Chat messages"
+          ></div>
 
-          <h1 class="chat_greeting" id="chatGreeting">What's on the agenda today?</h1>
+          <h1 class="chat_greeting" id="chatGreeting">
+            What's on the agenda today?
+          </h1>
 
-          <form class="composer_wrapper" id="composerForm" aria-label="Message composer" autocomplete="off">
+          <form
+            class="composer_wrapper"
+            id="composerForm"
+            aria-label="Message composer"
+            autocomplete="off"
+          >
             <div class="attachment_preview hidden" id="attachmentPreview">
               <div class="file_info">
                 <div class="file_icon_wrap">
-                  <img class="file_type_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" />
+                  <img
+                    class="file_type_icon"
+                    src="./assets/icons/upload.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                 </div>
                 <div class="file_details">
                   <span class="file_name" id="fileName">document.pdf</span>
@@ -333,27 +780,65 @@
               <div class="upload_progress" id="uploadProgress">
                 <div class="upload_bar" id="uploadBar" style="width: 0%"></div>
               </div>
-              <button type="button" class="remove_file_btn" id="removeFileBtn" aria-label="Remove file">
-                <img class="remove_icon" src="./assets/icons/cross-2.svg" alt="" aria-hidden="true" />
+              <button
+                type="button"
+                class="remove_file_btn"
+                id="removeFileBtn"
+                aria-label="Remove file"
+              >
+                <img
+                  class="remove_icon"
+                  src="./assets/icons/cross-2.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
               </button>
             </div>
 
             <div class="composer_input_row">
               <div class="popover_wrapper composer_attach_wrap">
-                <button type="button" class="btn_add tooltip_trigger js-toggle-attachment" aria-label="Attach files">
-                  <img class="btn_add_icon" src="./assets/icons/plus.svg" alt="" aria-hidden="true" />
+                <button
+                  type="button"
+                  class="btn_add tooltip_trigger js-toggle-attachment"
+                  aria-label="Attach files"
+                >
+                  <img
+                    class="btn_add_icon"
+                    src="./assets/icons/plus.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="tooltip_box tooltip_box--top">Attach files</span>
                 </button>
-                <div class="dropdown_menu attachment_menu" id="attachmentMenu" role="menu">
-                  <button type="button" class="menu_item" id="filePickerBtn" role="menuitem">
-                    <img class="menu_item_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" />
+                <div
+                  class="dropdown_menu attachment_menu"
+                  id="attachmentMenu"
+                  role="menu"
+                >
+                  <button
+                    type="button"
+                    class="menu_item"
+                    id="filePickerBtn"
+                    role="menuitem"
+                  >
+                    <img
+                      class="menu_item_icon"
+                      src="./assets/icons/upload.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                     <span class="item_text">
                       <span class="title">Add photos & files</span>
                       <span class="desc">Upload from computer</span>
                     </span>
                   </button>
                   <button type="button" class="menu_item" role="menuitem">
-                    <img class="menu_item_icon" src="./assets/icons/download.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="menu_item_icon"
+                      src="./assets/icons/download.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                     <span class="item_text">
                       <span class="title">Add from library</span>
                       <span class="desc">Browse and search your files</span>
@@ -362,7 +847,12 @@
                 </div>
               </div>
 
-              <input type="file" class="file_input_hidden" id="fileInput" aria-label="Upload file" />
+              <input
+                type="file"
+                class="file_input_hidden"
+                id="fileInput"
+                aria-label="Upload file"
+              />
 
               <textarea
                 class="composer_textarea"
@@ -373,30 +863,84 @@
               ></textarea>
 
               <div class="composer_actions">
-                <button type="button" class="action_btn action_btn--think tooltip_trigger" aria-label="Think deeper">
-                  <img class="action_icon" src="./assets/icons/brain.svg" alt="" aria-hidden="true" />
+                <button
+                  type="button"
+                  class="action_btn action_btn--think tooltip_trigger"
+                  aria-label="Think deeper"
+                >
+                  <img
+                    class="action_icon"
+                    src="./assets/icons/brain.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
                   <span class="action_label">Think</span>
-                  <span class="tooltip_box tooltip_box--top">Get a smarter answer</span>
+                  <span class="tooltip_box tooltip_box--top"
+                    >Get a smarter answer</span
+                  >
                 </button>
-                <button type="button" class="action_btn action_btn--mic tooltip_trigger" aria-label="Dictate">
-                  <img class="action_icon" src="./assets/icons/mic.svg" alt="" aria-hidden="true" />
-                  <span class="tooltip_box tooltip_box--top">Dictate <span class="shortcut">Ctrl + Shift + D</span></span>
+                <button
+                  type="button"
+                  class="action_btn action_btn--mic tooltip_trigger"
+                  aria-label="Dictate"
+                >
+                  <img
+                    class="action_icon"
+                    src="./assets/icons/mic.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <span class="tooltip_box tooltip_box--top"
+                    >Dictate
+                    <span class="shortcut">Ctrl + Shift + D</span></span
+                  >
                 </button>
-                
+
                 <div class="composer_state_btn_wrap">
-                  <button type="button" class="action_btn btn_voice tooltip_trigger" id="voiceBtn" aria-label="Start voice">
-                    <img class="voice_icon" src="./assets/icons/audio-lines.svg" alt="" aria-hidden="true" />
-                    <span class="tooltip_box tooltip_box--top">Start Voice</span>
+                  <button
+                    type="button"
+                    class="action_btn btn_voice tooltip_trigger"
+                    id="voiceBtn"
+                    aria-label="Start voice"
+                  >
+                    <img
+                      class="voice_icon"
+                      src="./assets/icons/audio-lines.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <span class="tooltip_box tooltip_box--top"
+                      >Start Voice</span
+                    >
                   </button>
 
-                  <button type="submit" class="action_btn btn_send tooltip_trigger hidden" id="sendBtn" aria-label="Send message">
-                    <img class="send_icon" src="./assets/icons/upload.svg" alt="" aria-hidden="true" />
-                    <span class="tooltip_box tooltip_box--top">Send message</span>
+                  <button
+                    type="submit"
+                    class="action_btn btn_send tooltip_trigger hidden"
+                    id="sendBtn"
+                    aria-label="Send message"
+                  >
+                    <img
+                      class="send_icon"
+                      src="./assets/icons/upload.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    <span class="tooltip_box tooltip_box--top"
+                      >Send message</span
+                    >
                   </button>
 
-                  <button type="button" class="action_btn btn_stop tooltip_trigger hidden" id="stopBtn" aria-label="Stop generating">
+                  <button
+                    type="button"
+                    class="action_btn btn_stop tooltip_trigger hidden"
+                    id="stopBtn"
+                    aria-label="Stop generating"
+                  >
                     <div class="stop_icon"></div>
-                    <span class="tooltip_box tooltip_box--top">Stop generating</span>
+                    <span class="tooltip_box tooltip_box--top"
+                      >Stop generating</span
+                    >
                   </button>
                 </div>
               </div>
@@ -404,33 +948,80 @@
           </form>
 
           <div class="suggestions" id="chatSuggestions">
-            <button class="suggestion_btn" data-prompt="Create an image of a sunset over mountains">
+            <button
+              class="suggestion_btn"
+              data-prompt="Create an image of a sunset over mountains"
+            >
               <div class="suggestion_content">
-                <img class="suggestion_icon" src="./assets/icons/image.svg" alt="" aria-hidden="true" /> Create an image
+                <img
+                  class="suggestion_icon"
+                  src="./assets/icons/image.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                Create an image
               </div>
-              <img class="close_icon" src="./assets/icons/cross-2.svg" alt="Dismiss" />
+              <img
+                class="close_icon"
+                src="./assets/icons/cross-2.svg"
+                alt="Dismiss"
+              />
             </button>
-            <button class="suggestion_btn" data-prompt="Help me write and edit a professional email">
+            <button
+              class="suggestion_btn"
+              data-prompt="Help me write and edit a professional email"
+            >
               <div class="suggestion_content">
-                <img class="suggestion_icon" src="./assets/icons/pencil.svg" alt="" aria-hidden="true" /> Write or edit
+                <img
+                  class="suggestion_icon"
+                  src="./assets/icons/pencil.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                Write or edit
               </div>
-              <img class="close_icon" src="./assets/icons/cross-2.svg" alt="Dismiss" />
+              <img
+                class="close_icon"
+                src="./assets/icons/cross-2.svg"
+                alt="Dismiss"
+              />
             </button>
-            <button class="suggestion_btn" data-prompt="Search the web for the latest tech news">
+            <button
+              class="suggestion_btn"
+              data-prompt="Search the web for the latest tech news"
+            >
               <div class="suggestion_content">
-                <img class="suggestion_icon" src="./assets/icons/globe.svg" alt="" aria-hidden="true" /> Search the web
+                <img
+                  class="suggestion_icon"
+                  src="./assets/icons/globe.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                Search the web
               </div>
-              <img class="close_icon" src="./assets/icons/cross-2.svg" alt="Dismiss" />
+              <img
+                class="close_icon"
+                src="./assets/icons/cross-2.svg"
+                alt="Dismiss"
+              />
             </button>
           </div>
         </section>
       </main>
     </div>
 
-    <div class="modal_overlay" id="searchModal" role="dialog" aria-modal="true" aria-label="Search chats">
+    <div
+      class="modal_overlay"
+      id="searchModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search chats"
+    >
       <div class="search_modal">
         <div class="search_header">
-          <label class="visually_hidden" for="searchModalInput">Search chats</label>
+          <label class="visually_hidden" for="searchModalInput"
+            >Search chats</label
+          >
           <input
             type="text"
             id="searchModalInput"
@@ -438,38 +1029,92 @@
             class="search_modal_input"
             autocomplete="off"
           />
-          <button class="icon_btn" id="closeSearchModalBtn" aria-label="Close search">
-            <img class="icon_btn_img" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" />
+          <button
+            class="icon_btn"
+            id="closeSearchModalBtn"
+            aria-label="Close search"
+          >
+            <img
+              class="icon_btn_img"
+              src="./assets/icons/cross-1.svg"
+              alt=""
+              aria-hidden="true"
+            />
           </button>
         </div>
         <div class="search_body" id="searchBody"></div>
       </div>
     </div>
 
-    <div class="modal_overlay" id="settingsModal" role="dialog" aria-modal="true" aria-label="Settings">
+    <div
+      class="modal_overlay"
+      id="settingsModal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Settings"
+    >
       <div class="settings_modal">
         <div class="settings_header">
           <h2 class="settings_title">Settings</h2>
-          <button class="icon_btn" id="closeSettingsBtn" aria-label="Close settings">
-            <img class="icon_btn_img" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" />
+          <button
+            class="icon_btn"
+            id="closeSettingsBtn"
+            aria-label="Close settings"
+          >
+            <img
+              class="icon_btn_img"
+              src="./assets/icons/cross-1.svg"
+              alt=""
+              aria-hidden="true"
+            />
           </button>
         </div>
         <div class="settings_body">
           <nav class="settings_sidebar" aria-label="Settings sections">
             <button class="settings_nav_item active" data-section="general">
-              <img class="settings_nav_icon" src="./assets/icons/write.svg" alt="" aria-hidden="true" /> General
+              <img
+                class="settings_nav_icon"
+                src="./assets/icons/write.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              General
             </button>
             <button class="settings_nav_item" data-section="appearance">
-              <img class="settings_nav_icon" src="./assets/icons/image.svg" alt="" aria-hidden="true" /> Appearance
+              <img
+                class="settings_nav_icon"
+                src="./assets/icons/image.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              Appearance
             </button>
             <button class="settings_nav_item" data-section="profile">
-              <img class="settings_nav_icon" src="./assets/icons/brain.svg" alt="" aria-hidden="true" /> Profile
+              <img
+                class="settings_nav_icon"
+                src="./assets/icons/brain.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              Profile
             </button>
             <button class="settings_nav_item" data-section="shortcuts">
-              <img class="settings_nav_icon" src="./assets/icons/list.svg" alt="" aria-hidden="true" /> Shortcuts
+              <img
+                class="settings_nav_icon"
+                src="./assets/icons/list.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              Shortcuts
             </button>
             <button class="settings_nav_item" data-section="notifications">
-              <img class="settings_nav_icon" src="./assets/icons/message-circle.svg" alt="" aria-hidden="true" /> Notifications
+              <img
+                class="settings_nav_icon"
+                src="./assets/icons/message-circle.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              Notifications
             </button>
           </nav>
 
@@ -483,24 +1128,41 @@
                     <div class="setting_desc">Move all chats to archive</div>
                   </div>
                   <button class="icon_btn" aria-label="Archive all">
-                    <img class="icon_btn_img" src="./assets/icons/download.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="icon_btn_img"
+                      src="./assets/icons/download.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
                 </div>
                 <div class="setting_row">
                   <div>
                     <div class="setting_label">Delete all chats</div>
-                    <div class="setting_desc">Permanently delete all conversations</div>
+                    <div class="setting_desc">
+                      Permanently delete all conversations
+                    </div>
                   </div>
                   <button class="icon_btn" aria-label="Delete all">
-                    <img class="icon_btn_img" src="./assets/icons/cross-1.svg" alt="" aria-hidden="true" />
+                    <img
+                      class="icon_btn_img"
+                      src="./assets/icons/cross-1.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
                   </button>
                 </div>
                 <div class="setting_row">
                   <div>
                     <div class="setting_label">Improve model for everyone</div>
-                    <div class="setting_desc">Allow training on your conversations</div>
+                    <div class="setting_desc">
+                      Allow training on your conversations
+                    </div>
                   </div>
-                  <button class="toggle_switch is-on" aria-label="Toggle training">
+                  <button
+                    class="toggle_switch is-on"
+                    aria-label="Toggle training"
+                  >
                     <div class="toggle_knob"></div>
                   </button>
                 </div>
@@ -558,9 +1220,14 @@
                 <div class="setting_row">
                   <div>
                     <div class="setting_label">Custom instructions</div>
-                    <div class="setting_desc">Set up personalized preferences</div>
+                    <div class="setting_desc">
+                      Set up personalized preferences
+                    </div>
                   </div>
-                  <button class="toggle_switch" aria-label="Toggle custom instructions">
+                  <button
+                    class="toggle_switch"
+                    aria-label="Toggle custom instructions"
+                  >
                     <div class="toggle_knob"></div>
                   </button>
                 </div>
@@ -619,18 +1286,28 @@
                 <div class="setting_row">
                   <div>
                     <div class="setting_label">Email notifications</div>
-                    <div class="setting_desc">Receive product updates and tips</div>
+                    <div class="setting_desc">
+                      Receive product updates and tips
+                    </div>
                   </div>
-                  <button class="toggle_switch is-on" aria-label="Toggle email notifications">
+                  <button
+                    class="toggle_switch is-on"
+                    aria-label="Toggle email notifications"
+                  >
                     <div class="toggle_knob"></div>
                   </button>
                 </div>
                 <div class="setting_row">
                   <div>
                     <div class="setting_label">Desktop notifications</div>
-                    <div class="setting_desc">Get alerts when tasks complete</div>
+                    <div class="setting_desc">
+                      Get alerts when tasks complete
+                    </div>
                   </div>
-                  <button class="toggle_switch" aria-label="Toggle desktop notifications">
+                  <button
+                    class="toggle_switch"
+                    aria-label="Toggle desktop notifications"
+                  >
                     <div class="toggle_knob"></div>
                   </button>
                 </div>

@@ -1,41 +1,41 @@
 (function () {
-  const searchTriggerBtn = document.querySelector('#searchTriggerBtn');
-  const searchModal = document.querySelector('#searchModal');
-  const closeSearchModalBtn = document.querySelector('#closeSearchModalBtn');
-  const searchModalInput = document.querySelector('#searchModalInput');
-  const searchBody = document.querySelector('#searchBody');
+  const searchTriggerBtn = document.querySelector("#searchTriggerBtn");
+  const searchModal = document.querySelector("#searchModal");
+  const closeSearchModalBtn = document.querySelector("#closeSearchModalBtn");
+  const searchModalInput = document.querySelector("#searchModalInput");
+  const searchBody = document.querySelector("#searchBody");
 
   function openSearchModal() {
     if (!searchModal) return;
-    searchModal.classList.add('is-open');
+    searchModal.classList.add("is-open");
     setTimeout(function () {
       if (searchModalInput) searchModalInput.focus();
     }, 100);
-    renderSearchModal('');
+    renderSearchModal("");
   }
 
   function closeSearchModal() {
     if (!searchModal) return;
-    searchModal.classList.remove('is-open');
-    if (searchModalInput) searchModalInput.value = '';
+    searchModal.classList.remove("is-open");
+    if (searchModalInput) searchModalInput.value = "";
   }
 
   if (searchTriggerBtn) {
-    searchTriggerBtn.addEventListener('click', openSearchModal);
+    searchTriggerBtn.addEventListener("click", openSearchModal);
   }
 
   if (closeSearchModalBtn) {
-    closeSearchModalBtn.addEventListener('click', closeSearchModal);
+    closeSearchModalBtn.addEventListener("click", closeSearchModal);
   }
 
   if (searchModal) {
-    searchModal.addEventListener('click', function (e) {
+    searchModal.addEventListener("click", function (e) {
       if (e.target === searchModal) closeSearchModal();
     });
   }
 
   function renderSearchModal(searchTerm) {
-    if (!searchBody || typeof chatHistory === 'undefined') return;
+    if (!searchBody || typeof chatHistory === "undefined") return;
 
     const filtered = chatHistory.filter(function (chat) {
       return chat.title.toLowerCase().includes(searchTerm.toLowerCase());
@@ -63,7 +63,10 @@
       const chats = entry[1];
       if (chats.length > 0) {
         hasResults = true;
-        html += '<div class="search_group"><h3 class="group_title">' + groupName + '</h3>';
+        html +=
+          '<div class="search_group"><h3 class="group_title">' +
+          groupName +
+          "</h3>";
         chats.forEach(function (chat) {
           html += `
             <button class="chat_row" data-id="${chat.id}">
@@ -71,7 +74,7 @@
             </button>
           `;
         });
-        html += '</div>';
+        html += "</div>";
       }
     });
 
@@ -88,93 +91,97 @@
   }
 
   if (searchModalInput) {
-    searchModalInput.addEventListener('input', debounce(function (e) {
-      renderSearchModal(e.target.value);
-    }, 150));
+    searchModalInput.addEventListener(
+      "input",
+      debounce(function (e) {
+        renderSearchModal(e.target.value);
+      }, 150),
+    );
   }
 
   if (searchBody) {
-    searchBody.addEventListener('click', function (e) {
-      const chatRow = e.target.closest('.chat_row[data-id]');
-      if (chatRow && typeof window._loadChat === 'function') {
+    searchBody.addEventListener("click", function (e) {
+      const chatRow = e.target.closest(".chat_row[data-id]");
+      if (chatRow && typeof window._loadChat === "function") {
         window._loadChat(chatRow.dataset.id);
         closeSearchModal();
       }
 
-      const newChatBtn = e.target.closest('#searchNewChatBtn');
+      const newChatBtn = e.target.closest("#searchNewChatBtn");
       if (newChatBtn) {
         closeSearchModal();
-        const mainNewChatBtn = document.querySelector('#newChatBtn');
+        const mainNewChatBtn = document.querySelector("#newChatBtn");
         if (mainNewChatBtn) mainNewChatBtn.click();
       }
     });
   }
 
-  renderSearchModal('');
+  renderSearchModal("");
 
-  const settingsTriggerBtn = document.querySelector('#settingsTriggerBtn');
-  const settingsModal = document.querySelector('#settingsModal');
-  const closeSettingsBtn = document.querySelector('#closeSettingsBtn');
+  const settingsTriggerBtn = document.querySelector("#settingsTriggerBtn");
+  const settingsModal = document.querySelector("#settingsModal");
+  const closeSettingsBtn = document.querySelector("#closeSettingsBtn");
 
   function openSettingsModal() {
     if (!settingsModal) return;
-    document.querySelectorAll('.dropdown_menu.is-open').forEach(function (menu) {
-      menu.classList.remove('is-open');
-    });
-    settingsModal.classList.add('is-open');
+    document
+      .querySelectorAll(".dropdown_menu.is-open")
+      .forEach(function (menu) {
+        menu.classList.remove("is-open");
+      });
+    settingsModal.classList.add("is-open");
   }
 
   function closeSettingsModal() {
     if (!settingsModal) return;
-    settingsModal.classList.remove('is-open');
+    settingsModal.classList.remove("is-open");
   }
 
   if (settingsTriggerBtn) {
-    settingsTriggerBtn.addEventListener('click', openSettingsModal);
+    settingsTriggerBtn.addEventListener("click", openSettingsModal);
   }
 
   if (closeSettingsBtn) {
-    closeSettingsBtn.addEventListener('click', closeSettingsModal);
+    closeSettingsBtn.addEventListener("click", closeSettingsModal);
   }
 
   if (settingsModal) {
-    settingsModal.addEventListener('click', function (e) {
+    settingsModal.addEventListener("click", function (e) {
       if (e.target === settingsModal) closeSettingsModal();
     });
   }
 
-  document.querySelectorAll('.settings_nav_item').forEach(function (navItem) {
-    navItem.addEventListener('click', function () {
+  document.querySelectorAll(".settings_nav_item").forEach(function (navItem) {
+    navItem.addEventListener("click", function () {
       const section = navItem.dataset.section;
 
-      document.querySelectorAll('.settings_nav_item').forEach(function (item) {
-        item.classList.remove('active');
+      document.querySelectorAll(".settings_nav_item").forEach(function (item) {
+        item.classList.remove("active");
       });
-      navItem.classList.add('active');
+      navItem.classList.add("active");
 
-      document.querySelectorAll('.settings_panel').forEach(function (panel) {
-        panel.classList.add('hidden');
+      document.querySelectorAll(".settings_panel").forEach(function (panel) {
+        panel.classList.add("hidden");
       });
-      const targetPanel = document.querySelector('#panel-' + section);
-      if (targetPanel) targetPanel.classList.remove('hidden');
+      const targetPanel = document.querySelector("#panel-" + section);
+      if (targetPanel) targetPanel.classList.remove("hidden");
     });
   });
 
-  document.addEventListener('click', function (e) {
-    const toggle = e.target.closest('.toggle_switch');
+  document.addEventListener("click", function (e) {
+    const toggle = e.target.closest(".toggle_switch");
     if (toggle) {
-      toggle.classList.toggle('is-on');
+      toggle.classList.toggle("is-on");
     }
   });
 
-  document.addEventListener('click', function (e) {
-    const themeOption = e.target.closest('.theme_option');
+  document.addEventListener("click", function (e) {
+    const themeOption = e.target.closest(".theme_option");
     if (themeOption) {
-      document.querySelectorAll('.theme_option').forEach(function (opt) {
-        opt.classList.remove('active');
+      document.querySelectorAll(".theme_option").forEach(function (opt) {
+        opt.classList.remove("active");
       });
-      themeOption.classList.add('active');
+      themeOption.classList.add("active");
     }
   });
-
 })();

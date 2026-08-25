@@ -5,6 +5,7 @@
   position: relative;
 
   .tooltip_box {
+    display: none;
     position: absolute;
     background-color: $color-bg-dark;
     color: $color-text-inverse;
@@ -15,8 +16,7 @@
     white-space: nowrap;
     pointer-events: none;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity $transition-fast, visibility $transition-fast;
+    transition: opacity $transition-fast;
     z-index: $z-tooltip;
     box-shadow: $shadow-md;
     line-height: $line-height-tight;
@@ -29,8 +29,8 @@
   }
 
   &:hover .tooltip_box {
+    display: block;
     opacity: 1;
-    visibility: visible;
   }
 }
 

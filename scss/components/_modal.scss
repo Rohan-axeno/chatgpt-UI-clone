@@ -323,7 +323,11 @@
         }
 
         .theme_preview--system {
-          background: linear-gradient(135deg, $color-bg-primary 50%, $color-bg-dark 50%);
+          background: linear-gradient(
+            135deg,
+            $color-bg-primary 50%,
+            $color-bg-dark 50%
+          );
           border: rem(1) solid $color-border;
         }
 

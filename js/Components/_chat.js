@@ -1,32 +1,47 @@
 function escapeHtml(str) {
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
 }
 
 function formatSyntaxHighlight(code, lang) {
-  if (!code) return '';
+  if (!code) return "";
   let result = code;
 
-  result = result.replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*|#[^\n]*)/g, '<span class="token_comment">$1</span>');
+  result = result.replace(
+    /(\/\*[\s\S]*?\*\/|\/\/[^\n]*|#[^\n]*)/g,
+    '<span class="token_comment">$1</span>',
+  );
 
-  result = result.replace(/(&quot;.*?&quot;|&#39;.*?&#39;|`.*?`|'.*?'|".*?")/g, '<span class="token_string">$1</span>');
+  result = result.replace(
+    /(&quot;.*?&quot;|&#39;.*?&#39;|`.*?`|'.*?'|".*?")/g,
+    '<span class="token_string">$1</span>',
+  );
 
-  result = result.replace(/\b(@media|@include|@use|@function|@return|import|from|const|let|var|function|return|def|class|if|else|export|as)\b/g, '<span class="token_keyword">$1</span>');
+  result = result.replace(
+    /\b(@media|@include|@use|@function|@return|import|from|const|let|var|function|return|def|class|if|else|export|as)\b/g,
+    '<span class="token_keyword">$1</span>',
+  );
 
-  result = result.replace(/\b(\d+(?:px|rem|em|%|vh|vw|ms|s)?)\b/g, '<span class="token_number">$1</span>');
+  result = result.replace(
+    /\b(\d+(?:px|rem|em|%|vh|vw|ms|s)?)\b/g,
+    '<span class="token_number">$1</span>',
+  );
 
-  result = result.replace(/(\.[\w-]+)/g, '<span class="token_selector">$1</span>');
+  result = result.replace(
+    /(\.[\w-]+)/g,
+    '<span class="token_selector">$1</span>',
+  );
 
   return result;
 }
 
 function appendUserMessage(text) {
-  const chatFeed = document.querySelector('#chatFeed');
+  const chatFeed = document.querySelector("#chatFeed");
   if (!chatFeed) return;
 
-  const row = document.createElement('div');
-  row.className = 'message_row message_row--user';
+  const row = document.createElement("div");
+  row.className = "message_row message_row--user";
   row.innerHTML = `
     <div class="message_avatar">RK</div>
     <div class="message_content">
@@ -39,12 +54,12 @@ function appendUserMessage(text) {
 }
 
 function showTypingIndicator() {
-  const chatFeed = document.querySelector('#chatFeed');
+  const chatFeed = document.querySelector("#chatFeed");
   if (!chatFeed) return;
 
-  const indicator = document.createElement('div');
-  indicator.className = 'typing_indicator';
-  indicator.id = 'typingIndicator';
+  const indicator = document.createElement("div");
+  indicator.className = "typing_indicator";
+  indicator.id = "typingIndicator";
   indicator.innerHTML = `
     <div class="typing_avatar">
       <img class="avatar_icon" src="./assets/icons/blossom.svg" alt="ChatGPT" />
@@ -61,14 +76,14 @@ function showTypingIndicator() {
 }
 
 function removeTypingIndicator() {
-  const indicator = document.querySelector('#typingIndicator');
+  const indicator = document.querySelector("#typingIndicator");
   if (indicator) indicator.remove();
 }
 
 function buildCodeBlockHtml(codeData) {
-  if (!codeData) return '';
+  if (!codeData) return "";
   const escapedSnippet = escapeHtml(codeData.snippet);
-  const lang = escapeHtml(codeData.language || 'code').toUpperCase();
+  const lang = escapeHtml(codeData.language || "code").toUpperCase();
   const highlighted = formatSyntaxHighlight(escapedSnippet, codeData.language);
 
   return `
@@ -90,18 +105,26 @@ function buildCodeBlockHtml(codeData) {
 }
 
 function buildListHtml(items) {
-  if (!items || !items.length) return '';
-  const listItems = items.map(item => `<li class="msg_list_item">${escapeHtml(item)}</li>`).join('');
+  if (!items || !items.length) return "";
+  const listItems = items
+    .map((item) => `<li class="msg_list_item">${escapeHtml(item)}</li>`)
+    .join("");
   return `<ol class="msg_list">${listItems}</ol>`;
 }
 
 function buildTableHtml(tableData) {
-  if (!tableData) return '';
-  const headerCells = tableData.headers.map(h => `<th class="msg_th">${escapeHtml(h)}</th>`).join('');
-  const bodyRows = tableData.rows.map(row => {
-    const cells = row.map(cell => `<td class="msg_td">${escapeHtml(cell)}</td>`).join('');
-    return `<tr class="msg_tr">${cells}</tr>`;
-  }).join('');
+  if (!tableData) return "";
+  const headerCells = tableData.headers
+    .map((h) => `<th class="msg_th">${escapeHtml(h)}</th>`)
+    .join("");
+  const bodyRows = tableData.rows
+    .map((row) => {
+      const cells = row
+        .map((cell) => `<td class="msg_td">${escapeHtml(cell)}</td>`)
+        .join("");
+      return `<tr class="msg_tr">${cells}</tr>`;
+    })
+    .join("");
 
   return `
     <div class="msg_table_wrap">
@@ -114,10 +137,10 @@ function buildTableHtml(tableData) {
 }
 
 function appendAssistantMessage(text, extras) {
-  const chatFeed = document.querySelector('#chatFeed');
+  const chatFeed = document.querySelector("#chatFeed");
   if (!chatFeed) return;
 
-  let richContentHtml = '';
+  let richContentHtml = "";
 
   if (extras) {
     if (extras.language && extras.snippet) {
@@ -141,8 +164,8 @@ function appendAssistantMessage(text, extras) {
   }
 
   const msgId = generateId();
-  const row = document.createElement('div');
-  row.className = 'message_row message_row--assistant';
+  const row = document.createElement("div");
+  row.className = "message_row message_row--assistant";
   row.dataset.msgId = msgId;
   row.innerHTML = `
     <div class="message_avatar">

@@ -1,16 +1,17 @@
 # ChatGPT UI Clone
 
- ChatGPT web application built using only **HTML5 + SCSS + Vanilla JavaScript** — no frameworks, no libraries, no backend.
-
+ChatGPT web application built using only **HTML5 + SCSS + Vanilla JavaScript** — no frameworks, no libraries, no backend.
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) (for SCSS compilation)
 
 ### Installation
+
 ```bash
 git clone https://github.com/Rohan-axeno/chatgpt-UI-clone
 cd chatgpt-UI-clone
@@ -18,9 +19,11 @@ npm install
 ```
 
 ### Development
+
 ```bash
 npm run sass
 ```
+
 This starts the SCSS watcher. Open `index.html` directly in your browser.
 
 ---
@@ -81,28 +84,29 @@ chatgpt-UI/
 
 All visual values are centralized — **no hardcoded values in component files**.
 
-| Category | Examples |
-|----------|---------|
-| **Colors** | `$color-bg-primary`, `$color-text-muted`, `$color-danger`, `$color-code-bg` |
-| **Spacing** | `$spacing-4` through `$spacing-80` (consistent rem scale) |
-| **Typography** | `$font-size-xs` through `$font-size-3xl`, `$font-weight-normal` to `$font-weight-bold` |
-| **Border Radius** | `$radius-sm` through `$radius-full`, `$radius-circle` |
-| **Shadows** | `$shadow-sm` through `$shadow-xl`, `$shadow-tooltip` |
-| **Z-Index** | `$z-dropdown: 100`, `$z-sticky: 200`, `$z-overlay: 500`, `$z-modal: 1000` |
-| **Layout** | `$sidebar-width`, `$chat-max-width`, `$content-max-width` |
+| Category          | Examples                                                                               |
+| ----------------- | -------------------------------------------------------------------------------------- |
+| **Colors**        | `$color-bg-primary`, `$color-text-muted`, `$color-danger`, `$color-code-bg`            |
+| **Spacing**       | `$spacing-4` through `$spacing-80` (consistent rem scale)                              |
+| **Typography**    | `$font-size-xs` through `$font-size-3xl`, `$font-weight-normal` to `$font-weight-bold` |
+| **Border Radius** | `$radius-sm` through `$radius-full`, `$radius-circle`                                  |
+| **Shadows**       | `$shadow-sm` through `$shadow-xl`, `$shadow-tooltip`                                   |
+| **Z-Index**       | `$z-dropdown: 100`, `$z-sticky: 200`, `$z-overlay: 500`, `$z-modal: 1000`              |
+| **Layout**        | `$sidebar-width`, `$chat-max-width`, `$content-max-width`                              |
 
 ### Breakpoints
 
 ```scss
-$breakpoint-mobile:  rem(480);
-$breakpoint-tablet:  rem(768);
+$breakpoint-mobile: rem(480);
+$breakpoint-tablet: rem(768);
 $breakpoint-desktop: rem(1024);
-$breakpoint-wide:    rem(1280);
+$breakpoint-wide: rem(1280);
 ```
 
 Used via mixins: `@include mobile-only`, `@include tablet-up`, `@include desktop-up`, `@include wide-up`.
 
 ### Key Rules
+
 - **No element tag selectors** (except in `_reset.scss`)
 - **No `!important`** declarations
 - **No hardcoded hex/px values** outside `_variables.scss`
@@ -114,15 +118,15 @@ Used via mixins: `@include mobile-only`, `@include tablet-up`, `@include desktop
 
 All JS is modular and uses Vanilla JavaScript only:
 
-| File | Responsibility |
-|------|---------------|
-| `_data.js` | Mock data store (chat history, responses, models) |
-| `helper.js` | Utility functions (escape, clipboard, debounce, formatting) |
-| `_chat.js` | Message rendering (user/assistant bubbles, code blocks, lists, tables, typing indicator) |
-| `_composer.js` | Auto-growing textarea, send/voice/stop toggling, file picker, upload simulation |
-| `_sidebar.js` | Collapse/expand, mobile drawer, new chat, history rendering, rename, delete |
-| `_modals.js` | Search modal with live filtering & no-results state, settings modal with 5 panels |
-| `main.js` | Global dropdown system, message actions (copy/like/dislike/regenerate), model selector, keyboard shortcuts |
+| File           | Responsibility                                                                                             |
+| -------------- | ---------------------------------------------------------------------------------------------------------- |
+| `_data.js`     | Mock data store (chat history, responses, models)                                                          |
+| `helper.js`    | Utility functions (escape, clipboard, debounce, formatting)                                                |
+| `_chat.js`     | Message rendering (user/assistant bubbles, code blocks, lists, tables, typing indicator)                   |
+| `_composer.js` | Auto-growing textarea, send/voice/stop toggling, file picker, upload simulation                            |
+| `_sidebar.js`  | Collapse/expand, mobile drawer, new chat, history rendering, rename, delete                                |
+| `_modals.js`   | Search modal with live filtering & no-results state, settings modal with 5 panels                          |
+| `main.js`      | Global dropdown system, message actions (copy/like/dislike/regenerate), model selector, keyboard shortcuts |
 
 ---
 
@@ -151,11 +155,11 @@ All JS is modular and uses Vanilla JavaScript only:
 
 ## 📱 Responsive Behavior
 
-| Viewport | Sidebar | Layout |
-|----------|---------|--------|
-| **Mobile** (< 768px) | Off-canvas drawer with overlay | Full-width, reduced padding |
-| **Tablet** (768–1024px) | Collapsible | Adjusted spacing |
-| **Desktop** (> 1024px) | Always visible | Full layout |
+| Viewport                | Sidebar                        | Layout                      |
+| ----------------------- | ------------------------------ | --------------------------- |
+| **Mobile** (< 768px)    | Off-canvas drawer with overlay | Full-width, reduced padding |
+| **Tablet** (768–1024px) | Collapsible                    | Adjusted spacing            |
+| **Desktop** (> 1024px)  | Always visible                 | Full layout                 |
 
 ---
 
@@ -184,10 +188,3 @@ All JS is modular and uses Vanilla JavaScript only:
 - [x] Rename/Delete conversations
 - [x] Keyboard shortcuts (Ctrl+K, Ctrl+Shift+O/S, Escape)
 - [x] Accessibility (semantic HTML, ARIA, focus states)
-
-
-
-
-
-
-

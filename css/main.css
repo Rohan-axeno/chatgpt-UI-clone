@@ -376,6 +376,7 @@
 }
 .sidebar_content {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding: 0.75rem;
   display: flex;
@@ -558,11 +559,6 @@
 }
 .sidebar .recents .history_group .group_item.has-open-menu {
   z-index: 100;
-}
-.sidebar .recents .history_group .profile_menu {
-  bottom: calc(100% + 0.5rem);
-  left: 0;
-  width: 100%;
 }
 .sidebar .recents .history_group .history_icon {
   width: 1rem;
@@ -1387,6 +1383,7 @@
   position: relative;
 }
 .tooltip_trigger .tooltip_box {
+  display: none;
   position: absolute;
   background-color: #212121;
   color: #ffffff;
@@ -1397,8 +1394,7 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.15s ease, visibility 0.15s ease;
+  transition: opacity 0.15s ease;
   z-index: 1100;
   box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.12);
   line-height: 1;
@@ -1409,8 +1405,8 @@
   font-weight: 400;
 }
 .tooltip_trigger:hover .tooltip_box {
+  display: block;
   opacity: 1;
-  visibility: visible;
 }
 
 .tooltip_box--top,
@@ -1457,6 +1453,7 @@
 }
 
 .dropdown_menu {
+  display: none;
   position: absolute;
   background: #ffffff;
   border-radius: 1rem;
@@ -1465,13 +1462,12 @@
   min-width: 13.75rem;
   z-index: 100;
   opacity: 0;
-  visibility: hidden;
   transform: translateY(0.25rem);
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .dropdown_menu.is-open {
+  display: block;
   opacity: 1;
-  visibility: visible;
   transform: translateY(0);
 }
 .dropdown_menu .menu_item {

@@ -265,7 +265,10 @@
         @include flex-center;
         cursor: pointer;
         border: none;
-        transition: opacity $transition-fast, transform $transition-fast, background-color $transition-fast;
+        transition:
+          opacity $transition-fast,
+          transform $transition-fast,
+          background-color $transition-fast;
 
         &.hidden {
           display: none;

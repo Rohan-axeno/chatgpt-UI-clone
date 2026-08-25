@@ -1,4 +1,4 @@
-@use '../abstracts/mixins' as *;
+@use "../abstracts/mixins" as *;
 
 $color-bg-primary: #ffffff;
 $color-bg-secondary: #f9f9f9;
@@ -50,8 +50,15 @@ $spacing-48: rem(48);
 $spacing-60: rem(60);
 $spacing-80: rem(80);
 
-$font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-$font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+$font-family-base:
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  sans-serif;
+$font-family-mono:
+  "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
 $font-size-xs: rem(12);
 $font-size-sm: rem(13);

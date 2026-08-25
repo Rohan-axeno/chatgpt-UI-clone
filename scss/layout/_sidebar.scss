@@ -177,6 +177,7 @@
 
   &_content {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
     padding: $spacing-12;
     display: flex;
@@ -362,7 +363,9 @@
           opacity: 0;
           visibility: hidden;
           pointer-events: none;
-          transition: opacity $transition-fast, visibility $transition-fast;
+          transition:
+            opacity $transition-fast,
+            visibility $transition-fast;
           z-index: 2;
 
           .hover_action_icon {
@@ -392,12 +395,6 @@
         &.has-open-menu {
           z-index: 100;
         }
-      }
-
-      .profile_menu {
-        bottom: calc(100% + #{$spacing-8});
-        left: 0;
-        width: 100%;
       }
 
       .history_icon {
